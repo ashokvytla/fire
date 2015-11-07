@@ -110,14 +110,19 @@ public MySchema getSchema(int nodeId, MySchema sch)
 getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
 the specific Nodes. For example NodeJoin adds the various incoming schemas to generate the output schema.
 
+NodeSchema represents the schema of a node.
+
+https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/NodeSchema.java
 
 ## WorkflowContext
 
 WorkflowContext is passed to the Node execute method.
 
 The Nodes output things like Results, Logs, Schema to the WorkflowContext. Based on the Application various Classes
-would extent WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results
+would extend WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results
 back to the Browser when used with a WebServer. It would appropriately get displayed in the Browser.
+
+https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/WorkflowContext.java
 
 ## WorkflowMetrics
 

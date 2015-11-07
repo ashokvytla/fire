@@ -37,8 +37,8 @@ Workflow examples are under examples. Files are in the package fire.nodes.exampl
 
 Workflows can be created in one of two ways:
 
-	Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
-	Create a json config file capturing the details of the various nodes and their connections
+* Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
+* Create a json config file capturing the details of the various nodes and their connections
 
 ## Developers
 
@@ -122,6 +122,35 @@ back to the Browser when used with a WebServer. It would appropriately get displ
 
 WorkflowMetrics has not yet been implemented.
 
+## Nodes Implemented
+
+The following Nodes have been implemented till now.
+
+Dataset Nodes:
+
+* NodeDatasetFileOrDirectoryCSV.java : Reads in a CSV file
+* NodeDatasetFileOrDirectoryParquet.java : Reads in a Parquet file
+
+
+Predictive Modeling Nodes:
+
+* NodeLinearRegression.java : Linear Regression
+* NodeLinearRegressionWithSGD.java : Linear Regression with SGD
+* NodeLogisticRegression.java : Logistic Regression
+* NodeDecisionTree.java : Decision Tree
+* NodeDatasetSplit.java : Splits an incoming dataset for train and test
+* NodeKMeans.java : KMeans Clustering
+* NodeALS.java : ALS
+* NodeModelScore.java : Scores a given model and test dataset
+* NodeSummaryStatistics.java : Summary Statistics
+
+Utility Nodes:
+
+* NodePrintFirstNRows.java : Prints the first N rows of a dataset
+* NodeJoin.java : Joins the incoming datasets on the given keys
+
+File Ingestion
+* CompactTextFiles.java : Compacts a set of small text files into larger ones
 
 
 

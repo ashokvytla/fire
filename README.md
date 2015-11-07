@@ -95,7 +95,7 @@ to the Scoring Node.
 
 The execute method in Node() passes along the dataframe to the next node.
 
-public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
+	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
 
 So after execution in general, the Nodes call Node.execute() to pass along the new dataframe produced to the next node
 in the workflow.
@@ -104,7 +104,7 @@ in the workflow.
 
 Workflow supports Schema Propagation. Each Node supports the method
 
-public MySchema getSchema(int nodeId, MySchema sch)
+	public MySchema getSchema(int nodeId, MySchema sch)
 
 
 getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
@@ -155,6 +155,9 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 **Utility Nodes**
 
 * NodePrintFirstNRows.java : Prints the first N rows of a dataset
+
+**Join, GroupBy Nodes**
+
 * NodeJoin.java : Joins the incoming datasets on the given keys
 
 **File Ingestion**

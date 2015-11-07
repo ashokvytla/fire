@@ -126,13 +126,13 @@ WorkflowMetrics has not yet been implemented.
 
 The following Nodes have been implemented till now.
 
-Dataset Nodes:
+**Dataset Nodes**
 
 * NodeDatasetFileOrDirectoryCSV.java : Reads in a CSV file
 * NodeDatasetFileOrDirectoryParquet.java : Reads in a Parquet file
 
 
-Predictive Modeling Nodes:
+**Predictive Modeling Nodes**
 
 * NodeLinearRegression.java : Linear Regression
 * NodeLinearRegressionWithSGD.java : Linear Regression with SGD
@@ -144,12 +144,13 @@ Predictive Modeling Nodes:
 * NodeModelScore.java : Scores a given model and test dataset
 * NodeSummaryStatistics.java : Summary Statistics
 
-Utility Nodes:
+**Utility Nodes**
 
 * NodePrintFirstNRows.java : Prints the first N rows of a dataset
 * NodeJoin.java : Joins the incoming datasets on the given keys
 
-File Ingestion
+**File Ingestion**
+
 * CompactTextFiles.java : Compacts a set of small text files into larger ones
 
 

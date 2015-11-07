@@ -152,10 +152,6 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 * NodeModelScore.java : Scores a given model and test dataset
 * NodeSummaryStatistics.java : Summary Statistics
 
-**Utility Nodes**
-
-* NodePrintFirstNRows.java : Prints the first N rows of a dataset
-
 **Join, GroupBy Nodes**
 
 * NodeJoin.java : Joins the incoming datasets on the given keys
@@ -164,8 +160,13 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 * CompactTextFiles.java : Compacts a set of small text files into larger ones
 
+**Utility Nodes**
 
+* NodePrintFirstNRows.java : Prints the first N rows of a dataset
 
+## Contributing
+
+Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
 
 
 

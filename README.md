@@ -6,14 +6,14 @@ It does so by providing a framework for building and running workflows. At this 
 engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes,
 transform nodes, nodes that build predictive models and above all schema propagation through the workflow.
 
-Horizontal Apps
+**Horizontal Apps**
 
   * Analyzing logs
   * EDW Offload
   * IoT
   * Recommendation Engines
 
-Vertical Apps
+**Vertical Apps**
 
   * ECommerce
   * Telecom

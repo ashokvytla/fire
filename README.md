@@ -32,6 +32,7 @@ transform nodes, nodes that build predictive models and above all schema propaga
 
 Workflow examples are under examples. Files are in the package fire.nodes.examples under the project examples
 
+https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/nodes/examples
 
 ## Creating your workflow
 
@@ -86,7 +87,7 @@ When a node is executed, it may also produce graphs as output. This output is st
 Any Node received Dataframes as inputs and produce Dataframes as outputs. Every node has an 'execute' method with the
 following signature:
 
-public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
+	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
 
 A Predictive Node can also produce a Model as output. If it is connected to a Scoring Node, it passes along the Model
 to the Scoring Node.
@@ -124,7 +125,9 @@ WorkflowMetrics has not yet been implemented.
 
 ## Nodes Implemented
 
-The following Nodes have been implemented till now.
+The following Nodes have been implemented till now. They reside under :
+
+https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 **Dataset Nodes**
 

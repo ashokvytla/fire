@@ -1,0 +1,52 @@
+[ "Workflow", {
+  "datasetNodes" : [ "java.util.ArrayList", [ [ "NodeDatasetFileOrDirectoryCSV", {
+    "id" : 1,
+    "name" : "csv1 node",
+    "nextNodes" : [ "java.util.LinkedList", [ [ "NodeKMeans", {
+      "id" : 10,
+      "name" : "kmeans node",
+      "nextNodes" : [ "java.util.LinkedList", [ ] ],
+      "columns" : "label text f",
+      "columnTypes" : "double string double",
+      "columnmlTypes" : "numeric text numeric",
+      "clusterColumns" : "f1 f2",
+      "maxIter" : 10,
+      "sparkSQLSchema" : [ "org.apache.spark.sql.types.StructType", {
+        "empty" : false,
+        "traversableAgain" : true,
+        "primitive" : false
+      } ],
+      "schema" : [ "NodeSchema", {
+        "columnNames" : [ "label", "text", "f" ],
+        "columnTypes" : [ "DOUBLE", "STRING", "DOUBLE" ],
+        "columnMLTypes" : [ 0, 0, 0 ],
+        "sparkSQLStructType" : [ "org.apache.spark.sql.types.StructType", {
+          "empty" : false,
+          "traversableAgain" : true,
+          "primitive" : false
+        } ]
+      } ]
+    } ] ] ],
+    "columns" : "id label f1 f2",
+    "columnTypes" : "double double double double",
+    "columnmlTypes" : "numeric text numeric",
+    "path" : "data/cars.csv",
+    "filterLinesContaining" : null,
+    "sparkSQLSchema" : [ "org.apache.spark.sql.types.StructType", {
+      "empty" : false,
+      "traversableAgain" : true,
+      "primitive" : false
+    } ],
+    "schema" : [ "NodeSchema", {
+      "columnNames" : [ "id", "label", "f1", "f2" ],
+      "columnTypes" : [ "DOUBLE", "DOUBLE", "DOUBLE", "DOUBLE" ],
+      "columnMLTypes" : [ 0, 0, 0 ],
+      "sparkSQLStructType" : [ "org.apache.spark.sql.types.StructType", {
+        "empty" : false,
+        "traversableAgain" : true,
+        "primitive" : false
+      } ]
+    } ]
+  } ] ] ],
+  "traversalCircular" : false
+} ]

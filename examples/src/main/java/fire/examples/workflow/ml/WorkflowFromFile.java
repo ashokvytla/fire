@@ -18,7 +18,7 @@
 package fire.examples.workflow.ml;
 
 import fire.workflowengine.WorkflowContext;
-import fire.workflowengine.JacksonSerialization;
+import fire.workflowengine.Serializer;
 import fire.sparkutil.CreateSparkContext;
 import fire.workflowengine.Workflow;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -59,7 +59,7 @@ public class WorkflowFromFile {
 
         String json = readFile(fn);
 
-        Workflow wf = JacksonSerialization.fromjson(json);
+        Workflow wf = Serializer.fromjson(json);
 
 
         // execute the workflow

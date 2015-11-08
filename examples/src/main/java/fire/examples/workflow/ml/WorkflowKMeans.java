@@ -19,7 +19,7 @@ package fire.nodes.examples.ml;
 
 import fire.workflowengine.WorkflowContext;
 import fire.workflowengine.NodeSchema;
-import fire.workflowengine.JacksonSerialization;
+import fire.workflowengine.Serializer;
 import fire.nodes.ml.NodeKMeans;
 import fire.sparkutil.CreateSparkContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
@@ -76,7 +76,7 @@ public class WorkflowKMeans {
         // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);
 
-        String json = JacksonSerialization.tojson(wf);
+        String json = Serializer.tojson(wf);
 
         System.out.println(json);
 

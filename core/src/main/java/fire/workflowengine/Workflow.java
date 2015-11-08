@@ -103,7 +103,7 @@ public class Workflow {
     // convert the workflow to json
     public String tojson() {
 
-        String str = JacksonSerialization.tojson(this);
+        String str = Serializer.tojson(this);
 
         return str;
     }
@@ -113,7 +113,7 @@ public class Workflow {
     // create the workflow from a json string
     public static Workflow fromjson(String json) {
 
-        Workflow wf = JacksonSerialization.fromjson(json);
+        Workflow wf = Serializer.fromjson(json);
 
         return wf;
     }

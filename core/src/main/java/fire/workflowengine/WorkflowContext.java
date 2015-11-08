@@ -59,7 +59,7 @@ public class WorkflowContext {
 
         arr.add(result);
 
-        String string = JacksonSerialization.tojson(result);
+        String string = Serializer.tojson(result);
         out(string);
 
     }

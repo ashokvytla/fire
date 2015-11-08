@@ -1,3 +1,5 @@
+package fire.examples.workflow.ml;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -15,18 +17,12 @@
  * limitations under the License.
  */
 
-package fire.nodes.examples.ml;
-
 import fire.workflowengine.WorkflowContext;
 import fire.workflowengine.NodeSchema;
-import fire.nodes.ml.NodeDatasetSplit;
-import fire.nodes.ml.NodeLogisticRegression;
-import fire.nodes.ml.NodeModelScore;
-import fire.nodes.ml.NodeStandardScaler;
+import fire.nodes.ml.NodeLinearRegressionWithSGD;
 import fire.sparkutil.CreateSparkContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 
-import fire.workflowengine.Node;
 import fire.workflowengine.Workflow;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
@@ -34,7 +30,7 @@ import org.apache.spark.sql.SQLContext;
 /**
  * Created by jayantshekhar
  */
-public class WorkflowLogisticRegression {
+public class WorkflowHousing {
 
     //--------------------------------------------------------------------------------------
 
@@ -47,7 +43,7 @@ public class WorkflowLogisticRegression {
 
         WorkflowContext workflowContext = new WorkflowContext();
 
-        lrwf(ctx, sqlContext, workflowContext);
+        executewfHousingLinearRegression(ctx, sqlContext, workflowContext);
 
         // stop the context
         ctx.stop();
@@ -55,14 +51,18 @@ public class WorkflowLogisticRegression {
 
     //--------------------------------------------------------------------------------------
 
-    private static void lrwf(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
+    private static void executewfHousingLinearRegression(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
 
         Workflow wf = new Workflow();
 
         // csv1 node
-        NodeDatasetFileOrDirectoryCSV csv1 = new NodeDatasetFileOrDirectoryCSV(1, "csv1 node", "data/cars.csv",
-                "id label f1 f2", "double double double double",
-                "numeric numeric numeric numeric");
+        NodeDatasetFileOrDirectoryCSV csv1 = new NodeDatasetFileOrDirectoryCSV(1, "csv1 node", "data/housing.csv",
+                "id price lotsize bedrooms bathrms stories driveway recroom fullbase gashw airco garagepl prefarea",
+                "string double double double double double string string string string string double string",
+                "numeric numeric numeric numeric numeric numeric numeric numeric numeric numeric numeric numeric numeric");
+
+        csv1.filterLinesContaining = "price";
+
         wf.addNodeDataset(csv1);
 
         // test schema
@@ -70,31 +70,13 @@ public class WorkflowLogisticRegression {
         if (schema != null)
             System.out.println(schema.toString());
 
-        // split node
-        Node split = new NodeDatasetSplit(7, "split node");
-        csv1.addNode(split);
+        // linear regression node
+        NodeLinearRegressionWithSGD nodeLinearRegressionWithSGD =
+                        new NodeLinearRegressionWithSGD(10, "NodeLinearRegressionWithSGD node", "price", "lotsize bedrooms");
 
-        // standard scaler node
-        NodeStandardScaler standardScaler = new NodeStandardScaler(10, "standard Scaler node");
-        split.addNode(standardScaler);
+        csv1.addNode(nodeLinearRegressionWithSGD);
 
-        // logistic regression node
-        NodeLogisticRegression regression = new NodeLogisticRegression(8, "regression node", "label", "f1 f2");
-        regression.maxIter = 10;
-        regression.regParam = .01;
-        split.addNode(regression);
-
-        // score model node
-        Node score = new NodeModelScore(9, "score node");
-        split.addNode(score);
-        regression.addNode(score);
-
-        // check if the workflow is circular
-        boolean isTraversalCircular = wf.isTraversalCircular();
-        System.out.println("Is the workflow traversal circular? "+isTraversalCircular);
-
-        // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);
-
     }
+
 }

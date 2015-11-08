@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package fire.nodes.examples.ml;
+package fire.examples.workflow.ml;
 
 import fire.workflowengine.WorkflowContext;
 import fire.workflowengine.JacksonSerialization;

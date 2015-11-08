@@ -15,18 +15,14 @@
  * limitations under the License.
  */
 
-package fire.nodes.examples.ml;
+package fire.examples.workflow.ml;
 
 import fire.workflowengine.WorkflowContext;
 import fire.workflowengine.NodeSchema;
-import fire.nodes.ml.NodeDatasetSplit;
-import fire.nodes.ml.NodeLinearRegression;
-import fire.nodes.ml.NodeModelScore;
-import fire.nodes.ml.NodeStandardScaler;
+import fire.nodes.ml.NodeHashingTF;
+import fire.nodes.ml.NodeTokenizer;
 import fire.sparkutil.CreateSparkContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
-
-import fire.workflowengine.Node;
 import fire.workflowengine.Workflow;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
@@ -34,7 +30,7 @@ import org.apache.spark.sql.SQLContext;
 /**
  * Created by jayantshekhar
  */
-public class WorkflowLinearRegression {
+public class WorkflowText {
 
     //--------------------------------------------------------------------------------------
 
@@ -47,7 +43,7 @@ public class WorkflowLinearRegression {
 
         WorkflowContext workflowContext = new WorkflowContext();
 
-        lrwf(ctx, sqlContext, workflowContext);
+        textwf(ctx, sqlContext, workflowContext);
 
         // stop the context
         ctx.stop();
@@ -55,14 +51,14 @@ public class WorkflowLinearRegression {
 
     //--------------------------------------------------------------------------------------
 
-    private static void lrwf(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
+    private static void textwf(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
 
         Workflow wf = new Workflow();
 
         // csv1 node
-        NodeDatasetFileOrDirectoryCSV csv1 = new NodeDatasetFileOrDirectoryCSV(1, "csv1 node", "data/cars.csv",
-                "id label f1 f2", "double double double double",
-                "numeric numeric numeric numeric");
+        NodeDatasetFileOrDirectoryCSV csv1 = new NodeDatasetFileOrDirectoryCSV(1, "csv1 node", "data/spam1.csv",
+                "docid doc label", "int string double",
+                "numeric numeric numeric");
         wf.addNodeDataset(csv1);
 
         // test schema
@@ -70,31 +66,15 @@ public class WorkflowLinearRegression {
         if (schema != null)
             System.out.println(schema.toString());
 
-        // split node
-        Node split = new NodeDatasetSplit(7, "split node");
-        csv1.addNode(split);
+        // tokenizer node
+        NodeTokenizer tokenizer = new NodeTokenizer(2, "tokenizer node");
+        csv1.addNode(tokenizer);
 
-        // standard scaler node
-        NodeStandardScaler standardScaler = new NodeStandardScaler(10, "standard Scaler node");
-        split.addNode(standardScaler);
+        // hashing TF node
+        NodeHashingTF hashingtf = new NodeHashingTF(2, "hashing TF node");
+        tokenizer.addNode(hashingtf);
 
-        // linear regression node
-        NodeLinearRegression regression = new NodeLinearRegression(8, "linear regression node", "label", "f1 f2");
-        regression.maxIter = 10;
-        regression.regParam = .01;
-        split.addNode(regression);
-
-        // score model node
-        Node score = new NodeModelScore(9, "score node");
-        split.addNode(score);
-        regression.addNode(score);
-
-        // check if the workflow is circular
-        boolean isTraversalCircular = wf.isTraversalCircular();
-        System.out.println("Is the workflow traversal circular? "+isTraversalCircular);
-
-        // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);
-
     }
+
 }

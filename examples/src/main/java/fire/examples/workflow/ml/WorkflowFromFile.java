@@ -64,9 +64,6 @@ public class WorkflowFromFile {
 
         // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);
-
-
-
     }
 
     public static String readFile(String fileName) {

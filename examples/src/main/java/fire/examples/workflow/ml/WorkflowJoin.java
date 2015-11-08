@@ -84,11 +84,6 @@ public class WorkflowJoin {
         csv1.addNode(join);
         csv2.addNode(join);
 
-        // test schema
-        schema = wf.getSchema(3);
-        if (schema != null)
-            System.out.println(schema.toString());
-
         // print node
         Node print = new NodePrintFirstNRows(4, "print node", 10);
         join.addNode(print);

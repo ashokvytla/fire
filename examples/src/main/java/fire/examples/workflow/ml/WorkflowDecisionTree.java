@@ -90,10 +90,6 @@ public class WorkflowDecisionTree {
         split.addNode(score);
         dt.addNode(score);
 
-        // check if the workflow is circular
-        boolean isTraversalCircular = wf.isTraversalCircular();
-        workflowContext.out("Is the workflow traversal circular? "+isTraversalCircular);
-
         // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);
 

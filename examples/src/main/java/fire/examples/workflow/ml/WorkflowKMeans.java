@@ -64,21 +64,12 @@ public class WorkflowKMeans {
                 "numeric numeric numeric numeric");
         wf.addNodeDataset(csv1);
 
-        // test schema
-        NodeSchema schema = wf.getSchema(1);
-        if (schema != null)
-            System.out.println(schema.toString());
-
         // kmeans node
         NodeKMeans kMeans = new NodeKMeans(10, "kmeans node", "f1 f2");
         csv1.addNode(kMeans);
 
         // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);
-
-        String json = Serializer.tojson(wf);
-
-        System.out.println(json);
 
     }
 

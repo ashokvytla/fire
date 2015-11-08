@@ -61,11 +61,6 @@ public class WorkflowText {
                 "numeric numeric numeric");
         wf.addNodeDataset(csv1);
 
-        // test schema
-        NodeSchema schema = wf.getSchema(1);
-        if (schema != null)
-            System.out.println(schema.toString());
-
         // tokenizer node
         NodeTokenizer tokenizer = new NodeTokenizer(2, "tokenizer node");
         csv1.addNode(tokenizer);

@@ -89,10 +89,6 @@ public class WorkflowLinearRegression {
         split.addNode(score);
         regression.addNode(score);
 
-        // check if the workflow is circular
-        boolean isTraversalCircular = wf.isTraversalCircular();
-        System.out.println("Is the workflow traversal circular? "+isTraversalCircular);
-
         // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);
 

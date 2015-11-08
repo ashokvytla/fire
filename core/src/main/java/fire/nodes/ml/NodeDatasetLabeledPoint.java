@@ -46,7 +46,7 @@ public class NodeDatasetLabeledPoint extends NodeDataset {
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
-        System.out.println("Executing NodeDatasetLabeledPoint : "+id);
+        workflowContext.out("Executing NodeDatasetLabeledPoint : "+id);
 
         List<LabeledPoint> localTraining = Lists.newArrayList(
                 new LabeledPoint(1.0, Vectors.dense(0.0, 1.1, 0.1)),

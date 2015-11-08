@@ -20,6 +20,7 @@ package fire.nodes.ml;
 import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.Node;
 import fire.workflowengine.NodeDataset;
+import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.mllib.regression.*;
@@ -55,8 +56,9 @@ public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializ
 
     //--------------------------------------------------------------------------------------
 
-    public void execute(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
-        System.out.println("Executing NodeLinearRegressionWithSGD : " + id);
+    @Override
+    public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
+        workflowContext.out("Executing NodeLinearRegressionWithSGD : " + id);
 
         df.printSchema();
 

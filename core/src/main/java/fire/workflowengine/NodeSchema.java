@@ -34,7 +34,7 @@ public class NodeSchema {
     // column names
     public String[] columnNames;
 
-    // we are using avro types : Schema.Type.STRING / Schema.Type.DOUBLE / Schema.Type.INT
+    // column types. we are using avro types : Schema.Type.STRING / Schema.Type.DOUBLE / Schema.Type.INT
     public Schema.Type[] columnTypes;
 
     // column ML types

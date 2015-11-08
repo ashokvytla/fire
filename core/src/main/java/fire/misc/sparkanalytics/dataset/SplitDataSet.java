@@ -17,7 +17,6 @@
 
 package fire.misc.sparkanalytics.dataset;
 
-import fire.sparkutil.SLog;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.mllib.regression.LabeledPoint;
 
@@ -45,10 +44,10 @@ public class SplitDataSet {
     }
 
     public void print() {
-        SLog.log("Printing the training dataset");
+        System.out.println("Printing the training dataset");
         print(training);
 
-        SLog.log("Printing the test dataset");
+        System.out.println("Printing the test dataset");
         print(test);
     }
 

@@ -134,9 +134,6 @@ public class NodeDatasetFileOrDirectoryCSV extends NodeDatasetFileOrDirectory im
         // the provided schema. Otherwise, there will be runtime exception.
         DataFrame tdf = sqlContext.createDataFrame(rowRDD, schema);
 
-        tdf.printSchema();
-        tdf.show();
-
         super.execute(ctx, sqlContext, workflowContext, tdf);
     }
 

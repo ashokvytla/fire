@@ -36,11 +36,11 @@ public class NodeDatasetFileOrDirectoryParquet extends NodeDatasetFileOrDirector
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeDatasetFileOrDirectoryParquet : "+id);
+        workflowContext.out("Executing NodeDatasetFileOrDirectoryParquet : "+id);
 
         DataFrame parquetFile = sqlContext.parquetFile(path);
 
-        parquetFile.printSchema();
+        workflowContext.outSchema(parquetFile);
 
         super.execute(ctx, sqlContext, workflowContext, parquetFile);
 

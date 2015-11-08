@@ -18,6 +18,7 @@
 package fire.nodes.ml;
 
 import fire.workflowengine.NodeDataset;
+import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.ml.recommendation.ALS;
 import org.apache.spark.ml.recommendation.ALSModel;
@@ -53,8 +54,9 @@ public class NodeALS extends NodeDataset implements Serializable {
 
     //------------------------------------------------------------------------------------------------------
 
-    public void execute(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
-        System.out.println("Executing NodeALS : "+id);
+    @Override
+    public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
+        workflowContext.out("Executing NodeALS : "+id);
 
         df.printSchema();
 
@@ -64,9 +66,7 @@ public class NodeALS extends NodeDataset implements Serializable {
 
         DataFrame newdf = model.transform(df);
 
-        newdf.printSchema();
-
-        newdf.show();
+        workflowContext.outSchema(newdf);
     }
 
     //------------------------------------------------------------------------------------------------------

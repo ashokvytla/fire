@@ -21,6 +21,7 @@ import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.Node;
 import fire.workflowengine.NodeDataset;
 import fire.ml.LabeledDocument;
+import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
@@ -63,7 +64,8 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
 
     //--------------------------------------------------------------------------------------
 
-    public void execute(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
+    @Override
+    public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
         System.out.println("Executing NodeLogisticRegression : "+id);
 
         df.printSchema();

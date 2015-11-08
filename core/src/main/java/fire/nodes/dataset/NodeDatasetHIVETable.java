@@ -18,6 +18,10 @@
 package fire.nodes.dataset;
 
 import fire.workflowengine.NodeDataset;
+import fire.workflowengine.WorkflowContext;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.SQLContext;
 
 /**
  * Created by jayantshekhar
@@ -32,8 +36,11 @@ public class NodeDatasetHIVETable extends NodeDataset {
         table = t;
     }
 
-    public void execute() {
-        System.out.println("Executing NodeDatasetHIVETable : "+id);
+    @Override
+    public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
+
+        workflowContext.out("Executing NodeDatasetHIVETable : " + id);
+
     }
 
 }

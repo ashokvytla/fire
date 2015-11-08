@@ -66,8 +66,8 @@ public class NodeKMeans extends NodeDataset implements Serializable {
         KMeansModel clusters = KMeans.train(vrdd.rdd(), numClusters, numIterations);
 
         // Evaluate clustering by computing Within Set Sum of Squared Errors
-        double WSSSE = clusters.computeCost(vrdd.rdd());
-        System.out.println("Within Set Sum of Squared Errors = " + WSSSE);
+        //double WSSSE = clusters.computeCost(vrdd.rdd());
+        //workflowContext.out("Within Set Sum of Squared Errors = " + WSSSE);
     }
 
     //------------------------------------------------------------------------------------------------------

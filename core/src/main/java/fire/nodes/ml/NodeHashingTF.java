@@ -43,7 +43,7 @@ public class NodeHashingTF extends Node implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeHashingTF : "+id);
+        workflowContext.out("Executing NodeHashingTF : "+id);
 
         HashingTF hashingTF = new HashingTF()
                 .setNumFeatures(1000)
@@ -51,8 +51,7 @@ public class NodeHashingTF extends Node implements Serializable {
                 .setOutputCol("features");
 
         DataFrame newdf = hashingTF.transform(df);
-        newdf.printSchema();
-        newdf.show();
+        workflowContext.outSchema(newdf);
 
         super.execute(ctx, sqlContext, workflowContext, newdf);
     }

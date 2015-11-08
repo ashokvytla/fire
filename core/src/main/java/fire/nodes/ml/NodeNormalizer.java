@@ -47,7 +47,7 @@ public class NodeNormalizer extends Node implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeNormalizer : "+id);
+        workflowContext.out("Executing NodeNormalizer : "+id);
 
         ParamMap paramMap = new ParamMap();
         paramMap.put();

@@ -73,7 +73,7 @@ public class NodeLinearRegression extends NodeDataset implements Serializable {
 
         LinearRegressionModel model = lr.fit(lpdf);
 
-        System.out.println(model.fittingParamMap());
+        workflowContext.out(model);
 
         // pass the computed model to the next node if it is a scoring node
         Node nextNode = this.getNode(0);

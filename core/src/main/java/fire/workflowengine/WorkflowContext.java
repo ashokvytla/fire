@@ -17,6 +17,9 @@
 
 package fire.workflowengine;
 
+import org.apache.spark.ml.Model;
+import org.apache.spark.mllib.linalg.Matrix;
+import org.apache.spark.mllib.regression.RegressionModel;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.types.StructType;
 
@@ -72,4 +75,23 @@ public class WorkflowContext {
 
     //-------------------------------------------------------------------------
 
+
+    public void out(Model model) {
+
+        String string = model.toString();
+
+        out(string);
+    }
+
+    public void out(RegressionModel model) {
+        String string = model.toString();
+
+        out(string);
+    }
+
+    public void out(Matrix matrix) {
+        String string = matrix.toString();
+
+        out(string);
+    }
 }

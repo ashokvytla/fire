@@ -78,31 +78,8 @@ public class NodeDecisionTree extends NodeDataset implements Serializable {
 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 
-        // print the new dataframe
-        lpdf.printSchema();
-        lpdf.show();
-
-        /***
-        LogisticRegression lr = new LogisticRegression()
-                .setMaxIter(maxIter)
-                .setRegParam(regParam);
-
-        LogisticRegressionModel model = lr.fit(lpdf);
-
-        System.out.println(model.fittingParamMap());
-
-        // pass the computed model to the next node if it is a scoring node
-        if (this.nextNode1 != null)
-        {
-            if (nextNode1 instanceof NodeModelScore)
-            {
-                NodeModelScore score = (NodeModelScore)nextNode1;
-                score.model = model;
-                score.labelColumn = this.labelColumn;
-                score.predictorColumns = this.predictorColumns;
-            }
-        }
-         ***/
+        // output the new schema
+        workflowContext.outSchema(lpdf);
 
     }
 

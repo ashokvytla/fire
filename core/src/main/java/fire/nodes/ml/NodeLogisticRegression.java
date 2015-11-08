@@ -73,8 +73,7 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 
         // print the new dataframe
-        lpdf.printSchema();
-        lpdf.show();
+        workflowContext.outSchema(lpdf);
 
         LogisticRegression lr = new LogisticRegression()
                 .setMaxIter(maxIter)
@@ -82,7 +81,7 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
 
         LogisticRegressionModel model = lr.fit(lpdf);
 
-        System.out.println(model.fittingParamMap());
+        workflowContext.out(model);
 
         // pass the computed model to the next node if it is a scoring node
         Node nextNode = this.getNode(0);

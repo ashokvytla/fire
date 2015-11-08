@@ -66,9 +66,7 @@ public class NodeGraphLineChart extends NodeGraph implements Serializable {
         // select the required columns from the input dataframe
         DataFrame selectdf = df.select(seq);
 
-        selectdf.printSchema();
-
-        selectdf.show();
+        workflowContext.outSchema(selectdf);
 
         super.execute(ctx, sqlContext, workflowContext, df);
 

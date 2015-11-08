@@ -68,13 +68,13 @@ public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializ
         lpdf.printSchema();
         lpdf.show();
 
-        linearRegressionWithSGD(ctx, sqlContext, df);
+        linearRegressionWithSGD(ctx, sqlContext, workflowContext, df);
 
     }
 
     //--------------------------------------------------------------------------------------
 
-    private void linearRegressionWithSGD(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
+    private void linearRegressionWithSGD(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
         LinearRegressionWithSGD lr = new LinearRegressionWithSGD();
 
@@ -84,7 +84,7 @@ public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializ
 
         LinearRegressionModel model = lr.run(rdd.rdd());
 
-        System.out.println(model.toString());
+        workflowContext.out(model);
 
         // pass the computed model to the next node if it is a scoring node
         Node nextNode = this.getNode(0);

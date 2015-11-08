@@ -47,12 +47,12 @@ public class NodePrintFirstNRows extends Node implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodePrintFirstNRows : "+id);
+        workflowContext.out("Executing NodePrintFirstNRows : "+id);
 
         Row[] rows = df.take(n);
 
         for (Row row : rows) {
-            System.out.println(row.toString());
+            workflowContext.out(row.toString());
         }
 
         super.execute(ctx, sqlContext, workflowContext, df);

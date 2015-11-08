@@ -72,7 +72,6 @@ public class NodeGraphHistogram extends NodeGraph implements Serializable {
 
         workflowContext.outResult(resultGraph);
 
-
         super.execute(ctx, sqlContext, workflowContext, df);
     }
 

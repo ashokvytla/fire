@@ -78,15 +78,10 @@ public class NodeJoin extends Node implements Serializable {
             return;
         }
 
-        // print schema
-        dataFrame.printSchema();
-        df.printSchema();
-
         // if this is the second dataframe
         DataFrame joindf = dataFrame.join(df, df.col(joinCol).equalTo(dataFrame.col(joinCol)));
 
-        joindf.printSchema();
-        joindf.show();
+        workflowContext.outSchema(joindf);
 
         super.execute(ctx, sqlContext, workflowContext, joindf);
     }

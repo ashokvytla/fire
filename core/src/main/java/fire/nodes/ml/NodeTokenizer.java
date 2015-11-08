@@ -43,15 +43,14 @@ public class NodeTokenizer extends Node implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeTokenizer : "+id);
+        workflowContext.out("Executing NodeTokenizer : "+id);
 
         Tokenizer tokenizer = new Tokenizer()
                 .setInputCol("doc")
                 .setOutputCol("words");
 
         DataFrame newdf = tokenizer.transform(df);
-        newdf.printSchema();
-        newdf.show();
+        workflowContext.outSchema(newdf);
 
         super.execute(ctx, sqlContext, workflowContext, newdf);
     }

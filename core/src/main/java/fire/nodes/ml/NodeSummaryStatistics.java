@@ -42,7 +42,7 @@ public class NodeSummaryStatistics extends Node implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeSummaryStatistics : "+id);
+        workflowContext.out("Executing NodeSummaryStatistics : "+id);
 
 
         /***

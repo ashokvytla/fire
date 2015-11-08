@@ -23,6 +23,12 @@ transform nodes, nodes that build predictive models and above all schema propaga
 
 	mvn package
 
+## IntelliJ or Eclipse
+
+Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
+
+* https://www.jetbrains.com/idea/
+* http://scala-ide.org/
 
 ## Run
 
@@ -30,9 +36,9 @@ transform nodes, nodes that build predictive models and above all schema propaga
 
 ## Examples
 
-Workflow examples are under examples. Files are in the package fire.nodes.examples
+Example workflows are under examples. Files are in the package fire.examples.workflow
 
-https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/nodes/examples
+https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/examples/workflow
 
 ## Creating your workflow
 

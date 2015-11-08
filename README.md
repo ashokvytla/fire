@@ -149,13 +149,13 @@ The following Nodes have been implemented till now. They reside under :
 
 https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
-### Dataset Nodes
+#### Dataset Nodes
 
 * NodeDatasetFileOrDirectoryCSV.java : Reads in a CSV file
 * NodeDatasetFileOrDirectoryParquet.java : Reads in a Parquet file
 
 
-### Predictive Modeling Nodes
+#### Predictive Modeling Nodes
 
 * **NodeLinearRegression.java** : Linear Regression
 * **NodeLinearRegressionWithSGD.java** : Linear Regression with SGD
@@ -167,15 +167,15 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 * **NodeModelScore.java** : Scores a given model and test dataset
 * **NodeSummaryStatistics.java** : Summary Statistics
 
-### Join, GroupBy Nodes
+#### Join, GroupBy Nodes
 
 * **NodeJoin.java** : Joins the incoming datasets on the given keys
 
-### File Ingestion Nodes
+#### File Ingestion Nodes
 
 * **CompactTextFiles.java** : Compacts a set of small text files into larger ones
 
-### Utility Nodes
+#### Utility Nodes
 
 * **NodePrintFirstNRows.java** : Prints the first N rows of a dataset
 

@@ -36,9 +36,16 @@ Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
 
 ## Examples
 
-Example workflows are under examples. Files are in the package fire.examples.workflow
+Example workflows are under examples. They are in the package fire.examples.workflow
 
 https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/examples/workflow
+
+Example workflows include:
+
+* WorkflowKMeans : k-means clustering
+* WorkflowLinearRegression : linear regression
+* WorkflowLogisticRegression : logistic regression
+* WorkflowALS : ALS
 
 ## Creating your workflow
 
@@ -49,7 +56,7 @@ Workflows can be created in one of two ways:
 
 ## Developers
 
-The worflow engine is under core in the package fire.workflowengine.
+The workflow engine is under core in the package fire.workflowengine.
 The node implementations are under core in the package fire.nodes
 
 There are still a number of packages which are not used now but would be used in the future. Hence they can be safely ignored for now.

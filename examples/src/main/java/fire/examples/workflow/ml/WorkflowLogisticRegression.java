@@ -65,11 +65,6 @@ public class WorkflowLogisticRegression {
                 "numeric numeric numeric numeric");
         wf.addNodeDataset(csv1);
 
-        // test schema
-        NodeSchema schema = wf.getSchema(1);
-        if (schema != null)
-            System.out.println(schema.toString());
-
         // split node
         Node split = new NodeDatasetSplit(7, "split node");
         csv1.addNode(split);

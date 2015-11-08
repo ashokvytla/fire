@@ -105,9 +105,6 @@ public class Workflow {
 
         String str = JacksonSerialization.tojson(this);
 
-        //Gson gson = new Gson();
-        //String str = gson.toJson(this);
-
         return str;
     }
 
@@ -117,9 +114,6 @@ public class Workflow {
     public static Workflow fromjson(String json) {
 
         Workflow wf = JacksonSerialization.fromjson(json);
-
-        //Gson gson = new Gson();
-        //Workflow wf = gson.fromJson(json, Workflow.class);
 
         return wf;
     }

@@ -21,6 +21,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -99,14 +100,10 @@ public abstract class Node {
 
         hm.put(id, this);
 
-        if (nextNode1 != null) {
-            boolean result = nextNode1.isCircular(hm);
-            if (result)
-                return true;
-        }
-
-        if (nextNode2 != null) {
-            boolean result = nextNode2.isCircular(hm);
+        Iterator<Node> iterator = nextNodes.iterator();
+        while (iterator.hasNext()) {
+            Node nextNode = iterator.next();
+            boolean result = nextNode.isCircular(hm);
             if (result)
                 return true;
         }

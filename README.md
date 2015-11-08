@@ -30,7 +30,7 @@ transform nodes, nodes that build predictive models and above all schema propaga
 
 ## Examples
 
-Workflow examples are under examples. Files are in the package fire.nodes.examples under the project examples
+Workflow examples are under examples. Files are in the package fire.nodes.examples
 
 https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/nodes/examples
 

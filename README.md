@@ -23,6 +23,12 @@ transform nodes, nodes that build predictive models and above all schema propaga
 
 	mvn package
 
+## IntelliJ or Eclipse
+
+Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
+
+* https://www.jetbrains.com/idea/
+* http://scala-ide.org/
 
 ## Run
 

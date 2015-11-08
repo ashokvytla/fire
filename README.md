@@ -6,14 +6,14 @@ It does so by providing a framework for building and running workflows. At this 
 engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes,
 transform nodes, nodes that build predictive models and above all schema propagation through the workflow.
 
-Horizontal Apps
+**Horizontal Apps**
 
   * Analyzing logs
   * EDW Offload
   * IoT
   * Recommendation Engines
 
-Vertical Apps
+**Vertical Apps**
 
   * ECommerce
   * Telecom
@@ -30,15 +30,16 @@ Vertical Apps
 
 ## Examples
 
-Workflow examples are under examples. Files are in the package fire.nodes.examples under the project examples
+Workflow examples are under examples. Files are in the package fire.nodes.examples
 
+https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/nodes/examples
 
 ## Creating your workflow
 
 Workflows can be created in one of two ways:
 
-	Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
-	Create a json config file capturing the details of the various nodes and their connections
+* Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
+* Create a json config file capturing the details of the various nodes and their connections
 
 ## Developers
 
@@ -86,7 +87,7 @@ When a node is executed, it may also produce graphs as output. This output is st
 Any Node received Dataframes as inputs and produce Dataframes as outputs. Every node has an 'execute' method with the
 following signature:
 
-public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
+	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
 
 A Predictive Node can also produce a Model as output. If it is connected to a Scoring Node, it passes along the Model
 to the Scoring Node.
@@ -94,7 +95,7 @@ to the Scoring Node.
 
 The execute method in Node() passes along the dataframe to the next node.
 
-public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
+	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
 
 So after execution in general, the Nodes call Node.execute() to pass along the new dataframe produced to the next node
 in the workflow.
@@ -103,28 +104,69 @@ in the workflow.
 
 Workflow supports Schema Propagation. Each Node supports the method
 
-public MySchema getSchema(int nodeId, MySchema sch)
+	public MySchema getSchema(int nodeId, MySchema sch)
 
 
 getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
 the specific Nodes. For example NodeJoin adds the various incoming schemas to generate the output schema.
 
+NodeSchema represents the schema of a node.
+
+https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/NodeSchema.java
 
 ## WorkflowContext
 
 WorkflowContext is passed to the Node execute method.
 
 The Nodes output things like Results, Logs, Schema to the WorkflowContext. Based on the Application various Classes
-would extent WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results
+would extend WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results
 back to the Browser when used with a WebServer. It would appropriately get displayed in the Browser.
+
+https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/WorkflowContext.java
 
 ## WorkflowMetrics
 
 WorkflowMetrics has not yet been implemented.
 
+## Nodes Implemented
+
+The following Nodes have been implemented till now. They reside under :
+
+https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
+
+**Dataset Nodes**
+
+* NodeDatasetFileOrDirectoryCSV.java : Reads in a CSV file
+* NodeDatasetFileOrDirectoryParquet.java : Reads in a Parquet file
 
 
+**Predictive Modeling Nodes**
 
+* NodeLinearRegression.java : Linear Regression
+* NodeLinearRegressionWithSGD.java : Linear Regression with SGD
+* NodeLogisticRegression.java : Logistic Regression
+* NodeDecisionTree.java : Decision Tree
+* NodeDatasetSplit.java : Splits an incoming dataset for train and test
+* NodeKMeans.java : KMeans Clustering
+* NodeALS.java : ALS
+* NodeModelScore.java : Scores a given model and test dataset
+* NodeSummaryStatistics.java : Summary Statistics
+
+**Join, GroupBy Nodes**
+
+* NodeJoin.java : Joins the incoming datasets on the given keys
+
+**File Ingestion**
+
+* CompactTextFiles.java : Compacts a set of small text files into larger ones
+
+**Utility Nodes**
+
+* NodePrintFirstNRows.java : Prints the first N rows of a dataset
+
+## Contributing
+
+Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
 
 
 

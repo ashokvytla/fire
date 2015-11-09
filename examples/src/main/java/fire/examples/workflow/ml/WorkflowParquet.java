@@ -38,7 +38,7 @@ public class WorkflowParquet {
         Workflow wf = new Workflow();
 
         // csv1 node
-        NodeDatasetFileOrDirectoryParquet parquet = new NodeDatasetFileOrDirectoryParquet(1, "parquet node", "data/parquetfile");
+        NodeDatasetFileOrDirectoryParquet parquet = new NodeDatasetFileOrDirectoryParquet(1, "parquet node", "data/people.parquet");
         wf.addNodeDataset(parquet);
 
         // print first 5 rows node

@@ -34,7 +34,7 @@ Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
 
 ## Run
 
-	spark-submit --class com.RunCount --master yarn-client --executor-memory 15G  --num-executors 4  --executor-cores 3  fire-parent-1.2.0-SNAPSHOT-jar-with-dependencies.jar
+	spark-submit --class fire.examples.workflow.ml.WorkflowKMeans --master yarn-client --executor-memory 15G  --num-executors 4  --executor-cores 3  fire-parent-1.2.0-SNAPSHOT-jar-with-dependencies.jar
 
 ## Examples
 

@@ -72,6 +72,8 @@ which are set.
 
 <img src="https://github.com/FireProjects/fire/blob/master/docs/Architecture.png"/>
 
+<img src="https://github.com/FireProjects/fire/blob/master/docs/Workflow.png"/>
+
 Nodes can be:
 
 * **Starting nodes** which are mainly data nodes and produce data for the rest of the nodes to act upon.

@@ -1,4 +1,4 @@
-package fire.nodes.examples.ml;
+package fire.examples.workflow.ml;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more

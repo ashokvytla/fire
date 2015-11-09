@@ -173,7 +173,7 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 * **NodeModelScore.java** : Scores a given model and test dataset
 * **NodeSummaryStatistics.java** : Summary Statistics
 
-#### Join, GroupBy Nodes
+#### Basic Transform Nodes
 
 * **NodeJoin.java** : Joins the incoming datasets on the given keys
 
@@ -188,6 +188,20 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 ## Contributing
 
 Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
+
+## Nodes to be built
+
+This section contains the list of Nodes that could be added in the future. More Nodes would continue to be added here.
+
+#### HBase Nodes
+
+* **LoadDataIntoHBase.java**
+
+#### Basic Transform Nodes
+
+* **GroupBy.java**
+
+
 
 ## User Interface
 

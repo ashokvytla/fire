@@ -189,6 +189,21 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
 
+## User Interface
+
+UI has not been built yet, but would be a great addition to the project. The UI would first provide the following:
+
+* Creation and Saving of Workflows with Nodes
+* Execution of the workflow from the UI
+* Display of the workflow execution logs, results and graphs in the UI
+
+jsplumb would be great to building the workflows.
+
+https://jsplumbtoolkit.com/
+
+
+
+
 
 
 

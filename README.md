@@ -68,7 +68,11 @@ So, its best to just focus on the above two at the moment.
 ## Architecture
 
 The main entity is a workflow. A workflow contains nodes connected to each other. Nodes also have parameters
-which are set. Nodes can be:
+which are set. 
+
+<img src="https://github.com/FireProjects/fire/blob/master/docs/Architecture.png"/>
+
+Nodes can be:
 
 * **Starting nodes** which are mainly data nodes and produce data for the rest of the nodes to act upon.
 * **Transform nodes** which process the incoming dataset/s to produce another dataset.

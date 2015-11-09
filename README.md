@@ -42,10 +42,12 @@ https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/exa
 
 Example workflows include:
 
-* WorkflowKMeans : k-means clustering
-* WorkflowLinearRegression : linear regression
-* WorkflowLogisticRegression : logistic regression
-* WorkflowALS : ALS
+
+* **WorkflowKMeans** : k-means clustering
+* **WorkflowLinearRegression** : linear regression
+* **WorkflowLogisticRegression** : logistic regression
+* **WorkflowALS** : ALS
+
 
 ## Creating your workflow
 
@@ -68,12 +70,12 @@ So, its best to just focus on the above two at the moment.
 The main entity is a workflow. A workflow contains nodes connected to each other. Nodes also have parameters
 which are set. Nodes can be:
 
-* Starting nodes which are mainly data nodes and produce data for the rest of the nodes to act upon.
-* Transform nodes which process the incoming dataset/s to produce another dataset.
-* Modeling nodes which apply a predictive algorithm on the incoming dataset to produce a model
-* Scoring nodes which take in a dataset and and model and score it.
-* Decision nodes which take in a dataset, compute some value and pass on the execution to one of its connected outputs.
-* Split nodes which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
+* **Starting nodes** which are mainly data nodes and produce data for the rest of the nodes to act upon.
+* **Transform nodes** which process the incoming dataset/s to produce another dataset.
+* **Modeling nodes** which apply a predictive algorithm on the incoming dataset to produce a model
+* **Scoring nodes** which take in a dataset and and model and score it.
+* **Decision nodes** which take in a dataset, compute some value and pass on the execution to one of its connected outputs.
+* **Split nodes** which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
 
 ## JSON representation of the workflow
 
@@ -147,35 +149,35 @@ The following Nodes have been implemented till now. They reside under :
 
 https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
-**Dataset Nodes**
+#### Dataset Nodes
 
 * NodeDatasetFileOrDirectoryCSV.java : Reads in a CSV file
 * NodeDatasetFileOrDirectoryParquet.java : Reads in a Parquet file
 
 
-**Predictive Modeling Nodes**
+#### Predictive Modeling Nodes
 
-* NodeLinearRegression.java : Linear Regression
-* NodeLinearRegressionWithSGD.java : Linear Regression with SGD
-* NodeLogisticRegression.java : Logistic Regression
-* NodeDecisionTree.java : Decision Tree
-* NodeDatasetSplit.java : Splits an incoming dataset for train and test
-* NodeKMeans.java : KMeans Clustering
-* NodeALS.java : ALS
-* NodeModelScore.java : Scores a given model and test dataset
-* NodeSummaryStatistics.java : Summary Statistics
+* **NodeLinearRegression.java** : Linear Regression
+* **NodeLinearRegressionWithSGD.java** : Linear Regression with SGD
+* **NodeLogisticRegression.java** : Logistic Regression
+* **NodeDecisionTree.java** : Decision Tree
+* **NodeDatasetSplit.java** : Splits an incoming dataset for train and test
+* **NodeKMeans.java** : KMeans Clustering
+* **NodeALS.java** : ALS
+* **NodeModelScore.java** : Scores a given model and test dataset
+* **NodeSummaryStatistics.java** : Summary Statistics
 
-**Join, GroupBy Nodes**
+#### Join, GroupBy Nodes
 
-* NodeJoin.java : Joins the incoming datasets on the given keys
+* **NodeJoin.java** : Joins the incoming datasets on the given keys
 
-**File Ingestion**
+#### File Ingestion Nodes
 
-* CompactTextFiles.java : Compacts a set of small text files into larger ones
+* **CompactTextFiles.java** : Compacts a set of small text files into larger ones
 
-**Utility Nodes**
+#### Utility Nodes
 
-* NodePrintFirstNRows.java : Prints the first N rows of a dataset
+* **NodePrintFirstNRows.java** : Prints the first N rows of a dataset
 
 ## Contributing
 

@@ -34,6 +34,10 @@ Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
 
 ## Run
 
+Below are commands to run the various example Workflows on a Spark cluster. It assumes that data has been loaded onto HDFS in the users home directory. It uses executor memory of 5G.
+
+The parameter 'cluster' specifies that we are running the workflow on a cluster as against locally. It is used to differentiate running on a cluster versus locally or running in an IDE such as IntelliJ or Scala IDE for Eclipse.
+
 	spark-submit --class fire.examples.workflow.ml.WorkflowKMeans --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
 	spark-submit --class fire.examples.workflow.ml.WorkflowLinearRegression --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster

@@ -36,6 +36,12 @@ Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
 
 	spark-submit --class fire.examples.workflow.ml.WorkflowKMeans --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
+	spark-submit --class fire.examples.workflow.ml.WorkflowLinearRegression --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+
+	spark-submit --class fire.examples.workflow.ml.WorkflowLogisticRegression --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+
+	spark-submit --class fire.examples.workflow.ml.WorkflowParquet --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+
 ## Examples
 
 Example workflows are under examples. They are in the package fire.examples.workflow

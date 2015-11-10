@@ -34,9 +34,11 @@ Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
 
 ## Run
 
-Below are commands to run the various example Workflows on a Spark cluster. It assumes that data has been loaded onto HDFS in the users home directory. Use the command below to load the example data onto HDFS.
+Use the command below to load example data onto HDFS. It is then used by the example Workflows.
 
 	hadoop fs -put data
+
+Below are commands to run the various example Workflows on a Spark cluster. 
 
 It uses executor memory of 5G. The parameter 'cluster' specifies that we are running the workflow on a cluster as against locally. It is used to differentiate running on a cluster versus locally or running in an IDE such as IntelliJ or Scala IDE for Eclipse.
 

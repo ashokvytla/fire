@@ -74,8 +74,8 @@ Workflows can be created in one of two ways:
 
 ## Developers
 
-The workflow engine is under core in the package fire.workflowengine.
-The node implementations are under core in the package fire.nodes
+The workflow engine is under core in the package **fire.workflowengine**.
+The node implementations are under core in the package **fire.nodes**.
 
 There are still a number of packages which are not used now but would be used in the future. Hence they can be safely ignored for now.
 So, its best to just focus on the above two at the moment.

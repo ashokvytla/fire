@@ -17,14 +17,11 @@ package fire.examples.workflow.ml;
  * limitations under the License.
  */
 
-import fire.workflowengine.WorkflowContext;
-import fire.workflowengine.NodeSchema;
-import fire.workflowengine.Serializer;
+import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.nodes.ml.NodeKMeans;
 import fire.sparkutil.CreateSparkContext;
-import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
-
 import fire.workflowengine.Workflow;
+import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
 

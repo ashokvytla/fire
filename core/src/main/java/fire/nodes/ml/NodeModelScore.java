@@ -88,9 +88,9 @@ public class NodeModelScore extends NodeDataset implements Serializable {
         predictions.printSchema();
         predictions.show();
 
-        for (Row r: predictions.select("features", "label", "probability", "prediction").collect()) {
-            workflowContext.out("(" + r.get(0) + ", " + r.get(1) + ") --> prob=" + r.get(2)
-                    + ", prediction=" + r.get(3));
+        for (Row r: predictions.select("features", "label", "prediction").collect()) {
+            workflowContext.out("(" + r.get(0) + ", " + r.get(1) + ") " +
+                    ", prediction=" + r.get(2));
         }
 
         //-----------------------------------------------------------------

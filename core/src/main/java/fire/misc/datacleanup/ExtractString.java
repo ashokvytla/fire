@@ -1,4 +1,4 @@
-package fire.datacleanup;
+package fire.misc.datacleanup;
 
 /**
  * Created by jayantshekhar

@@ -1,4 +1,4 @@
-package fire.datawrangling;
+package fire.misc.datawrangling;
 
 import java.util.ArrayList;
 

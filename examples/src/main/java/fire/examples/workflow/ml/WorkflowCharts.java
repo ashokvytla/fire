@@ -61,11 +61,6 @@ public class WorkflowCharts {
                 "numeric numeric numeric numeric");
         wf.addNodeDataset(csv1);
 
-        // test schema
-        NodeSchema schema = wf.getSchema(1);
-        if (schema != null)
-            System.out.println(schema.toString());
-
         // line chart node
         NodeGraphHistogram histogram = new NodeGraphHistogram(6, "graph histogram");
         histogram.groupByColumn = "f1";

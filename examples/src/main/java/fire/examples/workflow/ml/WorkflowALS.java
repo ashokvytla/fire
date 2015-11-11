@@ -60,11 +60,6 @@ public class WorkflowALS {
                 "numeric numeric numeric numeric");
         wf.addNodeDataset(csv1);
 
-        // test schema
-        NodeSchema schema = wf.getSchema(1);
-        if (schema != null)
-            System.out.println(schema.toString());
-
         // als node
         NodeALS als = new NodeALS(10, "ALS node", "userid", "itemid", "rating");
         csv1.addNode(als);

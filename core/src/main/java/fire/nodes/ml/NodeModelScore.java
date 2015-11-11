@@ -84,14 +84,15 @@ public class NodeModelScore extends NodeDataset implements Serializable {
         // make the predictions
         DataFrame predictions = model.transform(lpdf);
 
-        // print the predictions
-        predictions.printSchema();
-        predictions.show();
+        // print the predictions schema
+        workflowContext.outSchema(predictions);
 
+        /*
         for (Row r: predictions.select("features", "label", "prediction").collect()) {
             workflowContext.out("(" + r.get(0) + ", " + r.get(1) + ") " +
                     ", prediction=" + r.get(2));
         }
+        */
 
         //-----------------------------------------------------------------
 

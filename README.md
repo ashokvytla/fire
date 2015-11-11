@@ -27,7 +27,7 @@ The goal is to build a number of reusable Nodes in an open framework and thus en
 
 ## IntelliJ or Eclipse
 
-Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
+Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project. Code can be developed and debugged within the IDE.
 
 * https://www.jetbrains.com/idea/
 * http://scala-ide.org/

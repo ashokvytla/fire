@@ -70,8 +70,6 @@ public class NodeGraphLineChart extends NodeGraph implements Serializable {
 
         super.execute(ctx, sqlContext, workflowContext, df);
 
-
-
     }
 
 }

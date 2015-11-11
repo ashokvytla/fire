@@ -81,13 +81,14 @@ public class NodeDecisionTree extends NodeDataset implements Serializable {
         // output the new schema
         workflowContext.outSchema(lpdf);
 
+        super.execute(ctx, sqlContext, workflowContext, lpdf);
     }
 
     //--------------------------------------------------------------------------------------
 
     // implementation using Pipeline. It is not being currently used
 
-    public void execute111(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
+    public void execute_notused(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
         System.out.println("Executing NodeLogisticRegression : "+id);
 
         df.printSchema();

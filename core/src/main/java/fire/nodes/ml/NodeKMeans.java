@@ -54,7 +54,7 @@ public class NodeKMeans extends NodeDataset implements Serializable {
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
-        System.out.println("Executing NodeKMeans : "+id);
+        workflowContext.out("Executing NodeKMeans : "+id);
 
         df.printSchema();
 
@@ -68,6 +68,8 @@ public class NodeKMeans extends NodeDataset implements Serializable {
         // Evaluate clustering by computing Within Set Sum of Squared Errors
         //double WSSSE = clusters.computeCost(vrdd.rdd());
         //workflowContext.out("Within Set Sum of Squared Errors = " + WSSSE);
+
+        super.execute(ctx, sqlContext, workflowContext, df);
     }
 
     //------------------------------------------------------------------------------------------------------

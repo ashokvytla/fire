@@ -107,6 +107,7 @@ public class NodeModelScore extends NodeDataset implements Serializable {
         workflowContext.out("Confusion Matrix");
         workflowContext.out(confusionMatrix);
 
+        super.execute(ctx, sqlContext, workflowContext, df);
     }
 
 }

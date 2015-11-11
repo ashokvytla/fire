@@ -70,6 +70,7 @@ public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializ
 
         linearRegressionWithSGD(ctx, sqlContext, workflowContext, df);
 
+        super.execute(ctx, sqlContext, workflowContext, df);
     }
 
     //--------------------------------------------------------------------------------------

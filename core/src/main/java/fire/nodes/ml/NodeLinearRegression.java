@@ -87,6 +87,8 @@ public class NodeLinearRegression extends NodeDataset implements Serializable {
                 score.predictorColumns = this.predictorColumns;
             }
         }
+
+        super.execute(ctx, sqlContext, workflowContext, df);
     }
 
     //--------------------------------------------------------------------------------------

@@ -69,8 +69,8 @@ Example workflows include:
 
 Workflows can be created in one of two ways:
 
-* Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
-* Create a json config file capturing the details of the various nodes and their connections
+* **Java/Scala** - Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
+* **JSON** - Create a json config file capturing the details of the various nodes and their connections. Then create a workflow object from it.
 
 ## Developers
 

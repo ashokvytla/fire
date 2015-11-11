@@ -199,10 +199,6 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 * **NodePrintFirstNRows.java** : Prints the first N rows of a dataset
 
-## Contributing
-
-Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
-
 ## Nodes to be built
 
 This section contains the list of Nodes that could be added in the future. More Nodes would continue to be added here.
@@ -225,10 +221,14 @@ UI has not been built yet, but would be a great addition to the project. The UI 
 * Execution of the workflow from the UI
 * Display of the workflow execution logs, results and graphs in the UI
 
-jsplumb would be great to building the workflows.
+jsplumb would be great for building the workflows.
 
 https://jsplumbtoolkit.com/
 
+
+## Contributing
+
+Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
 
 
 

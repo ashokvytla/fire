@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package fire.nodes.ml;
+package fire.nodes.etl;
 
 import fire.workflowengine.WorkflowContext;
 import fire.workflowengine.NodeSchema;

@@ -65,11 +65,6 @@ public class WorkflowHousing {
 
         wf.addNodeDataset(csv1);
 
-        // test schema
-        NodeSchema schema = wf.getSchema(1);
-        if (schema != null)
-            System.out.println(schema.toString());
-
         // linear regression node
         NodeLinearRegressionWithSGD nodeLinearRegressionWithSGD =
                         new NodeLinearRegressionWithSGD(10, "NodeLinearRegressionWithSGD node", "price", "lotsize bedrooms");

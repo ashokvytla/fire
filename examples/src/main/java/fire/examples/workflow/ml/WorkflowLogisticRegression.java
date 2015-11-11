@@ -69,10 +69,6 @@ public class WorkflowLogisticRegression {
         Node split = new NodeDatasetSplit(7, "split node");
         csv1.addNode(split);
 
-        // standard scaler node
-        NodeStandardScaler standardScaler = new NodeStandardScaler(10, "standard Scaler node");
-        split.addNode(standardScaler);
-
         // logistic regression node
         NodeLogisticRegression regression = new NodeLogisticRegression(8, "regression node", "label", "f1 f2");
         regression.maxIter = 10;

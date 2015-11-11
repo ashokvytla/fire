@@ -111,7 +111,7 @@ A workflow can be saved to a json structure into a file or can be created from o
 
 ## Workflow User Interface
 
-There would a browser based User Interface to build workflows. It would take in a text file representation of the various nodes and their parameters.
+There would be a browser based User Interface to build workflows. It would take in a text file representation of the various nodes and their parameters.
 It would allow users to create a workflow using the UI, set the parameters for the various nodes and save it.
 It would also allow users to execute a workflow from the UI and view the results.
 

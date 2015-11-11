@@ -190,7 +190,7 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 * **NodeModelScore.java** : Scores a given model and test dataset
 * **NodeSummaryStatistics.java** : Summary Statistics
 
-#### Basic Transform Nodes
+#### ETL Nodes
 
 * **NodeJoin.java** : Joins the incoming datasets on the given keys
 
@@ -214,7 +214,7 @@ This section contains the list of Nodes that could be added in the future. More 
 
 * **LoadDataIntoHBase.java**
 
-#### Basic Transform Nodes
+#### ETL Nodes
 
 * **GroupBy.java**
 

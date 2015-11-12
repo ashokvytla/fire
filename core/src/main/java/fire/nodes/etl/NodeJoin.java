@@ -69,7 +69,7 @@ public class NodeJoin extends Node implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeJoin : "+id);
+        workflowContext.out("Executing NodeJoin : "+id);
 
         // if this is the first dataframe
         if (dataFrame == null)

@@ -27,7 +27,7 @@ The goal is to build a number of reusable Nodes in an open framework and thus en
 
 ## IntelliJ or Eclipse
 
-Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project.
+Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project. Code can be developed and debugged within the IDE.
 
 * https://www.jetbrains.com/idea/
 * http://scala-ide.org/
@@ -40,7 +40,7 @@ Use the command below to load example data onto HDFS. It is then used by the exa
 
 Below are commands to run the various example Workflows on a Spark cluster. 
 
-It uses executor memory of 5G. The parameter 'cluster' specifies that we are running the workflow on a cluster as against locally. It is used to differentiate running on a cluster versus locally or running in an IDE such as IntelliJ or Scala IDE for Eclipse.
+Executor memory of 5G has been specified in the commands. The parameter **'cluster'** specifies that we are running the workflow on a cluster as against locally. This greatly simplifies the development and debugging within the IDE by setting its value to **'local'** or not specifying it.
 
 	spark-submit --class fire.examples.workflow.ml.WorkflowKMeans --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
@@ -69,13 +69,13 @@ Example workflows include:
 
 Workflows can be created in one of two ways:
 
-* Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
-* Create a json config file capturing the details of the various nodes and their connections
+* **Java/Scala** - Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
+* **JSON** - Create a json config file capturing the details of the various nodes and their connections. Then create a workflow object from it.
 
 ## Developers
 
-The workflow engine is under core in the package fire.workflowengine.
-The node implementations are under core in the package fire.nodes
+The workflow engine is under core in the package **fire.workflowengine**.
+The node implementations are under core in the package **fire.nodes**.
 
 There are still a number of packages which are not used now but would be used in the future. Hence they can be safely ignored for now.
 So, its best to just focus on the above two at the moment.
@@ -111,7 +111,7 @@ A workflow can be saved to a json structure into a file or can be created from o
 
 ## Workflow User Interface
 
-There would a browser based User Interface to build workflows. It would take in a text file representation of the various nodes and their parameters.
+There would be a browser based User Interface to build workflows. It would take in a text file representation of the various nodes and their parameters.
 It would allow users to create a workflow using the UI, set the parameters for the various nodes and save it.
 It would also allow users to execute a workflow from the UI and view the results.
 
@@ -199,10 +199,6 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 * **NodePrintFirstNRows.java** : Prints the first N rows of a dataset
 
-## Contributing
-
-Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
-
 ## Nodes to be built
 
 This section contains the list of Nodes that could be added in the future. More Nodes would continue to be added here.
@@ -225,10 +221,14 @@ UI has not been built yet, but would be a great addition to the project. The UI 
 * Execution of the workflow from the UI
 * Display of the workflow execution logs, results and graphs in the UI
 
-jsplumb would be great to building the workflows.
+jsplumb would be great for building the workflows.
 
 https://jsplumbtoolkit.com/
 
+
+## Contributing
+
+Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
 
 
 

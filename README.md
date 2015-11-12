@@ -6,7 +6,7 @@ It does so by providing a framework for building and running workflows. At this 
 engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes,
 transform nodes, nodes that build predictive models, load data into various stores like hbase, solr etc. and above all schema propagation through the workflow.
 
-The goal is to build a number of reusable Nodes in an open framework and thus enabling much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0
+The goal is to build a number of Nodes in an open framework that could be used out of the box and thus enabling much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0
 
 **Horizontal Apps**
 

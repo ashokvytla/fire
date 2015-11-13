@@ -41,10 +41,9 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeLogisticRegression extends Node implements Serializable {
+public class NodeLogisticRegression extends NodeModeling implements Serializable {
 
-    public String labelColumn = "label";
-    public String predictorColumns = "f1 f2";
+
     public int maxIter = 10;
     public double regParam = 0.01;
     public NodeLogisticRegression() {}
@@ -56,10 +55,7 @@ public class NodeLogisticRegression extends Node implements Serializable {
     //--------------------------------------------------------------------------------------
 
     public NodeLogisticRegression(int i, String nm, String lcol, String pcols) {
-        super(i, nm);
-
-        labelColumn = lcol;
-        predictorColumns = pcols;
+        super(i, nm, lcol, pcols);
     }
 
     //--------------------------------------------------------------------------------------

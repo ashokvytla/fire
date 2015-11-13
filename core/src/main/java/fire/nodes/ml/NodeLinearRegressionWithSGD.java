@@ -32,10 +32,8 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeLinearRegressionWithSGD extends Node implements Serializable {
+public class NodeLinearRegressionWithSGD extends NodeModeling implements Serializable {
 
-    public String labelColumn = "label";
-    public String predictorColumns = "f1 f2";
     public int maxIter = 10;
     public double regParam = 0.01;
 
@@ -48,10 +46,7 @@ public class NodeLinearRegressionWithSGD extends Node implements Serializable {
     //--------------------------------------------------------------------------------------
 
     public NodeLinearRegressionWithSGD(int i, String nm, String lcol, String pcols) {
-        super(i, nm);
-
-        labelColumn = lcol;
-        predictorColumns = pcols;
+        super(i, nm, lcol, pcols);
     }
 
     //--------------------------------------------------------------------------------------

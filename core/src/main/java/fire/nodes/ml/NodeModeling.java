@@ -4,12 +4,14 @@ import fire.workflowengine.Node;
 import org.apache.spark.ml.Model;
 import org.apache.spark.mllib.regression.GeneralizedLinearModel;
 
+import java.util.Iterator;
+
 /**
  * Created by jayantshekhar on 11/12/15.
  */
 
 // represents a node that creates predictive models
-public class NodeModeling extends Node {
+public abstract class NodeModeling extends Node {
 
     public String labelColumn = "label";
     public String predictorColumns = "f1 f2";
@@ -32,9 +34,10 @@ public class NodeModeling extends Node {
     public void passModel(Model model) {
 
         // pass the computed model to the next node if it is a scoring node
-        Node nextNode = this.getNode(0);
-        if (nextNode != null)
-        {
+        Iterator<Node> iterator = nextNodes.iterator();
+        while (iterator.hasNext()) {
+            Node nextNode = iterator.next();
+
             if (nextNode instanceof NodeModelScore)
             {
                 NodeModelScore score = (NodeModelScore)nextNode;
@@ -43,12 +46,17 @@ public class NodeModeling extends Node {
                 score.predictorColumns = this.predictorColumns;
             }
         }
+
     }
 
+    // pass GLM to the scoring nodes
     public void passModel(GeneralizedLinearModel glm) {
-        Node nextNode = this.getNode(0);
-        if (nextNode != null)
-        {
+
+        // pass the computed model to the next node if it is a scoring node
+        Iterator<Node> iterator = nextNodes.iterator();
+        while (iterator.hasNext()) {
+            Node nextNode = iterator.next();
+
             if (nextNode instanceof NodeModelScore)
             {
                 NodeModelScore score = (NodeModelScore)nextNode;
@@ -57,5 +65,6 @@ public class NodeModeling extends Node {
                 score.predictorColumns = this.predictorColumns;
             }
         }
+        
     }
 }

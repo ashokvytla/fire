@@ -6,14 +6,15 @@ It does so by providing a framework for building and running workflows. At this 
 engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes,
 transform nodes, nodes that build predictive models, load data into various stores like hbase, solr etc. and above all schema propagation through the workflow.
 
-The goal is to build a number of reusable Nodes in an open framework and thus enabling much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0
+Fire's core value preposition is to provide a number of Nodes in an open framework that could be used out of the box and thus enable much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0
 
 **Horizontal Apps**
 
+  * IoT
+  * Customer 360
+  * Recommendation Engines
   * Analyzing logs
   * EDW Offload
-  * IoT
-  * Recommendation Engines
 
 **Vertical Apps**
 
@@ -31,6 +32,8 @@ Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project. Co
 
 * https://www.jetbrains.com/idea/
 * http://scala-ide.org/
+ 
+Easiest way to get started it to run the example workflows under examples/src/main/java/fire/examples/workflow in your IDE.
 
 ## Run
 
@@ -69,7 +72,7 @@ Example workflows include:
 
 Workflows can be created in one of two ways:
 
-* **Java/Scala** - Create the nodes, set their parameters and tie them with a workflow with code written in Java/Scala
+* **Java** - Create the nodes, set their parameters and tie them with a workflow with code written in Java
 * **JSON** - Create a json config file capturing the details of the various nodes and their connections. Then create a workflow object from it.
 
 ## Developers
@@ -77,8 +80,7 @@ Workflows can be created in one of two ways:
 The workflow engine is under core in the package **fire.workflowengine**.
 The node implementations are under core in the package **fire.nodes**.
 
-There are still a number of packages which are not used now but would be used in the future. Hence they can be safely ignored for now.
-So, its best to just focus on the above two at the moment.
+There are still a number of packages which are not used now but would be used in the future. Hence they can be safely ignored for now. So, its best to just focus on the above two at the moment.
 
 
 ## Architecture
@@ -131,16 +133,15 @@ A Predictive Node can also produce a Model as output. If it is connected to a Sc
 
 The execute method in Node() passes along the dataframe to the next node.
 
-	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
-
-So after execution in general, the Nodes call Node.execute() to pass along the new dataframe produced to the next node in the workflow.
+So after execution in general, the Nodes call Node.execute() to pass along the execution flow and the new dataframe produced to the next node in the workflow.
 
 ## Schema Propagation
 
-Workflow supports Schema Propagation. Each Node supports the method
+Workflow supports Schema Propagation. The method getSchema(nodeid) returns the Schema for the given node id. Each Node supports the method
 
 	public MySchema getSchema(int nodeId, MySchema sch)
 
+'nodeId' is the id of the node for which the schema is being asked for. 'sch' is the output schema from the previous node. The node then uses the incoming schema to form its schema. If the nodeId matches the current node id, it returns the new schema. If not, it passes the new schema also to its next node.
 
 getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
 the specific Nodes. For example NodeJoin adds the various incoming schemas to generate the output schema.
@@ -153,9 +154,7 @@ https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflo
 
 WorkflowContext is passed to the Node execute method.
 
-The Nodes output things like Results, Logs, Schema to the WorkflowContext. Based on the Application various Classes
-would extend WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results
-back to the Browser when used with a WebServer. It would appropriately get displayed in the Browser.
+The Nodes output things like Logs, Results (can be graphs), Schema to the WorkflowContext. Based on the Application, there would be various implementations of the WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results back to the Browser when used with a WebServer. The result would appropriately get displayed in the Browser in various tabs.
 
 https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/WorkflowContext.java
 
@@ -210,8 +209,6 @@ This section contains the list of Nodes that could be added in the future. More 
 #### ETL Nodes
 
 * **GroupBy.java**
-
-
 
 ## User Interface
 

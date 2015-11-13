@@ -2,6 +2,7 @@ package fire.nodes.ml;
 
 import fire.workflowengine.Node;
 import org.apache.spark.ml.Model;
+import org.apache.spark.mllib.regression.GeneralizedLinearModel;
 
 /**
  * Created by jayantshekhar on 11/12/15.
@@ -38,6 +39,20 @@ public class NodeModeling extends Node {
             {
                 NodeModelScore score = (NodeModelScore)nextNode;
                 score.model = model;
+                score.labelColumn = this.labelColumn;
+                score.predictorColumns = this.predictorColumns;
+            }
+        }
+    }
+
+    public void passModel(GeneralizedLinearModel glm) {
+        Node nextNode = this.getNode(0);
+        if (nextNode != null)
+        {
+            if (nextNode instanceof NodeModelScore)
+            {
+                NodeModelScore score = (NodeModelScore)nextNode;
+                score.glm = glm;
                 score.labelColumn = this.labelColumn;
                 score.predictorColumns = this.predictorColumns;
             }

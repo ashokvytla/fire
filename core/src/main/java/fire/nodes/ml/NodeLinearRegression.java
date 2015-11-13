@@ -65,17 +65,7 @@ public class NodeLinearRegression extends NodeModeling implements Serializable {
         workflowContext.out(model);
 
         // pass the computed model to the next node if it is a scoring node
-        Node nextNode = this.getNode(0);
-        if (nextNode != null)
-        {
-            if (nextNode instanceof NodeModelScore)
-            {
-                NodeModelScore score = (NodeModelScore)nextNode;
-                score.model = model;
-                score.labelColumn = this.labelColumn;
-                score.predictorColumns = this.predictorColumns;
-            }
-        }
+        passModel(model);
 
         super.execute(ctx, sqlContext, workflowContext, df);
     }

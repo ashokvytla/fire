@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-package fire.nodes.ml;
+package fire.nodes.graph;
 
+import fire.nodes.graph.NodeGraph;
 import fire.workflowengine.WorkflowContext;
 import fire.noderesult.NodeResultGraph;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -45,7 +46,7 @@ public class NodeGraphHistogram extends NodeGraph implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        workflowContext.out("Executing NodeGraphHistogram : "+id);
+        workflowContext.out("Executing NodeGraphHistogram : " + id);
 
         workflowContext.outSchema(df);
 

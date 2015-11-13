@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package fire.nodes.ml;
+package fire.nodes.graph;
 
 import fire.workflowengine.Node;
 

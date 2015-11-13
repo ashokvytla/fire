@@ -36,6 +36,8 @@ import java.io.Serializable;
 public class NodeCompactTextFiles extends Node implements Serializable {
 
     public String outDir = "out/out";
+    public SaveMode saveMode = SaveMode.Overwrite;
+    public boolean saveAsParquetFile = false;
 
     public NodeCompactTextFiles(int i, String nm) {
         super(i, nm);
@@ -51,7 +53,11 @@ public class NodeCompactTextFiles extends Node implements Serializable {
 
         workflowContext.out("Executing NodeCompactTextFiles : "+id);
 
-        df.save(outDir, SaveMode.Overwrite);
+        if (saveAsParquetFile) {
+            df.saveAsParquetFile(outDir);
+        } else {
+            df.save(outDir, saveMode);
+        }
 
         super.execute(ctx, sqlContext, workflowContext, df);
     }

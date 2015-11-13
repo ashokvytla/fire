@@ -14,6 +14,8 @@ public class CreateSparkContext {
         // set it to false when running on the cluster
         boolean isLocal = true;
 
+        // the first argument is either local or cluster. local for running in intellij or eclipse and cluster
+        // for running it on a hadoop cluster
         if (args.length > 0 && args[0].equals("cluster"))
             isLocal = false;
 

@@ -65,6 +65,6 @@ public abstract class NodeModeling extends Node {
                 score.predictorColumns = this.predictorColumns;
             }
         }
-        
+
     }
 }

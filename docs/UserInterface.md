@@ -1,6 +1,6 @@
 # Fire User Interface
 
-The User Interface would broadly suppor the following:
+The User Interface would broadly support the following:
 
 * Creation of workflows with a drag and drop interface. Node palettes are on the LHS.
 * Editing of the nodes parameters through a dialog box.
@@ -12,4 +12,13 @@ the user is displayed a list of column names to choose from
 
 * Execution of a workflow on the server.
 * Display of logs and results (graphs etc.) produced from the execution of the workflow on the server in the User Interface.
+
+
+## UI toolkits
+
+jsplumb would be great for building the workflows.
+
+https://jsplumbtoolkit.com/
+
+<img src="https://github.com/FireProjects/fire/blob/master/docs/Workflow.png"/>
 

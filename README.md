@@ -154,9 +154,7 @@ https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflo
 
 WorkflowContext is passed to the Node execute method.
 
-The Nodes output things like Results, Logs, Schema to the WorkflowContext. Based on the Application various Classes
-would extend WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results
-back to the Browser when used with a WebServer. It would appropriately get displayed in the Browser.
+The Nodes output things like Logs, Results (can be graphs), Schema to the WorkflowContext. Based on the Application, there would be various implementations of the WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results back to the Browser when used with a WebServer. The result would appropriately get displayed in the Browser in various tabs.
 
 https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/WorkflowContext.java
 
@@ -211,8 +209,6 @@ This section contains the list of Nodes that could be added in the future. More 
 #### ETL Nodes
 
 * **GroupBy.java**
-
-
 
 ## User Interface
 

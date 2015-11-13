@@ -17,6 +17,7 @@
 
 package fire.nodes.ml;
 
+import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
 import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.NodeDataset;
@@ -34,7 +35,7 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeModelScore extends NodeDataset implements Serializable {
+public class NodeModelScore extends Node implements Serializable {
 
     // these get passed to this node by the previous modeling step. these are also transient because we do not want
     // them to be part of the serialization and json process

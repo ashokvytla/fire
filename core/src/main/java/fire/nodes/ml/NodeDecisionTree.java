@@ -17,6 +17,7 @@
 
 package fire.nodes.ml;
 
+import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
 import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.NodeDataset;
@@ -43,7 +44,7 @@ import java.io.Serializable;
 // https://github.com/apache/spark/blob/master/mllib/src/main/scala/org/apache/spark/ml/classification/DecisionTreeClassifier.scala
     // It is in 1.4 but not in 1.3. So we haven't implemented it yet below.
 
-public class NodeDecisionTree extends NodeDataset implements Serializable {
+public class NodeDecisionTree extends Node implements Serializable {
 
     public String labelColumn = "label";
     public String predictorColumns = "f1 f2";

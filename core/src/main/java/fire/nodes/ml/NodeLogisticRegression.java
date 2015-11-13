@@ -41,7 +41,7 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeLogisticRegression extends NodeDataset implements Serializable {
+public class NodeLogisticRegression extends Node implements Serializable {
 
     public String labelColumn = "label";
     public String predictorColumns = "f1 f2";
@@ -66,7 +66,7 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
-        workflowContext.out("Executing NodeLogisticRegression : "+id);
+        workflowContext.out("Executing NodeLogisticRegression : " + id);
 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 

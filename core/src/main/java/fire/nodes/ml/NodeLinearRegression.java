@@ -32,7 +32,7 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeLinearRegression extends NodeDataset implements Serializable {
+public class NodeLinearRegression extends Node implements Serializable {
 
     public String labelColumn = "label";
     public String predictorColumns = "f1 f2";
@@ -52,7 +52,7 @@ public class NodeLinearRegression extends NodeDataset implements Serializable {
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext,  DataFrame df) {
-        workflowContext.out("Executing NodeLinearRegression : "+id);
+        workflowContext.out("Executing NodeLinearRegression : " + id);
 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 

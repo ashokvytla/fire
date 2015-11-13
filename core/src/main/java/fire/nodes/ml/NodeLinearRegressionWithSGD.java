@@ -32,7 +32,7 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializable {
+public class NodeLinearRegressionWithSGD extends Node implements Serializable {
 
     public String labelColumn = "label";
     public String predictorColumns = "f1 f2";

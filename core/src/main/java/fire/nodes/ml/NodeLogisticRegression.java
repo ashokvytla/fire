@@ -66,9 +66,7 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
-        System.out.println("Executing NodeLogisticRegression : "+id);
-
-        df.printSchema();
+        workflowContext.out("Executing NodeLogisticRegression : "+id);
 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 

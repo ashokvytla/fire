@@ -56,8 +56,6 @@ public class NodeKMeans extends NodeDataset implements Serializable {
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
         workflowContext.out("Executing NodeKMeans : "+id);
 
-        df.printSchema();
-
         // create vector rdd
         JavaRDD<Vector> vrdd = DataFrameUtil.createVectorRDD(ctx, sqlContext, clusterColumns, df);
 

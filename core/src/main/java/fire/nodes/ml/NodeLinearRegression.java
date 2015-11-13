@@ -52,15 +52,9 @@ public class NodeLinearRegression extends NodeDataset implements Serializable {
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext,  DataFrame df) {
-        System.out.println("Executing NodeLinearRegression : "+id);
-
-        df.printSchema();
+        workflowContext.out("Executing NodeLinearRegression : "+id);
 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
-
-        // print the new dataframe
-        lpdf.printSchema();
-        lpdf.show();
 
         LinearRegression lr = new LinearRegression()
                 .setFeaturesCol("features")

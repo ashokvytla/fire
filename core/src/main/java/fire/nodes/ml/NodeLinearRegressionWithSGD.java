@@ -60,13 +60,10 @@ public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializ
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
         workflowContext.out("Executing NodeLinearRegressionWithSGD : " + id);
 
-        df.printSchema();
-
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 
-        // print the new dataframe
-        lpdf.printSchema();
-        lpdf.show();
+        // output the schema
+        workflowContext.outSchema(lpdf);
 
         linearRegressionWithSGD(ctx, sqlContext, workflowContext, df);
 

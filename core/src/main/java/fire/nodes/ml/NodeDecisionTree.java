@@ -74,8 +74,6 @@ public class NodeDecisionTree extends NodeDataset implements Serializable {
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
         workflowContext.out("Executing NodeDecisionTree : "+id);
 
-        df.printSchema();
-
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 
         // output the new schema
@@ -89,16 +87,11 @@ public class NodeDecisionTree extends NodeDataset implements Serializable {
     // implementation using Pipeline. It is not being currently used
 
     public void execute_notused(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
-        System.out.println("Executing NodeLogisticRegression : "+id);
-
-        df.printSchema();
 
         // convert dataframe to dataframe of labeled documents
         JavaRDD<LabeledDocument> rdd = df.toJavaRDD().map(new Function<Row, LabeledDocument>() {
             public LabeledDocument call(Row row) {
-                // LabeledDocument ld = new LabeledDocument(1, row.getString(0), Double.parseDouble(row.getString(1)));
                 String string = row.getString(1);
-                //String sss = row.getString(0);
                 Double d = row.getDouble(0);
 
                 LabeledDocument ld = new LabeledDocument(1, string, d);

@@ -33,17 +33,17 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeCompactTextFiles extends Node implements Serializable {
+public class NodeSave extends Node implements Serializable {
 
     public String outDir = "out/out";
     public SaveMode saveMode = SaveMode.Overwrite;
     public boolean saveAsParquetFile = false;
 
-    public NodeCompactTextFiles(int i, String nm) {
+    public NodeSave(int i, String nm) {
         super(i, nm);
     }
 
-    public NodeCompactTextFiles()
+    public NodeSave()
     {
 
     }
@@ -51,7 +51,7 @@ public class NodeCompactTextFiles extends Node implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        workflowContext.out("Executing NodeCompactTextFiles : "+id);
+        workflowContext.out("Executing NodeSave : "+id);
 
         if (saveAsParquetFile) {
             df.saveAsParquetFile(outDir);

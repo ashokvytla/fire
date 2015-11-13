@@ -133,16 +133,15 @@ A Predictive Node can also produce a Model as output. If it is connected to a Sc
 
 The execute method in Node() passes along the dataframe to the next node.
 
-	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
-
-So after execution in general, the Nodes call Node.execute() to pass along the new dataframe produced to the next node in the workflow.
+So after execution in general, the Nodes call Node.execute() to pass along the execution flow and the new dataframe produced to the next node in the workflow.
 
 ## Schema Propagation
 
-Workflow supports Schema Propagation. Each Node supports the method
+Workflow supports Schema Propagation. The method getSchema(nodeid) returns the Schema for the given node id. Each Node supports the method
 
 	public MySchema getSchema(int nodeId, MySchema sch)
 
+'nodeId' is the id of the node for which the schema is being asked for. 'sch' is the output schema from the previous node. The node then uses the incoming schema to form its schema. If the nodeId matches the current node id, it returns the new schema. If not, it passes the new schema also to its next node.
 
 getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
 the specific Nodes. For example NodeJoin adds the various incoming schemas to generate the output schema.

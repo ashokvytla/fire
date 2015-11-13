@@ -84,6 +84,7 @@ public class NodeDecisionTree extends NodeDataset implements Serializable {
 
     //--------------------------------------------------------------------------------------
 
+    /***
     // implementation using Pipeline. It is not being currently used
 
     public void execute_notused(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
@@ -133,6 +134,7 @@ public class NodeDecisionTree extends NodeDataset implements Serializable {
 
         System.out.println(model.fittingParamMap());
     }
+     ***/
 
     //--------------------------------------------------------------------------------------
 

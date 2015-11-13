@@ -70,7 +70,7 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 
-        // print the new dataframe
+        // output the new dataframe
         workflowContext.outSchema(lpdf);
 
         LogisticRegression lr = new LogisticRegression()
@@ -99,6 +99,7 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
 
     //--------------------------------------------------------------------------------------
 
+    /***
     // implementation using Pipeline. It is not being currently used
 
     public void execute111(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
@@ -154,6 +155,7 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
         System.out.println(model.fittingParamMap());
     }
 
+     ***/
     //--------------------------------------------------------------------------------------
 
 }

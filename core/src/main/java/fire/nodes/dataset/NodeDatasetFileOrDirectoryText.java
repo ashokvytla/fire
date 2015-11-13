@@ -31,7 +31,7 @@ public class NodeDatasetFileOrDirectoryText extends NodeDatasetFileOrDirectory i
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeDatasetFileOrDirectoryText : "+id);
+        workflowContext.out("Executing NodeDatasetFileOrDirectoryText : "+id);
 
         // Load a text file and convert each line to a JavaBean.
         JavaRDD<String> rdd = ctx.textFile(path);

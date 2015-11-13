@@ -80,7 +80,7 @@ public class NodeDatasetFileOrDirectoryCSV extends NodeDatasetFileOrDirectory im
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeDatasetFileOrDirectoryCSV : "+id);
+        workflowContext.out("Executing NodeDatasetFileOrDirectoryCSV : "+id);
 
         // Load a text file and convert each line to a JavaBean.
         JavaRDD<String> people = ctx.textFile(path);

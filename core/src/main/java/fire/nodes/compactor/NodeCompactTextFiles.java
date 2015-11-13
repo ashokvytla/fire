@@ -35,6 +35,8 @@ import java.io.Serializable;
  */
 public class NodeCompactTextFiles extends Node implements Serializable {
 
+    public String outDir = "out/out";
+
     public NodeCompactTextFiles(int i, String nm) {
         super(i, nm);
     }
@@ -49,7 +51,7 @@ public class NodeCompactTextFiles extends Node implements Serializable {
 
         workflowContext.out("Executing NodeCompactTextFiles : "+id);
 
-        df.save("out/out", SaveMode.Overwrite);
+        df.save(outDir, SaveMode.Overwrite);
 
         super.execute(ctx, sqlContext, workflowContext, df);
     }

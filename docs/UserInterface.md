@@ -14,6 +14,12 @@ the user is displayed a list of column names to choose from
 * Display of logs and results (graphs etc.) produced from the execution of the workflow on the server in the User Interface.
 
 
+Nodes in the User Interface are pluggable. 
+
+* A text file/string provides the list of Nodes supported.
+* It also provides the Java classes that support each of the Nodes.
+* The Java classes provide the parameters or the elements that would be displayed and edited in the specific Node Dialog box.
+
 ## UI toolkits
 
 jsplumb would be great for building the workflows.

@@ -62,7 +62,7 @@ Example workflows include:
 
 More and more example workflows would keep getting added to the library.
 
-## Run
+## Running the example workflows
 
 Use the command below to load example data onto HDFS. It is then used by the example Workflows.
 

@@ -21,6 +21,7 @@ Fire's core value preposition is to provide a number of Nodes in an open framewo
   * ECommerce
   * Telecom
   * Healthcare
+  * Gaming
 
 ## Building
 

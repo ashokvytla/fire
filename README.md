@@ -112,7 +112,7 @@ Nodes can be:
 * **Scoring nodes** which take in a dataset and and model and score it.
 * **Decision nodes** which take in a dataset, compute some value and pass on the execution to one of its connected outputs.
 * **Split nodes** which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
-* **ETL nodes*** which operate on source datasets and perform common ETL operations. 
+* **ETL nodes** which operate on source datasets and perform common ETL operations. 
 
 ## JSON representation of the workflow
 

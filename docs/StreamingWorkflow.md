@@ -7,7 +7,7 @@ get executed in Spark Streaming.
 
 Below is the initial list of nodes which would be supported in Streaming Workflow.
 
-Input Nodes
+**Input Nodes**
 
 * Kafka
 * Flume
@@ -16,14 +16,18 @@ Input Nodes
 * Kinesis
 * Twitter
 
-Storage Nodes
+**Output Nodes**
 
 * HDFS
 * HBase
+* Flume
+* Kafka
 * Cassandra
+* Kinesis
+* Solr
 
 
-Transform Nodes
+**Transform Nodes**
 
 * Aggregation
 * Window

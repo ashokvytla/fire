@@ -7,7 +7,11 @@ Writing new nodes involves the following steps:
 * Create the New Node as a Java class
 * Dataset Nodes extend the class NodeDataset, Modeling Nodes extend the class NodeModeling.
 
-* NodeLogisticRegression is an example Node : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/ml/NodeLogisticRegression.java
+* Some examples of various Nodes:
+** Read in Parquet Files : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/dataset/NodeDatasetFileOrDirectoryParquet.java
+** LinearRegression : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/ml/NodeLinearRegression.java
+** Join : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/etl/NodeJoin.java
+
 * Overide the execute method in the Node:
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)

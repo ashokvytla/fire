@@ -28,6 +28,9 @@ Fire's core value preposition is to provide a number of Nodes in an open framewo
   * Healthcare
   * Gaming
 
+<img src="https://github.com/FireProjects/fire/blob/master/docs/LayeredFunctionality.png"/>
+
+
 ## Building
 
 	mvn package

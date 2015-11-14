@@ -22,3 +22,7 @@ https://jsplumbtoolkit.com/
 
 <img src="https://github.com/FireProjects/fire/blob/master/docs/Workflow.png"/>
 
+The Workflow page would look something like below:
+
+<img src="https://github.com/FireProjects/fire/blob/master/docs/WorkflowCompleteUI.png"/>
+

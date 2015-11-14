@@ -45,6 +45,23 @@ Fire can be imported in IntelliJ or Scala IDE for Eclipse as a Maven project. Co
  
 Easiest way to get started it to run the example workflows under examples/src/main/java/fire/examples/workflow in your IDE.
 
+
+## Examples
+
+Example workflows are under examples. They are in the package fire.examples.workflow
+
+https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/examples/workflow
+
+Example workflows include:
+
+
+* **WorkflowKMeans** : k-means clustering
+* **WorkflowLinearRegression** : linear regression
+* **WorkflowLogisticRegression** : logistic regression
+* **WorkflowALS** : ALS
+
+More and more example workflows would keep getting added to the library.
+
 ## Run
 
 Use the command below to load example data onto HDFS. It is then used by the example Workflows.
@@ -62,21 +79,6 @@ Executor memory of 5G has been specified in the commands. The parameter **'clust
 	spark-submit --class fire.examples.workflow.ml.WorkflowLogisticRegression --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
 	spark-submit --class fire.examples.workflow.ml.WorkflowParquet --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
-
-## Examples
-
-Example workflows are under examples. They are in the package fire.examples.workflow
-
-https://github.com/FireProjects/fire/tree/master/examples/src/main/java/fire/examples/workflow
-
-Example workflows include:
-
-
-* **WorkflowKMeans** : k-means clustering
-* **WorkflowLinearRegression** : linear regression
-* **WorkflowLogisticRegression** : logistic regression
-* **WorkflowALS** : ALS
-
 
 ## Creating your workflow
 

@@ -1,5 +1,6 @@
 ### Docs Index
 
+* https://github.com/FireProjects/fire/blob/master/docs/DeveloperSetup.md
 * https://github.com/FireProjects/fire/blob/master/docs/UserInterface.md
 * https://github.com/FireProjects/fire/blob/master/docs/StreamingWorkflow.md
 

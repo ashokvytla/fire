@@ -32,35 +32,24 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeLinearRegression extends NodeDataset implements Serializable {
+public class NodeLinearRegression extends NodeModeling implements Serializable {
 
-    public String labelColumn = "label";
-    public String predictorColumns = "f1 f2";
     public int maxIter = 10;
     public double regParam = 0.01;
 
     public NodeLinearRegression() {}
 
     public NodeLinearRegression(int i, String nm, String lcol, String pcols) {
-        super(i, nm);
-
-        labelColumn = lcol;
-        predictorColumns = pcols;
+        super(i, nm, lcol, pcols);
     }
 
     //--------------------------------------------------------------------------------------
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext,  DataFrame df) {
-        System.out.println("Executing NodeLinearRegression : "+id);
-
-        df.printSchema();
+        workflowContext.out("Executing NodeLinearRegression : " + id);
 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
-
-        // print the new dataframe
-        lpdf.printSchema();
-        lpdf.show();
 
         LinearRegression lr = new LinearRegression()
                 .setFeaturesCol("features")
@@ -76,17 +65,7 @@ public class NodeLinearRegression extends NodeDataset implements Serializable {
         workflowContext.out(model);
 
         // pass the computed model to the next node if it is a scoring node
-        Node nextNode = this.getNode(0);
-        if (nextNode != null)
-        {
-            if (nextNode instanceof NodeModelScore)
-            {
-                NodeModelScore score = (NodeModelScore)nextNode;
-                score.model = model;
-                score.labelColumn = this.labelColumn;
-                score.predictorColumns = this.predictorColumns;
-            }
-        }
+        passModel(model);
 
         super.execute(ctx, sqlContext, workflowContext, df);
     }

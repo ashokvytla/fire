@@ -15,30 +15,25 @@
  * limitations under the License.
  */
 
-package fire.nodes.compactor;
+package fire.nodes.graph;
 
-import fire.sparkutil.CreateSparkContext;
-import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaSparkContext;
+import fire.workflowengine.Node;
 
 /**
  * Created by jayantshekhar
  */
-public class CompactTextFiles {
+public class NodeGraph extends Node {
 
-    public static void main(String[] args) throws Exception {
+    public String title = "";
+    public String xlabel = "";
+    public String ylabel = "";
 
-        if (args.length < 1) {
-            System.err.println("Usage: CompactTextFiles <file>");
-            System.exit(1);
-        }
+    public NodeGraph() {
 
-        JavaSparkContext ctx = CreateSparkContext.create(args);
-
-        JavaRDD<String> lines = ctx.textFile(args[0], 1);
-
-        lines.saveAsTextFile("compactedfiles");
-
-        ctx.stop();
     }
+
+    public NodeGraph(int i, String nm) {
+        super(i, nm);
+    }
+
 }

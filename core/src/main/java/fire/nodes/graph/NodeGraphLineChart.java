@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-package fire.nodes.ml;
+package fire.nodes.graph;
 
+import fire.nodes.graph.NodeGraph;
 import fire.workflowengine.WorkflowContext;
 import fire.dataframeutil.DataFrameUtil;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -57,9 +58,7 @@ public class NodeGraphLineChart extends NodeGraph implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        System.out.println("Executing NodeGraphLineChart : "+id);
-
-        df.printSchema();
+        workflowContext.out("Executing NodeGraphLineChart : " + id);
 
         Seq<Column> seq = DataFrameUtil.getColumnsAsSeq(df, columns);
 

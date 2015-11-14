@@ -17,6 +17,7 @@
 
 package fire.nodes.ml;
 
+import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
 import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.NodeDataset;
@@ -33,7 +34,7 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeKMeans extends NodeDataset implements Serializable {
+public class NodeKMeans extends Node implements Serializable {
 
     public String clusterColumns = "f1 f2";
     public int maxIter = 10;
@@ -55,8 +56,6 @@ public class NodeKMeans extends NodeDataset implements Serializable {
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
         workflowContext.out("Executing NodeKMeans : "+id);
-
-        df.printSchema();
 
         // create vector rdd
         JavaRDD<Vector> vrdd = DataFrameUtil.createVectorRDD(ctx, sqlContext, clusterColumns, df);

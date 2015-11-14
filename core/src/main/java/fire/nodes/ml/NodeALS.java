@@ -17,6 +17,7 @@
 
 package fire.nodes.ml;
 
+import fire.workflowengine.Node;
 import fire.workflowengine.NodeDataset;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -32,7 +33,7 @@ import java.io.Serializable;
  */
 
 // case class Rating(userId: Int, movieId: Int, rating: Float, timestamp: Long)
-public class NodeALS extends NodeDataset implements Serializable {
+public class NodeALS extends Node implements Serializable {
 
     public String userCol;
     public String itemCol;

@@ -1,10 +1,7 @@
 package fire.examples.workflow.ml;
 
-import fire.nodes.compactor.NodeCompactTextFiles;
-import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
+import fire.nodes.compactor.NodeSave;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryText;
-import fire.nodes.ml.NodeHashingTF;
-import fire.nodes.ml.NodeTokenizer;
 import fire.sparkutil.CreateSparkContext;
 import fire.workflowengine.Workflow;
 import fire.workflowengine.WorkflowContext;
@@ -43,7 +40,7 @@ public class WorkflowCompact {
         wf.addNodeDataset(t);
 
         // node compact
-        NodeCompactTextFiles compactTextFiles = new NodeCompactTextFiles(2, "compact");
+        NodeSave compactTextFiles = new NodeSave(2, "compact");
         t.addNode(compactTextFiles);
 
         wf.execute(ctx, sqlContext, workflowContext);

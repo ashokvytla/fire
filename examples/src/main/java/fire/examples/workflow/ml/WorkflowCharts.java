@@ -18,8 +18,7 @@
 package fire.examples.workflow.ml;
 
 import fire.workflowengine.WorkflowContext;
-import fire.workflowengine.NodeSchema;
-import fire.nodes.ml.NodeGraphHistogram;
+import fire.nodes.graph.NodeGraphHistogram;
 import fire.sparkutil.CreateSparkContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 

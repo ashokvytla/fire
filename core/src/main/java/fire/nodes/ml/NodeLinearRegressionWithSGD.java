@@ -32,10 +32,8 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializable {
+public class NodeLinearRegressionWithSGD extends NodeModeling implements Serializable {
 
-    public String labelColumn = "label";
-    public String predictorColumns = "f1 f2";
     public int maxIter = 10;
     public double regParam = 0.01;
 
@@ -48,10 +46,7 @@ public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializ
     //--------------------------------------------------------------------------------------
 
     public NodeLinearRegressionWithSGD(int i, String nm, String lcol, String pcols) {
-        super(i, nm);
-
-        labelColumn = lcol;
-        predictorColumns = pcols;
+        super(i, nm, lcol, pcols);
     }
 
     //--------------------------------------------------------------------------------------
@@ -60,13 +55,10 @@ public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializ
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
         workflowContext.out("Executing NodeLinearRegressionWithSGD : " + id);
 
-        df.printSchema();
-
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 
-        // print the new dataframe
-        lpdf.printSchema();
-        lpdf.show();
+        // output the schema
+        workflowContext.outSchema(lpdf);
 
         linearRegressionWithSGD(ctx, sqlContext, workflowContext, df);
 
@@ -88,17 +80,8 @@ public class NodeLinearRegressionWithSGD extends NodeDataset implements Serializ
         workflowContext.out(model);
 
         // pass the computed model to the next node if it is a scoring node
-        Node nextNode = this.getNode(0);
-        if (nextNode != null)
-        {
-            if (nextNode instanceof NodeModelScore)
-            {
-                NodeModelScore score = (NodeModelScore)nextNode;
-                score.glm = model;
-                score.labelColumn = this.labelColumn;
-                score.predictorColumns = this.predictorColumns;
-            }
-        }
+        passModel(model);
+
     }
 
     //--------------------------------------------------------------------------------------

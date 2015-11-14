@@ -41,10 +41,9 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeLogisticRegression extends NodeDataset implements Serializable {
+public class NodeLogisticRegression extends NodeModeling implements Serializable {
 
-    public String labelColumn = "label";
-    public String predictorColumns = "f1 f2";
+
     public int maxIter = 10;
     public double regParam = 0.01;
     public NodeLogisticRegression() {}
@@ -56,23 +55,18 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
     //--------------------------------------------------------------------------------------
 
     public NodeLogisticRegression(int i, String nm, String lcol, String pcols) {
-        super(i, nm);
-
-        labelColumn = lcol;
-        predictorColumns = pcols;
+        super(i, nm, lcol, pcols);
     }
 
     //--------------------------------------------------------------------------------------
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
-        System.out.println("Executing NodeLogisticRegression : "+id);
-
-        df.printSchema();
+        workflowContext.out("Executing NodeLogisticRegression : " + id);
 
         DataFrame lpdf = DataFrameUtil.createLabeledPointsDataFrame(ctx, sqlContext, this.labelColumn, this.predictorColumns, df);
 
-        // print the new dataframe
+        // output the new dataframe
         workflowContext.outSchema(lpdf);
 
         LogisticRegression lr = new LogisticRegression()
@@ -84,23 +78,14 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
         workflowContext.out(model);
 
         // pass the computed model to the next node if it is a scoring node
-        Node nextNode = this.getNode(0);
-        if (nextNode != null)
-        {
-            if (nextNode instanceof NodeModelScore)
-            {
-                NodeModelScore score = (NodeModelScore)nextNode;
-                score.model = model;
-                score.labelColumn = this.labelColumn;
-                score.predictorColumns = this.predictorColumns;
-            }
-        }
+        passModel(model);
 
         super.execute(ctx, sqlContext, workflowContext, df);
     }
 
     //--------------------------------------------------------------------------------------
 
+    /***
     // implementation using Pipeline. It is not being currently used
 
     public void execute111(JavaSparkContext ctx, SQLContext sqlContext, DataFrame df) {
@@ -156,6 +141,7 @@ public class NodeLogisticRegression extends NodeDataset implements Serializable 
         System.out.println(model.fittingParamMap());
     }
 
+     ***/
     //--------------------------------------------------------------------------------------
 
 }

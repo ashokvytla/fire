@@ -6,7 +6,7 @@ It does so by providing a framework for building and running workflows. At this 
 engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes,
 transform nodes, nodes that build predictive models, load data into various stores like hbase, solr etc. and above all schema propagation through the workflow.
 
-Fire's core value preposition is to provide a number of Nodes in an open framework that could be used out of the box and thus enable much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0
+Fire's core value preposition is to provide a number of Nodes in an open framework that could be used out of the box and thus enable much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0.
 
 **Horizontal Apps**
 

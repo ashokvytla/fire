@@ -1,3 +1,20 @@
+## Nodes Backlog
+
+If you are looking to contribute a Node, below are some ideas:
+
+**Loading Data**
+
+* Node for loading data into HBase
+* Node for loading data into Solr
+
+**NLP Nodes**
+
+It would be great to have NLP integrated into the system. We plan to use OpenNLP.
+
+**OCR Nodes**
+
+Optical Character Recognition is useful and we plan to integrate it into the system.
+
 ## Nodes Implemented
 
 The following Nodes have been implemented till now. They reside under :
@@ -34,20 +51,7 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 * **NodePrintFirstNRows.java** : Prints the first N rows of a dataset
 
-## Nodes to be built
-
-This section contains the list of Nodes that could be added in the future. More Nodes would continue to be added here.
-
-#### HBase Nodes
-
-* **LoadDataIntoHBase.java**
-
-#### ETL Nodes
-
-* **GroupBy.java**
 
 
-## Nodes Backlog
 
-* Node for loading data into HBase
-* Node for loading data into Solr
+

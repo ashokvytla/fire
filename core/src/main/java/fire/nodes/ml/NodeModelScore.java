@@ -20,14 +20,12 @@ package fire.nodes.ml;
 import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
 import fire.dataframeutil.DataFrameUtil;
-import fire.workflowengine.NodeDataset;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.ml.Model;
 import org.apache.spark.mllib.evaluation.MulticlassMetrics;
 import org.apache.spark.mllib.linalg.Matrix;
 import org.apache.spark.mllib.regression.GeneralizedLinearModel;
 import org.apache.spark.sql.DataFrame;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 
 import java.io.Serializable;

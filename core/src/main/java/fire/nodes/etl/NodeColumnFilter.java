@@ -2,7 +2,6 @@ package fire.nodes.etl;
 
 import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.Node;
-import fire.workflowengine.NodeDataset;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Column;
@@ -13,7 +12,7 @@ import scala.collection.Seq;
 /**
  * Created by nikhilshekhar on 13/11/15.
  */
-public class NodeColumnFilter extends Node {
+public class NodeColumnFilter extends NodeETL {
 
     //List of columns that are needed in the output dataframe
     public String columns = "label f1";

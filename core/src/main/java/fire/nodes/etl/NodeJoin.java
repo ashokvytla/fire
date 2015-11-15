@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Created by jayantshekhar
  */
-public class NodeJoin extends Node implements Serializable {
+public class NodeJoin extends NodeETL implements Serializable {
 
     public String joinCol = "id";
 

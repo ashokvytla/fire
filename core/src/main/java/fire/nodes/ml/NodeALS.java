@@ -18,7 +18,6 @@
 package fire.nodes.ml;
 
 import fire.workflowengine.Node;
-import fire.workflowengine.NodeDataset;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.ml.recommendation.ALS;

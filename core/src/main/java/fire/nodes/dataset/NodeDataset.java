@@ -15,8 +15,10 @@
  * limitations under the License.
  */
 
-package fire.workflowengine;
+package fire.nodes.dataset;
 
+import fire.workflowengine.Node;
+import fire.workflowengine.NodeSchema;
 import org.apache.spark.sql.types.StructType;
 
 /**

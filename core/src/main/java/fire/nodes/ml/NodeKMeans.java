@@ -20,7 +20,6 @@ package fire.nodes.ml;
 import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
 import fire.dataframeutil.DataFrameUtil;
-import fire.workflowengine.NodeDataset;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.mllib.clustering.KMeans;

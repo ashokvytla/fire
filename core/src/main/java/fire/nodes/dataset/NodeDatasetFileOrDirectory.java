@@ -15,7 +15,9 @@
  * limitations under the License.
  */
 
-package fire.workflowengine;
+package fire.nodes.dataset;
+
+import fire.nodes.dataset.NodeDataset;
 
 /**
  * Created by jayantshekhar

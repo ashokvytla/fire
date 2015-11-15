@@ -19,8 +19,6 @@ package fire.nodes.ml;
 
 import fire.workflowengine.WorkflowContext;
 import fire.dataframeutil.DataFrameUtil;
-import fire.workflowengine.Node;
-import fire.workflowengine.NodeDataset;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.ml.regression.LinearRegression;
 import org.apache.spark.ml.regression.LinearRegressionModel;

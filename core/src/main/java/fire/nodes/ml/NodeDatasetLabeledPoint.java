@@ -19,9 +19,8 @@ package fire.nodes.ml;
 
 import java.util.List;
 
-import fire.workflowengine.NodeDataset;
+import fire.nodes.dataset.NodeDataset;
 import com.google.common.collect.Lists;
-import fire.sparkutil.CreateSparkContext;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.mllib.linalg.Vectors;

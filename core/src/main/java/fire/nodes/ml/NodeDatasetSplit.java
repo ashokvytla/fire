@@ -18,7 +18,7 @@
 package fire.nodes.ml;
 
 import fire.workflowengine.WorkflowContext;
-import fire.workflowengine.NodeDataset;
+import fire.nodes.dataset.NodeDataset;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;

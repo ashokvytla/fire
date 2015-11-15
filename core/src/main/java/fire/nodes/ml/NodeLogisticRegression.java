@@ -18,22 +18,11 @@
 package fire.nodes.ml;
 
 import fire.dataframeutil.DataFrameUtil;
-import fire.workflowengine.Node;
-import fire.workflowengine.NodeDataset;
-import fire.ml.LabeledDocument;
 import fire.workflowengine.WorkflowContext;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.ml.Pipeline;
-import org.apache.spark.ml.PipelineModel;
-import org.apache.spark.ml.PipelineStage;
 import org.apache.spark.ml.classification.LogisticRegression;
 import org.apache.spark.ml.classification.LogisticRegressionModel;
-import org.apache.spark.ml.feature.HashingTF;
-import org.apache.spark.ml.feature.Tokenizer;
 import org.apache.spark.sql.DataFrame;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 
 import java.io.Serializable;

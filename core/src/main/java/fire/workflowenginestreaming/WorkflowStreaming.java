@@ -1,8 +1,7 @@
 package fire.workflowenginestreaming;
 
-import fire.workflowengine.NodeDataset;
+import fire.nodes.dataset.NodeDataset;
 import fire.workflowengine.NodeSchema;
-import fire.workflowengine.Serializer;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;

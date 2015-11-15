@@ -1,10 +1,8 @@
 package fire.nodes.dataset;
 
-import fire.workflowengine.NodeDatasetFileOrDirectory;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
@@ -15,7 +13,6 @@ import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 
 import java.io.Serializable;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

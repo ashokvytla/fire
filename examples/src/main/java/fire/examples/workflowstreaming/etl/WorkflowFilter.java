@@ -1,7 +1,9 @@
 package fire.examples.workflowstreaming.etl;
 
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
+import fire.nodes.etl.NodeColumnFilter;
 import fire.nodes.ml.NodeKMeans;
+import fire.nodes.ml.NodePrintFirstNRows;
 import fire.sparkutil.CreateSparkContext;
 import fire.workflowengine.Workflow;
 import fire.workflowengine.WorkflowContext;
@@ -11,7 +13,7 @@ import org.apache.spark.sql.SQLContext;
 /**
  * Created by jayantshekhar on 11/13/15.
  */
-public class WorkflowHDFS {
+public class WorkflowFilter {
 
     //--------------------------------------------------------------------------------------
 
@@ -24,7 +26,7 @@ public class WorkflowHDFS {
 
         WorkflowContext workflowContext = new WorkflowContext();
 
-        kmeanswf(ctx, sqlContext, workflowContext);
+        filterwf(ctx, sqlContext, workflowContext);
 
         // stop the context
         ctx.stop();
@@ -33,8 +35,8 @@ public class WorkflowHDFS {
 
     //--------------------------------------------------------------------------------------
 
-    // kmeans workflow
-    private static void kmeanswf(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
+    // filter columns workflow workflow
+    private static void filterwf(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
 
         Workflow wf = new Workflow();
 
@@ -44,9 +46,13 @@ public class WorkflowHDFS {
                 "numeric numeric numeric numeric");
         wf.addNodeDataset(csv1);
 
-        // kmeans node
-        NodeKMeans kMeans = new NodeKMeans(10, "kmeans node", "f1 f2");
-        csv1.addNode(kMeans);
+        // column filter node
+        NodeColumnFilter filter = new NodeColumnFilter(2, "filter node", "f1 f2");
+        csv1.addNode(filter);
+
+        // print first 2 rows
+        NodePrintFirstNRows printFirstNRows = new NodePrintFirstNRows(3, "print first rows", 2);
+        filter.addNode(printFirstNRows);
 
         // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);

@@ -1,3 +1,14 @@
+## Nodes Backlog
+
+If you are looking to contribute a Node, below are some ideas:
+
+**Loading Data**
+
+* Node for loading data into HBase
+* Node for loading data into Solr
+
+
+
 ## Nodes Implemented
 
 The following Nodes have been implemented till now. They reside under :
@@ -47,7 +58,4 @@ This section contains the list of Nodes that could be added in the future. More 
 * **GroupBy.java**
 
 
-## Nodes Backlog
 
-* Node for loading data into HBase
-* Node for loading data into Solr

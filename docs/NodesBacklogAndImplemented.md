@@ -7,7 +7,13 @@ If you are looking to contribute a Node, below are some ideas:
 * Node for loading data into HBase
 * Node for loading data into Solr
 
+**NLP Nodes**
 
+It would be great to have NLP integrated into the system. We plan to use OpenNLP.
+
+**OCR Nodes**
+
+Optical Character Recognition is useful and we plan to integrate it into the system.
 
 ## Nodes Implemented
 

@@ -2,9 +2,12 @@
 
 If you are looking to contribute a Node, below are some ideas:
 
-**Loading Data**
+**HBase**
 
 * Node for loading data into HBase
+
+**Solr**
+
 * Node for loading data into Solr
 
 **NLP Nodes**

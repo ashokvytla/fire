@@ -45,17 +45,7 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 * **NodePrintFirstNRows.java** : Prints the first N rows of a dataset
 
-## Nodes to be built
 
-This section contains the list of Nodes that could be added in the future. More Nodes would continue to be added here.
-
-#### HBase Nodes
-
-* **LoadDataIntoHBase.java**
-
-#### ETL Nodes
-
-* **GroupBy.java**
 
 
 

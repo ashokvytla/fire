@@ -15,6 +15,13 @@ It would be great to have NLP integrated into the system. We plan to use OpenNLP
 
 Optical Character Recognition is useful and we plan to integrate it into the system.
 
+**Omniture Nodes**
+
+* Node to clean omniture data
+* Node to generate analytics from omniture data
+
+
+
 ## Nodes Implemented
 
 The following Nodes have been implemented till now. They reside under :

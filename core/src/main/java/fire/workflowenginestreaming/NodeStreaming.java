@@ -5,6 +5,8 @@ import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
+import org.apache.spark.streaming.api.java.JavaDStream;
+import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -29,6 +31,16 @@ public abstract class NodeStreaming {
         nextNodes.add(node);
     }
 
+    public NodeStreaming()
+    {
+
+    }
+
+    public NodeStreaming(int i, String nm) {
+        id = i;
+        name = nm;
+    }
+
     //--------------------------------------------------------------------------------------
 
     // get the schema of a given node given the schema for this node
@@ -49,14 +61,14 @@ public abstract class NodeStreaming {
         return null;
     }
 
-    // execute the next nodes given the ougoing dataframe of this node
-    public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
-        System.out.println("Executing node : "+id);
+    // execute the next nodes
+    public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext, JavaDStream<String> dstream) {
+        workflowContext.out("Executing node : "+id);
 
         Iterator<NodeStreaming> iterator = nextNodes.iterator();
         while (iterator.hasNext()) {
             NodeStreaming nextNode = iterator.next();
-            nextNode.execute(ctx, sqlContext, workflowContext, df);
+            nextNode.execute(ctx, workflowContext, dstream);
         }
 
     }

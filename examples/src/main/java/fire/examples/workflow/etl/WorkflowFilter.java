@@ -1,4 +1,4 @@
-package fire.examples.workflowstreaming.etl;
+package fire.examples.workflow.etl;
 
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.nodes.etl.NodeColumnFilter;

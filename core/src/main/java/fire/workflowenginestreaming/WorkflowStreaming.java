@@ -5,6 +5,7 @@ import fire.workflowengine.NodeSchema;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
+import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
 import java.util.ArrayList;
 
@@ -33,9 +34,9 @@ public class WorkflowStreaming {
     //--------------------------------------------------------------------------------------
 
     // execute the workflow
-    public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
+    public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext) {
         for (NodeStreaming nodeDataset : datasetNodes) {
-            nodeDataset.execute(ctx, sqlContext, workflowContext, null);
+            nodeDataset.execute(ctx, workflowContext, null);
         }
 
     }

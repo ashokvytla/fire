@@ -1,14 +1,9 @@
 package fire.examples.workflowstreaming;
 
-import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
-import fire.nodes.ml.NodeKMeans;
 import fire.nodes.streaming.NodeStreamingSocketTextStream;
 import fire.sparkutil.CreateSparkContext;
-import fire.workflowengine.Workflow;
 import fire.workflowengine.WorkflowContext;
 import fire.workflowenginestreaming.WorkflowStreaming;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.SQLContext;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
 /**
@@ -20,14 +15,14 @@ public class WorkflowSocket {
     public static void main(String[] args) {
 
         // create spark and sql context
-        JavaStreamingContext ctx = CreateSparkContext.createStreaming(args);
+        JavaStreamingContext ssc = CreateSparkContext.createStreaming(args);
 
         WorkflowContext workflowContext = new WorkflowContext();
 
-        socketwf(ctx, workflowContext);
+        socketwf(ssc, workflowContext);
 
-        // stop the context
-        ctx.stop();
+        ssc.start();
+        ssc.awaitTermination();
     }
 
 

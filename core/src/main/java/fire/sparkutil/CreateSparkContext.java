@@ -67,7 +67,7 @@ public class CreateSparkContext {
         }
 
         // Create the context with a 1 second batch size
-        JavaStreamingContext ssc = new JavaStreamingContext(sparkConf, Durations.seconds(1));
+        JavaStreamingContext ssc = new JavaStreamingContext(sparkConf, Durations.seconds(30));
 
         return ssc;
     }

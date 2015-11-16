@@ -8,6 +8,7 @@ import org.apache.spark.sql.SQLContext;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by jayantshekhar on 11/16/15.
  */
-public abstract class NodeStreaming {
+public abstract class NodeStreaming  implements Serializable {
 
 
     // node id
@@ -63,7 +64,7 @@ public abstract class NodeStreaming {
 
     // execute the next nodes
     public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext, JavaDStream<String> dstream) {
-        workflowContext.out("Executing node : "+id);
+        workflowContext.out("Executing node : " + id);
 
         Iterator<NodeStreaming> iterator = nextNodes.iterator();
         while (iterator.hasNext()) {

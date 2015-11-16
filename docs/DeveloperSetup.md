@@ -18,6 +18,15 @@ mvn package
 
 ## Importing into IntelliJ
 
+IntelliJ can be downloaded from https://www.jetbrains.com/idea/
+
 Add the scala plugin into IntelliJ. Then import the project as a Maven project into IntelliJ. Start with executing the
 example workflows.
 
+## Importing into Scala IDE for Eclipse
+
+Fire can be imported into Scala IDE for Eclipse as a Maven project.
+
+http://scala-ide.org/
+
+Easiest way to get started it to run the example workflows under examples/src/main/java/fire/examples/workflow in your IDE.

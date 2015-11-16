@@ -38,15 +38,45 @@ public class NodeSolrLoad extends Node {
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
         workflowContext.out("Executing NodeSolrLoad : " + id);
 
-        df.toJavaRDD().map(new LoadRecordIntoSolr());
+        // columns in the dataframe
+        String[] columns = df.columns();
+
+        // find the indexes of the data frame columns
+        final String[] dcols = dfcols.split(" ");
+        final int[] dcolsidx = new int[dcols.length];
+
+        for (int i=0; i<dcols.length; i++) {
+            for (int j=0; j<columns.length; j++) {
+                if (dcols[i].equals(columns[j]))
+                    dcolsidx[i] = j;
+            }
+        }
+
+
+        df.toJavaRDD().map(new LoadRecordIntoSolr(dcolsidx));
     }
 
 }
 
 class LoadRecordIntoSolr implements Function<Row, Row> {
 
+    int[] dcolsidx;
+
+    LoadRecordIntoSolr(int[] colsidx) {
+        dcolsidx = colsidx;
+    }
+
     public Row call(Row r) {
-        r.getString(0);
+
+        // array of values
+        String[] validx = new String[dcolsidx.length];
+
+        // get the values to be inserted from the row index
+        for (int i = 0; i<dcolsidx.length; i++) {
+            validx[i] = r.getString(dcolsidx[i]);
+        }
+
+        // insert the record into solr
 
         return null;
     }

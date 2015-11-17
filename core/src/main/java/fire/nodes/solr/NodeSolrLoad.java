@@ -1,5 +1,6 @@
 package fire.nodes.solr;
 
+import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -42,17 +43,9 @@ public class NodeSolrLoad extends Node {
         String[] columns = df.columns();
 
         // find the indexes of the data frame columns
-        final String[] dcols = dfcols.split(" ");
-        final int[] dcolsidx = new int[dcols.length];
+        final int[] dcolsidx = DataFrameUtil.getColumnIndexes(df, dfcols);
 
-        for (int i=0; i<dcols.length; i++) {
-            for (int j=0; j<columns.length; j++) {
-                if (dcols[i].equals(columns[j]))
-                    dcolsidx[i] = j;
-            }
-        }
-
-
+        // load the records into solr
         df.toJavaRDD().map(new LoadRecordIntoSolr(dcolsidx));
     }
 

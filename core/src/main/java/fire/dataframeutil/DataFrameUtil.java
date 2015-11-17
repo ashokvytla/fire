@@ -1,6 +1,7 @@
 package fire.dataframeutil;
 
 import fire.workflowengine.NodeSchema;
+import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
@@ -17,6 +18,26 @@ import scala.collection.mutable.ListBuffer;
  * Created by jayantshekhar
  */
 public class DataFrameUtil {
+
+    // get the indexes of the columns in the given dataframe
+    public static int[] getColumnIndexes(DataFrame df, String colstr) {
+
+        // columns in the dataframe
+        String[] columns = df.columns();
+
+        // find the indexes of the data frame columns
+        final String[] dcols = colstr.split(" ");
+        final int[] dcolsidx = new int[dcols.length];
+
+        for (int i=0; i<dcols.length; i++) {
+            for (int j=0; j<columns.length; j++) {
+                if (dcols[i].equals(columns[j]))
+                    dcolsidx[i] = j;
+            }
+        }
+
+        return dcolsidx;
+    }
 
     //-----------------------------------------------------------------------------------------------
 

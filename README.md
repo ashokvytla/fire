@@ -1,10 +1,10 @@
 ### Docs Index
 
-* https://github.com/FireProjects/fire/blob/master/docs/DeveloperSetup.md
-* https://github.com/FireProjects/fire/blob/master/docs/UserInterface.md
-* https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
-* https://github.com/FireProjects/fire/blob/master/docs/NodesBacklogAndImplemented.md
-* https://github.com/FireProjects/fire/blob/master/docs/StreamingWorkflow.md
+* **Developer Setup** : https://github.com/FireProjects/fire/blob/master/docs/DeveloperSetup.md
+* **User Interfact** : https://github.com/FireProjects/fire/blob/master/docs/UserInterface.md
+* **Creating New Nodes** : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
+* **Nodes Backlog and Implemented List** : https://github.com/FireProjects/fire/blob/master/docs/NodesBacklogAndImplemented.md
+* **Streaming Workflow** : https://github.com/FireProjects/fire/blob/master/docs/StreamingWorkflow.md
 
 
 # Fire

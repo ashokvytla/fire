@@ -12,6 +12,14 @@ import org.apache.spark.sql.SQLContext;
 public class NodeHBaseLoad extends Node {
 
     public String table = "test";
+    public String colffam = "cf1";
+
+    // dataframe columns
+    public String dfcols = "c1 c2 c3";
+
+    // hbase columns
+    public String hbasecols = "h1 h2 h3";
+
 
     public NodeHBaseLoad() {
     }

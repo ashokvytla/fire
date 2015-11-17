@@ -55,6 +55,7 @@ public class WorkflowFilter {
         NodeColumnFilter filter = new NodeColumnFilter(2, "filter node", "f1 f2");
         csv1.addNode(filter);
 
+        // delete the output directory
         Delete.deleteFile("parquet");
 
         // save as parquet file

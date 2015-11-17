@@ -1,5 +1,6 @@
 package fire.examples.workflow.etl;
 
+import fire.hdfsio.Delete;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.nodes.etl.NodeColumnFilter;
 import fire.nodes.ml.NodeKMeans;
@@ -27,16 +28,20 @@ public class WorkflowFilter {
 
         WorkflowContext workflowContext = new WorkflowContext();
 
-        filterwf(ctx, sqlContext, workflowContext);
+        try {
+            filterwf(ctx, sqlContext, workflowContext);
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
 
         // stop the context
         ctx.stop();
     }
-    
+
     //--------------------------------------------------------------------------------------
 
     // filter columns workflow workflow
-    private static void filterwf(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
+    private static void filterwf(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) throws Exception {
 
         Workflow wf = new Workflow();
 
@@ -49,6 +54,8 @@ public class WorkflowFilter {
         // column filter node
         NodeColumnFilter filter = new NodeColumnFilter(2, "filter node", "f1 f2");
         csv1.addNode(filter);
+
+        Delete.deleteFile("parquet");
 
         // save as parquet file
         NodeSave save = new NodeSave(4, "save", "parquet");

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jayantshekhar
+ * Workflow for Spark Streaming
  */
 public class WorkflowStreaming {
 
@@ -35,6 +36,8 @@ public class WorkflowStreaming {
 
     // execute the workflow
     public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext) {
+
+        // execute all the streaming dataset nodes
         for (NodeStreaming nodeDataset : datasetNodes) {
             nodeDataset.execute(ctx, workflowContext, null);
         }

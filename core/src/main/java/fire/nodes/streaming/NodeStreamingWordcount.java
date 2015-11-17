@@ -30,7 +30,8 @@ public class NodeStreamingWordcount extends NodeStreaming {
                     @Override
                     public Row call(Row r) {
                         String string = r.getString(0);
-                        int i = string.length();
+                        String[] arr = string.split(" ");
+                        int i = arr.length;
 
                         Row rr = RowFactory.create(i);
                         return rr;

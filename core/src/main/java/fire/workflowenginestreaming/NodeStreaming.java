@@ -4,6 +4,7 @@ import fire.workflowengine.NodeSchema;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
@@ -63,7 +64,7 @@ public abstract class NodeStreaming  implements Serializable {
     }
 
     // execute the next nodes
-    public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext, JavaDStream<String> dstream) {
+    public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext, JavaDStream<Row> dstream) {
         workflowContext.out("Executing node : " + id);
 
         Iterator<NodeStreaming> iterator = nextNodes.iterator();

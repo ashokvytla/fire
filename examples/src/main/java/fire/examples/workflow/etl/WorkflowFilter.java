@@ -4,6 +4,7 @@ import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.nodes.etl.NodeColumnFilter;
 import fire.nodes.ml.NodeKMeans;
 import fire.nodes.ml.NodePrintFirstNRows;
+import fire.nodes.save.NodeSave;
 import fire.sparkutil.CreateSparkContext;
 import fire.workflowengine.Workflow;
 import fire.workflowengine.WorkflowContext;
@@ -31,8 +32,7 @@ public class WorkflowFilter {
         // stop the context
         ctx.stop();
     }
-
-
+    
     //--------------------------------------------------------------------------------------
 
     // filter columns workflow workflow
@@ -50,9 +50,13 @@ public class WorkflowFilter {
         NodeColumnFilter filter = new NodeColumnFilter(2, "filter node", "f1 f2");
         csv1.addNode(filter);
 
+        // save as parquet file
+        NodeSave save = new NodeSave(4, "save", "parquet");
+        filter.addNode(save);
+
         // print first 2 rows
         NodePrintFirstNRows printFirstNRows = new NodePrintFirstNRows(3, "print first rows", 2);
-        filter.addNode(printFirstNRows);
+        save.addNode(printFirstNRows);
 
         // execute the workflow
         wf.execute(ctx, sqlContext, workflowContext);

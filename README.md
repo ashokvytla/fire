@@ -109,6 +109,8 @@ which are set.
 
 <img src="https://github.com/FireProjects/fire/blob/master/docs/Workflow.png"/>
 
+Data is passed from one node to another as Spark DataFrame.
+
 Nodes can be:
 
 * **Starting nodes** which are mainly data nodes and produce data for the rest of the nodes to act upon.
@@ -118,6 +120,7 @@ Nodes can be:
 * **Decision nodes** which take in a dataset, compute some value and pass on the execution to one of its connected outputs.
 * **Split nodes** which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
 * **ETL nodes** which operate on source datasets and perform common ETL operations. 
+* **Save nodes** which save the datasets onto HDFS.
 
 ## JSON representation of the workflow
 

@@ -11,11 +11,9 @@ Doc  |
 
 # Fire
 
-Fire enables building end to end big data Applications for various Horizontals and also for the various Verticals.
+Fire enables building end to end big data Applications for various Horizontals and Verticals. It does so by providing a rich set of Nodes for various Big Data Functionality which run on a workflow execution engine. Fire would also provide a User Interface for building the workflows.
 
-It does so by providing a framework for building and running workflows. At this time Spark is the core execution
-engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes,
-transform nodes, nodes that build predictive models, load data into various stores like hbase, solr etc. and above all schema propagation through the workflow.
+At this time Spark is the core execution engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes, transform nodes, predictive modeling nodes, loading data into various stores like hbase, solr etc. and above all schema propagation through the workflow.
 
 Fire's core value preposition is to provide a number of Nodes in an open framework that could be used out of the box and thus enable much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0.
 
@@ -103,7 +101,7 @@ There are still a number of packages which are not used now but would be used in
 ## Architecture
 
 The main entity is a workflow. A workflow contains nodes connected to each other. Nodes also have parameters
-which are set. Data is passed from one node to another as Spark DataFrame. The output DataFrame of a Node have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
+which are set. Data is passed from one node to another as Spark **DataFrame**. The output DataFrame of a Node can have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
 
 <img src="https://github.com/FireProjects/fire/blob/master/docs/images/Architecture.png"/>
 
@@ -111,7 +109,7 @@ which are set. Data is passed from one node to another as Spark DataFrame. The o
 
 Nodes can be:
 
-* **Starting nodes** which are mainly data nodes and produce data for the rest of the nodes to act upon.
+* **Dataset nodes** which creates the DataFrame from some store for the rest of the nodes to act upon.
 * **Transform nodes** which process the incoming dataset/s to produce another dataset.
 * **Modeling nodes** which apply a predictive algorithm on the incoming dataset to produce a model
 * **Scoring nodes** which take in a dataset and and model and score it.

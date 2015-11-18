@@ -103,13 +103,11 @@ There are still a number of packages which are not used now but would be used in
 ## Architecture
 
 The main entity is a workflow. A workflow contains nodes connected to each other. Nodes also have parameters
-which are set. 
+which are set. Data is passed from one node to another as Spark DataFrame. The output DataFrame of a Node have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
 
 <img src="https://github.com/FireProjects/fire/blob/master/docs/Architecture.png"/>
 
 <img src="https://github.com/FireProjects/fire/blob/master/docs/Workflow.png"/>
-
-Data is passed from one node to another as Spark DataFrame.
 
 Nodes can be:
 

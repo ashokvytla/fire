@@ -34,7 +34,7 @@ Fire's core value preposition is to provide a number of Nodes in an open framewo
   * Healthcare
   * Gaming
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/LayeredFunctionality.png"/>
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/LayeredFunctionality.png"/>
 
 
 ## Building
@@ -105,9 +105,9 @@ There are still a number of packages which are not used now but would be used in
 The main entity is a workflow. A workflow contains nodes connected to each other. Nodes also have parameters
 which are set. Data is passed from one node to another as Spark DataFrame. The output DataFrame of a Node have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/Architecture.png"/>
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Architecture.png"/>
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/Workflow.png"/>
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Workflow.png"/>
 
 Nodes can be:
 

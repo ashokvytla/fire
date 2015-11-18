@@ -26,14 +26,14 @@ jsplumb would be great for building the workflows.
 
 https://jsplumbtoolkit.com/
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/Workflow.png"/>
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Workflow.png"/>
 
 The Workflow page would look something like below.
 
 * Double clicking on the Split Dataset Node would bring up the Split Dataset Dialog box.
 * Double clicking on the Logistic Regression Node would bring up the Logistic Regression Dialog box.
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/WorkflowCompleteUI.png"/>
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/WorkflowCompleteUI.png"/>
 
 
 ## Node Types

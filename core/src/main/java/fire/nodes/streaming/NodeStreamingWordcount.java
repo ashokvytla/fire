@@ -1,5 +1,6 @@
 package fire.nodes.streaming;
 
+import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.WorkflowContext;
 import fire.workflowenginestreaming.NodeStreaming;
 import org.apache.spark.api.java.StorageLevels;
@@ -16,6 +17,8 @@ import java.util.regex.Pattern;
  * Created by jayantshekhar on 11/16/15.
  */
 public class NodeStreamingWordcount extends NodeStreaming {
+
+    public String colname = "col1";
 
     public NodeStreamingWordcount() {}
 

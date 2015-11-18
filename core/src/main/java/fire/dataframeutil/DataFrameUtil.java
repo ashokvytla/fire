@@ -39,6 +39,20 @@ public class DataFrameUtil {
         return dcolsidx;
     }
 
+    // get the index of the column in the given dataframe
+    public static int getColumnIndex(DataFrame df, String col) {
+
+        // columns in the dataframe
+        String[] columns = df.columns();
+
+        for (int i=0; i<columns.length; i++) {
+            if (col.equals(columns[i]))
+                return i;
+        }
+
+        return -1;
+    }
+
     //-----------------------------------------------------------------------------------------------
 
     public static Seq<Column> getColumnsAsSeq(DataFrame df, String columns) {

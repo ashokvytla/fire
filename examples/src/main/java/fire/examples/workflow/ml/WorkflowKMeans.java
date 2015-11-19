@@ -63,6 +63,7 @@ public class WorkflowKMeans {
 
         // kmeans node
         NodeKMeans kMeans = new NodeKMeans(10, "kmeans node", "f1 f2");
+        kMeans.maxIter = 12;
         csv1.addNode(kMeans);
 
         // execute the workflow

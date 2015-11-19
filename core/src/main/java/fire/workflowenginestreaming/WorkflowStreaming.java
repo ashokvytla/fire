@@ -39,7 +39,7 @@ public class WorkflowStreaming {
 
         // execute all the streaming dataset nodes
         for (NodeStreaming nodeDataset : datasetNodes) {
-            nodeDataset.execute(ctx, workflowContext, null);
+            nodeDataset.execute(ctx, workflowContext, null, null);
         }
 
     }

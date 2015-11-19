@@ -1,5 +1,6 @@
 package fire.nodes.streaming;
 
+import fire.workflowengine.NodeSchema;
 import fire.workflowengine.WorkflowContext;
 import fire.workflowenginestreaming.NodeStreaming;
 import org.apache.spark.api.java.StorageLevels;
@@ -40,7 +41,9 @@ public class NodeStreamingSocketTextStream extends NodeStreaming {
 
         linesRow.print();
 
-        super.execute(ssc, workflowContext, linesRow);
+        NodeSchema schema = new NodeSchema("message", "string", "text");
+
+        super.execute(ssc, workflowContext, linesRow, schema);
     }
 
 }

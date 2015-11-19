@@ -50,6 +50,14 @@ public class NodeSchema {
 
     }
 
+    public int getColIdx(String col) {
+        for (int i=0; i<columnNames.length; i++) {
+            if (col.equals(columnNames[i]))
+                return i;
+        }
+
+        return -1;
+    }
     //--------------------------------------------------------------------------------------
 
     // constructor

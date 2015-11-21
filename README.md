@@ -12,13 +12,24 @@ Doc  |
 
 # Fire
 
-Fire enables building end to end big data Applications for various Horizontals and Verticals. It does so by providing a rich set of Nodes for various Big Data Functionality which run on a workflow execution engine. Fire would also provide a User Interface for building the workflows.
+Fire enables building end to end big data Applications for various Horizontals and Verticals on Apache Spark.
+It does so by providing a workflow engine and a rich set of Nodes for various Big Data Functionality. Fire would also
+provide a User Interface for building the workflows.
 
-At this time Spark is the core execution engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes, transform nodes, predictive modeling nodes, loading data into various stores like hbase, solr etc. and above all schema propagation through the workflow.
+Spark is the core computation engine which is supported. Any new computation node can be plugged
+into the workflow. It supports data nodes, transform nodes, predictive modeling nodes, loading data into various stores
+like hbase, solr etc. and above all schema propagation through the workflow.
 
-Fire's core value preposition is to provide a number of Nodes in an open framework that could be used out of the box and thus enable much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0.
+Fire's core value preposition is to provide a number of Nodes in an open framework that could be used out of the box
+and thus enable much faster innovation and development of new use cases of Big Data.
+Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0.
 
-**Horizontal Apps**
+## Big Data Applications
+
+Though its various Nodes and out of the box workflows, Fire hopes to provide core functionality for building
+Big Data Horizontal and Vertical Applications.
+
+**Horizontal Applications**
 
   * IoT
   * Customer 360
@@ -26,7 +37,7 @@ Fire's core value preposition is to provide a number of Nodes in an open framewo
   * Analyzing logs
   * EDW Offload
 
-**Vertical Apps**
+**Verticals**
 
   * ECommerce
   * Telecom

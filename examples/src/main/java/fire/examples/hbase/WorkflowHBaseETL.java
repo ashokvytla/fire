@@ -18,7 +18,7 @@ package fire.examples.hbase;
  */
 
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
-import fire.nodes.hbase.HBaseNode;
+import fire.nodes.hbase.NodeHBase;
 import fire.util.spark.CreateSparkContext;
 import fire.workflowengine.Workflow;
 import fire.workflowengine.WorkflowContext;
@@ -62,7 +62,7 @@ public class WorkflowHBaseETL {
         wf.addNodeDataset(csv1);
 
         // HBase node
-        HBaseNode hBaseNode = new HBaseNode(10, "hbase node");
+        NodeHBase hBaseNode = new NodeHBase(10, "hbase node");
         csv1.addNode(hBaseNode);
 
         // execute the workflow

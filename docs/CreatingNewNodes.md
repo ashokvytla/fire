@@ -15,12 +15,12 @@ New Nodes can be easily added for adding new functionality.
 ## Create the New Node
 
 * Create the New Node as a Java class by extending one of the following classes
-    * NodeDataset : Dataset Nodes
-    * NodeModeling : Predictive Modeling Nodes
-    * NodeETL : ETL Nodes
-    * NodeGraph : Graph Nodes
-    * NodeHbase : HBase Nodes
-    * NodeStreaming : Streaming Nodes
+    * **NodeDataset** : Dataset Nodes
+    * **NodeModeling** : Predictive Modeling Nodes
+    * **NodeETL** : ETL Nodes
+    * **NodeGraph** : Graph Nodes
+    * **NodeHbase** : HBase Nodes
+    * **NodeStreaming** : Streaming Nodes
 
 ## Overide the execute method in the Node:
 

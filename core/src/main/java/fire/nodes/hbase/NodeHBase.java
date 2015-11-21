@@ -21,9 +21,9 @@ import java.util.*;
 /**
  * Created by Ashok Rajan on 11/16/15.
  */
-public class HBaseNode extends Node implements Serializable {
+public class NodeHBase extends Node implements Serializable {
 
-    public HBaseNode(int i, String nm) {
+    public NodeHBase(int i, String nm) {
         super(i, nm);
     }
 

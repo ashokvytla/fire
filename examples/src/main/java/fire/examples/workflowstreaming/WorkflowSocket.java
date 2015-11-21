@@ -39,7 +39,7 @@ public class WorkflowSocket {
         wf.addNodeDataset(stream);
 
         // streaming word count
-        NodeStreamingWordcount wc = new NodeStreamingWordcount(2, "streaming word count");
+        NodeStreamingWordcount wc = new NodeStreamingWordcount(2, "streaming word count", "message");
         stream.addNode(wc);
 
         // execute the workflow

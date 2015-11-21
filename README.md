@@ -264,7 +264,7 @@ https://jsplumbtoolkit.com/
 
 ## Contributing
 
-Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
+Do feel free to send in Pull requests. Best way to get started is to send in Pull request for new Nodes that implement new functionality.
 
 
 

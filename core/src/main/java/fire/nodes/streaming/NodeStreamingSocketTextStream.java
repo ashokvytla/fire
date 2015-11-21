@@ -25,7 +25,8 @@ public class NodeStreamingSocketTextStream extends NodeStreaming {
         super(i, nm);
     }
 
-    public void execute(JavaStreamingContext ssc, WorkflowContext workflowContext, JavaDStream<Row> dstream) {
+    @Override
+    public void execute(JavaStreamingContext ssc, WorkflowContext workflowContext, JavaDStream<Row> dstream, NodeSchema schema) {
 
         // Create a JavaReceiverInputDStream on target ip:port
         JavaReceiverInputDStream<String> lines = ssc.socketTextStream(
@@ -41,9 +42,9 @@ public class NodeStreamingSocketTextStream extends NodeStreaming {
 
         linesRow.print();
 
-        NodeSchema schema = new NodeSchema("message", "string", "text");
+        NodeSchema outSchema = new NodeSchema("message", "string", "text");
 
-        super.execute(ssc, workflowContext, linesRow, schema);
+        super.execute(ssc, workflowContext, linesRow, outSchema);
     }
 
 }

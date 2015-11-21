@@ -1,18 +1,24 @@
 # Creating New Nodes
 
-Writing new nodes involves the following steps:
+New Nodes can be easily added for adding new functionality.
+
+## Review and Design the New Node
 
 * Check out the various groups of Nodes at https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 * Determine whether the New Node belongs to dataset/etl/graph/ml set of nodes.
-* Create the New Node as a Java class
-* Dataset Nodes extend the class NodeDataset, Modeling Nodes extend the class NodeModeling.
 
 * Some examples of various Nodes:
     * Read in Parquet Files : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/dataset/NodeDatasetFileOrDirectoryParquet.java
     * LinearRegression : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/ml/NodeLinearRegression.java
     * Join : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/etl/NodeJoin.java
 
-* Overide the execute method in the Node:
+## Create the New Node
+
+* Create the New Node as a Java class
+* Dataset Nodes extend the class NodeDataset, Modeling Nodes extend the class NodeModeling.
+
+## Overide the execute method in the Node:
+
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
 

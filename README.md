@@ -16,8 +16,9 @@ Fire enables building end to end big data Applications for various Horizontals a
 It does so by providing a workflow engine and a rich set of Nodes for various Big Data Functionality. Fire would also
 provide a User Interface for building the workflows.
 
-The core design principle of Fire is to be lightweight, extensible and easy to use. And above all stay very close
-to programming in Spark and avoid having many layers of code.
+**The core design principle of Fire is to be lightweight, extensible, operational, allow building
+User Interface/Dashboards and easy to use. And above all stay very close to programming in Spark and
+avoid having many layers of code.**
 
 Spark is the core computation engine which is supported. Any new computation node can be plugged
 into the workflow. It supports data nodes, transform nodes, predictive modeling nodes, loading data into various stores

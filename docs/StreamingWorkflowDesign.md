@@ -1,4 +1,4 @@
-# Streaming Workflow
+# Streaming Workflow Design
 
 Streaming Workflow implementation has not yet started. Streaming Workflow would enable building of Workflows which
 get executed in Spark Streaming.

@@ -44,6 +44,9 @@ Big Data Horizontal and Vertical Applications.
   * Healthcare
   * Gaming
 
+
+**Nodes and Workflows would be implemented in a Layered Framework**
+
 <img src="https://github.com/FireProjects/fire/blob/master/docs/images/LayeredFunctionality.png"/>
 
 
@@ -150,18 +153,24 @@ It would also allow users to execute a workflow from the UI and view the results
 When a node is executed, it may also produce graphs as output. This output is streamed back to the browser and displayed.
 
 
-## Writing a New Node
+## Creating New Nodes
 
-Any Node receives Dataframes as inputs and produces Dataframes as outputs. Every node has an 'execute' method with the following signature:
+Any Node receives Dataframes as inputs and produces Dataframes as outputs. Every node has an 'execute' method with
+the following signature:
 
 	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
 
-A Predictive Node can also produce a Model as output. If it is connected to a Scoring Node, it passes along the Model to the Scoring Node.
+A Predictive Node can also produce a Model as output. If it is connected to a Scoring Node, it passes along the Model
+to the Scoring Node.
 
 
 The execute method in Node() passes along the dataframe to the next node.
 
-So after execution in general, the Nodes call Node.execute() to pass along the execution flow and the new dataframe produced to the next node in the workflow.
+So after execution in general, the Nodes call Node.execute() to pass along the execution flow and the new dataframe
+produced to the next node in the workflow.
+
+More details for creating new nodes can be found here : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
+
 
 ## Schema Propagation
 

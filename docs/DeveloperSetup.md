@@ -8,20 +8,33 @@ Fire is mainly written in Java and a bit in Scala. It uses maven. The parent pom
 The number of modules would grow over time with things like customer 360, recommendations, various verticals etc.
 getting added.
 
+## Prerequisites
+
+Please make sure you have Java, Maven and git installed in your development environment.
+
+
 ## Checking out the code with Git
 
-git clone https://github.com/FireProjects/fire.git
+	git clone https://github.com/FireProjects/fire.git
+
 
 ## Building with maven
 
-mvn package
+	mvn package
+
+
+## Using an IDE
+
+IntelliJ or Scala IDE for Eclipse can be used for developing and debugging Fire.
 
 ## Importing into IntelliJ
 
 IntelliJ can be downloaded from https://www.jetbrains.com/idea/
 
-Add the scala plugin into IntelliJ. Then import the project as a Maven project into IntelliJ. Start with executing the
-example workflows.
+* Add the scala plugin into IntelliJ.
+* Then import the project as a Maven project into IntelliJ.
+* Start with executing the example workflows. They do not need any argument for running in local mode.
+
 
 ## Importing into Scala IDE for Eclipse
 
@@ -33,7 +46,8 @@ Easiest way to get started it to run the example workflows under examples/src/ma
 
 ## Running the example workflows on a Spark Cluster
 
-Use the command below to load example data onto HDFS. It is then used by the example Workflows.
+Use the command below to load example data onto HDFS from the edge node of your Hadoop Cluster. It is then used by
+the example Workflows.
 
 	hadoop fs -put data
 

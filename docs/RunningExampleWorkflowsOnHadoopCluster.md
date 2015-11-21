@@ -1,16 +1,27 @@
-# Running Example Workflows
+# Running Example Workflows on Hadoop/Spark Cluster
 
-The example workflow can be run within an IDE in local mode or on the cluster
+The example workflow can be run within an IDE in local mode or on the Hadoop/Spark cluster. This document covers
+running the example workflows on the Hadoop/Spark cluster.
 
-## Running the example workflows on a Spark Cluster
+## Check out code from github
 
-### Load example data into HDFS
+	git clone https://github.com/FireProjects/fire.git
 
-Use the command below to load example data onto HDFS. These are then used by the example Workflows.
+## Build it with maven
+
+Ensure that you have Java and Maven set up. Build Fire with:
+
+	mvn package
+
+
+## Load example data into HDFS
+
+Use the command below to load example data in fire onto HDFS. These are then used by the example Workflows.
 
 	hadoop fs -put data
 
-### Running the batch workflows
+
+## Running the batch workflows
 
 Below are commands to run the various batch example Workflows on a Spark cluster.
 
@@ -43,7 +54,7 @@ and debugging within the IDE by setting its value to **'local'** or not specifyi
 	spark-submit --class fire.examples.workflow.ml.WorkflowJoin --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
 
-### Running the streaming workflows
+## Running the streaming workflows
 
 Below are the commands to run the various streaming example Workflows on a Spark cluster
 

@@ -2,10 +2,9 @@
 
 New Nodes can be easily added for adding new functionality.
 
-## Review and Design the New Node
+## Check out the Existing Nodes
 
 * Check out the various groups of Nodes at https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
-* Determine whether the New Node belongs to dataset/etl/graph/ml set of nodes.
 
 * Some examples of various Nodes:
     * Read in Parquet Files : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/dataset/NodeDatasetFileOrDirectoryParquet.java
@@ -22,7 +21,7 @@ New Nodes can be easily added for adding new functionality.
     * **NodeHbase** : HBase Nodes
     * **NodeStreaming** : Streaming Nodes
 
-## Overide the execute method in the Node:
+## Overide the execute() method in the New Node:
 
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
@@ -34,5 +33,12 @@ The execute method takes in the following parameters:
 * WorkflowContext : Used to output items of result from the Node to the frameworkd
 * DataFrame : The incoming dataset into the Node. Dataset Nodes which produce output only do not take in any input DataFrame.
 
+
+## Overide the getSchema() method in the new Node
+
+If the new Node changes the incoming schema, override the getSchema() method to return the new output schema from the node.
+
+    @Override
+    public NodeSchema getSchema(int nodeId, NodeSchema previousSchema) {
 
 

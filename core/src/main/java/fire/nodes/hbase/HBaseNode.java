@@ -1,6 +1,5 @@
 package fire.nodes.hbase;
 
-import fire.dataframeutil.DataFrameUtil;
 import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
 import org.apache.hadoop.conf.Configuration;
@@ -9,17 +8,10 @@ import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.mllib.clustering.KMeans;
-import org.apache.spark.mllib.clustering.KMeansModel;
-import org.apache.spark.mllib.linalg.Vector;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
-import scala.Function1;
-import scala.collection.Seq;
-import scala.collection.mutable.ArrayBuffer;
 
 import java.io.IOException;
 import java.io.Serializable;

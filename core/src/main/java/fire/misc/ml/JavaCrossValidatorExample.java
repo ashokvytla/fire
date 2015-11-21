@@ -19,7 +19,7 @@ package fire.misc.ml;
 
 import java.util.List;
 
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import com.google.common.collect.Lists;
 
 import fire.ml.Document;

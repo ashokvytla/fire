@@ -1,12 +1,11 @@
 package fire.examples.workflow.etl;
 
-import fire.hdfsio.Delete;
+import fire.util.hdfsio.Delete;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.nodes.etl.NodeColumnFilter;
-import fire.nodes.ml.NodeKMeans;
 import fire.nodes.ml.NodePrintFirstNRows;
 import fire.nodes.save.NodeSave;
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import fire.workflowengine.Workflow;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;

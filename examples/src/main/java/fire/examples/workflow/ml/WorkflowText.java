@@ -18,10 +18,9 @@
 package fire.examples.workflow.ml;
 
 import fire.workflowengine.WorkflowContext;
-import fire.workflowengine.NodeSchema;
 import fire.nodes.ml.NodeHashingTF;
 import fire.nodes.ml.NodeTokenizer;
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.workflowengine.Workflow;
 import org.apache.spark.api.java.JavaSparkContext;

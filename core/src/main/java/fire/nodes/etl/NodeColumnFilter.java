@@ -1,7 +1,6 @@
 package fire.nodes.etl;
 
-import fire.dataframeutil.DataFrameUtil;
-import fire.workflowengine.Node;
+import fire.util.spark.DataFrameUtil;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Column;

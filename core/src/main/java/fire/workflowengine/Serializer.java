@@ -17,10 +17,9 @@
 
 package fire.workflowengine;
 
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.nodes.ml.NodeDatasetSplit;
-import fire.workflowengine.*;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
 import org.codehaus.jackson.map.DeserializationConfig;

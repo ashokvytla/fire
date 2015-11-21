@@ -2,7 +2,7 @@ package fire.examples.workflowstreaming;
 
 import fire.nodes.streaming.NodeStreamingSocketTextStream;
 import fire.nodes.streaming.NodeStreamingWordcount;
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import fire.workflowengine.WorkflowContext;
 import fire.workflowenginestreaming.WorkflowStreaming;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;

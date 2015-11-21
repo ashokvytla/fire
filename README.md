@@ -16,11 +16,14 @@ Fire enables building end to end big data Applications for various Horizontals a
 It does so by providing a workflow engine and a rich set of Nodes for various Big Data Functionality. Fire would also
 provide a User Interface for building the workflows.
 
+The core design principle of Fire is to be lightweight, extensible and easy to use. And above all stay very close
+to programming in Spark and avoid having many layers of code.
+
 Spark is the core computation engine which is supported. Any new computation node can be plugged
 into the workflow. It supports data nodes, transform nodes, predictive modeling nodes, loading data into various stores
 like hbase, solr etc. and above all schema propagation through the workflow.
 
-Fire's core value preposition is to provide a number of Nodes in an open framework that could be used out of the box
+Fire's core value preposition is to provide a number of Rich Nodes in an open framework that could be used out of the box
 and thus enable much faster innovation and development of new use cases of Big Data.
 Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0.
 
@@ -144,9 +147,9 @@ A workflow can be saved to a json structure into a file or can be created from o
 
 ## Workflow User Interface
 
-There would be a browser based User Interface to build workflows. It would take in a text file representation of the various nodes and their parameters.
-It would allow users to create a workflow using the UI, set the parameters for the various nodes and save it.
-It would also allow users to execute a workflow from the UI and view the results.
+There would be a browser based User Interface to build workflows. It would take in a text file representation of the
+various nodes and their parameters. It would allow users to create a workflow using the UI, set the parameters for
+the various nodes and save it. It would also allow users to execute a workflow from the UI and view the results.
 
 ## Graphs
 
@@ -176,9 +179,11 @@ More details for creating new nodes can be found here : https://github.com/FireP
 
 Workflow supports Schema Propagation. The method getSchema(nodeid) returns the Schema for the given node id. Each Node supports the method
 
-	public MySchema getSchema(int nodeId, MySchema sch)
+	public MySchema getSchema(int nodeId, MySchema prevSchema)
 
-'nodeId' is the id of the node for which the schema is being asked for. 'sch' is the output schema from the previous node. The node then uses the incoming schema to form its schema. If the nodeId matches the current node id, it returns the new schema. If not, it passes the new schema also to its next node.
+'nodeId' is the id of the node for which the schema is being asked for. 'prevSchema' is the output schema from the
+previous node. The node then uses the incoming schema to form its output schema. If the nodeId matches the current node
+id, it returns the new schema. If not, it passes the new schema also to its next node.
 
 getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
 the specific Nodes. For example NodeJoin adds the various incoming schemas to generate the output schema.
@@ -191,7 +196,8 @@ https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflo
 
 WorkflowContext is passed to the Node execute method.
 
-The Nodes output things like Logs, Results (can be graphs), Schema to the WorkflowContext. Based on the Application, there would be various implementations of the WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results back to the Browser when used with a WebServer. The result would appropriately get displayed in the Browser in various tabs.
+The Nodes output things like Logs, Results (can be graphs), Schema to the WorkflowContext. Based on the Application,
+there would be various implementations of the WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results back to the Browser when used with a WebServer. The result would appropriately get displayed in the Browser in various tabs.
 
 https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/WorkflowContext.java
 
@@ -201,7 +207,8 @@ WorkflowMetrics has not yet been implemented.
 
 ## Nodes Implemented
 
-The following Nodes have been implemented till now. The comprehensive list is being maintained here : https://github.com/FireProjects/fire/blob/master/docs/NodesBacklogAndImplemented.md
+The following Nodes have been implemented till now. The comprehensive list is being maintained
+here : https://github.com/FireProjects/fire/blob/master/docs/NodesBacklogAndImplemented.md
 
 They reside under :
 

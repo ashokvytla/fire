@@ -1,6 +1,8 @@
 package fire.nodes.dataset;
 
+import fire.util.spark.SchemaUtil;
 import fire.workflowengine.WorkflowContext;
+import org.apache.avro.Schema;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
@@ -30,17 +32,8 @@ public class NodeDatasetFileOrDirectoryText extends NodeDatasetFileOrDirectory i
 
         workflowContext.out("Executing NodeDatasetFileOrDirectoryText : "+id);
 
-        // Load a text file and convert each line to a JavaBean.
+        // Load a text file
         JavaRDD<String> rdd = ctx.textFile(path);
-
-        String schemaString = "col";
-
-        List<StructField> fields = new java.util.ArrayList<StructField>();
-        for (String fieldName: schemaString.split(" ")) {
-            fields.add(DataTypes.createStructField(fieldName, DataTypes.StringType, true));
-        }
-        StructType schema = DataTypes.createStructType(fields);
-
 
         // Convert records of the RDD (people) to Rows.
         JavaRDD<Row> rowRDD = rdd.map(
@@ -50,12 +43,14 @@ public class NodeDatasetFileOrDirectoryText extends NodeDatasetFileOrDirectory i
                     }
                 });
 
+        // schema
+        org.apache.avro.Schema.Type[] types = {Schema.Type.STRING};
+        StructType schema = SchemaUtil.getSparkSQLStructType("col", types);
+
         // Apply the schema to the RDD.
         DataFrame peopleDataFrame = sqlContext.createDataFrame(rowRDD, schema);
 
         // Apply the schema to the RDD.
-        // It is important to make sure that the structure of every [[Row]] of the provided RDD matches
-        // the provided schema. Otherwise, there will be runtime exception.
         DataFrame tdf = sqlContext.createDataFrame(rowRDD, schema);
 
         super.execute(ctx, sqlContext, workflowContext, tdf);

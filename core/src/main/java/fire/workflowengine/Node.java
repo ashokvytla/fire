@@ -21,7 +21,6 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -115,7 +114,7 @@ public abstract class Node {
     //--------------------------------------------------------------------------------------
 
     // get the schema of a given node given the schema for this node
-    public NodeSchema getOutputSchema(int nodeId, NodeSchema inputSchema) {
+    public Schema getOutputSchema(int nodeId, Schema inputSchema) {
 
         // return the incoming schema if the node id matches. nodes can override this behavior by implementing getSchema
         if (nodeId == this.id)
@@ -124,7 +123,7 @@ public abstract class Node {
         Iterator<Node> iterator = nextNodes.iterator();
         while (iterator.hasNext()) {
             Node nextNode = iterator.next();
-            NodeSchema schema = nextNode.getOutputSchema(nodeId, inputSchema);
+            Schema schema = nextNode.getOutputSchema(nodeId, inputSchema);
             if (schema != null)
                 return schema;
         }

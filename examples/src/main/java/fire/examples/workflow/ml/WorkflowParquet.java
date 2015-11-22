@@ -39,7 +39,7 @@ public class WorkflowParquet {
         NodeDatasetFileOrDirectoryParquet parquet = new NodeDatasetFileOrDirectoryParquet(1, "parquet node", "data/people.parquet");
         wf.addNodeDataset(parquet);
 
-        // print first 5 rows node
+        // print first 3 rows node
         NodePrintFirstNRows nodePrintFirstNRows = new NodePrintFirstNRows(2, "print first 3 rows", 3);
         parquet.addNode(nodePrintFirstNRows);
 

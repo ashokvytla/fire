@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class WorkflowContext {
 
     // array for storing the results of the workflow execution.
-    ArrayList<NodeResult> arr = new ArrayList<NodeResult>();
+    ArrayList<Result> arr = new ArrayList<Result>();
 
     //-------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ public class WorkflowContext {
 
     //-------------------------------------------------------------------------
 
-    public void outResult(NodeResult result) {
+    public void outResult(Result result) {
 
         arr.add(result);
 

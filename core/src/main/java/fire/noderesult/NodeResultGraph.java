@@ -17,12 +17,12 @@
 
 package fire.noderesult;
 
-import fire.workflowengine.NodeResult;
+import fire.workflowengine.Result;
 
 /**
  * Created by jayantshekhar
  */
-public class NodeResultGraph extends NodeResult {
+public class NodeResultGraph extends Result {
 
     public String title; // graph title
 

@@ -21,7 +21,7 @@ import fire.workflowengine.WorkflowContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.workflowengine.Workflow;
 import com.google.gson.Gson;
-import fire.workflowengine.NodeSchema;
+import fire.workflowengine.Schema;
 import fire.util.spark.CreateSparkContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
@@ -88,7 +88,7 @@ public class GsonSerialization {
         wf.addNodeDataset(csv1);
 
         // test schema
-        NodeSchema schema = wf.getOutputSchema(1);
+        Schema schema = wf.getOutputSchema(1);
         if (schema != null)
             System.out.println(schema.toString());
 

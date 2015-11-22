@@ -18,7 +18,7 @@
 package fire.nodes.dataset;
 
 import fire.workflowengine.Node;
-import fire.workflowengine.NodeSchema;
+import fire.workflowengine.Schema;
 import org.apache.spark.sql.types.StructType;
 
 /**
@@ -55,17 +55,17 @@ public abstract class NodeDataset extends Node {
     //--------------------------------------------------------------------------------------
 
     // get the schema of this node
-    public NodeSchema getOutputSchema() {
-        return new NodeSchema(columns, columnTypes, columnmlTypes);
+    public Schema getOutputSchema() {
+        return new Schema(columns, columnTypes, columnmlTypes);
     }
 
     //--------------------------------------------------------------------------------------
 
     @Override
-    public NodeSchema getOutputSchema(int nodeId, NodeSchema inputSchema) {
+    public Schema getOutputSchema(int nodeId, Schema inputSchema) {
 
         // get the schema for this node dataset
-        NodeSchema s = getOutputSchema();
+        Schema s = getOutputSchema();
 
         // if node id matches
         if (this.id == nodeId)
@@ -79,7 +79,7 @@ public abstract class NodeDataset extends Node {
 
     // get the spark sql schema
     public StructType getSparkSQLSchema() {
-        final StructType schema = new NodeSchema(columns, columnTypes, columnmlTypes).getSparkSQLStructType();
+        final StructType schema = new Schema(columns, columnTypes, columnmlTypes).getSparkSQLStructType();
 
         return schema;
     }

@@ -17,7 +17,6 @@
 
 package fire.workflowengine;
 
-import org.apache.avro.Schema;
 import org.apache.spark.sql.types.DataType;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
@@ -29,13 +28,13 @@ import java.util.List;
 /**
  * Created by jayantshekhar
  */
-public class NodeSchema {
+public class Schema {
 
     // column names
     public String[] columnNames;
 
     // column types. we are using avro types : Schema.Type.STRING / Schema.Type.DOUBLE / Schema.Type.INT
-    public Schema.Type[] columnTypes;
+    public org.apache.avro.Schema.Type[] columnTypes;
 
     // column ML types
     public final static int TYPE_NUMERIC = 0;
@@ -46,7 +45,7 @@ public class NodeSchema {
     //--------------------------------------------------------------------------------------
 
     // constructor
-    public NodeSchema() {
+    public Schema() {
 
     }
 
@@ -61,7 +60,7 @@ public class NodeSchema {
     //--------------------------------------------------------------------------------------
 
     // constructor
-    public NodeSchema(String[] cnames, Schema.Type[] ctypes) {
+    public Schema(String[] cnames, org.apache.avro.Schema.Type[] ctypes) {
         columnNames = cnames;
         columnTypes = ctypes;
 
@@ -74,7 +73,7 @@ public class NodeSchema {
     //--------------------------------------------------------------------------------------
 
     // constructor
-    public NodeSchema(String[] cnames, Schema.Type[] ctypes, int[] cmltypes) {
+    public Schema(String[] cnames, org.apache.avro.Schema.Type[] ctypes, int[] cmltypes) {
         columnNames = cnames;
         columnTypes = ctypes;
         columnMLTypes = cmltypes;
@@ -83,7 +82,7 @@ public class NodeSchema {
     //--------------------------------------------------------------------------------------
 
     // the 3 input parameters are provided as space separated strings
-    public NodeSchema(String colnames, String coltypes, String colmltypes) {
+    public Schema(String colnames, String coltypes, String colmltypes) {
 
         // columnNames array
         columnNames = colnames.split(" ");
@@ -95,16 +94,16 @@ public class NodeSchema {
         final String colmltypesarr[] = colmltypes.split(" ");
 
         int idx = 0;
-        columnTypes = new Schema.Type[columnNames.length];
+        columnTypes = new org.apache.avro.Schema.Type[columnNames.length];
 
         // col types
         for (String coltype : coltypesarr) {
-            Schema.Type type = null;
+            org.apache.avro.Schema.Type type = null;
             switch(coltype)
             {
-                case "int" : type = Schema.Type.INT; break;
-                case "double" : type = Schema.Type.DOUBLE; break;
-                case "string" : type = Schema.Type.STRING; break;
+                case "int" : type = org.apache.avro.Schema.Type.INT; break;
+                case "double" : type = org.apache.avro.Schema.Type.DOUBLE; break;
+                case "string" : type = org.apache.avro.Schema.Type.STRING; break;
             }
 
             columnTypes[idx] = type;
@@ -135,7 +134,7 @@ public class NodeSchema {
         for (String str : columnNames)
             string += str + " ";
 
-        for (Schema.Type typ : columnTypes)
+        for (org.apache.avro.Schema.Type typ : columnTypes)
             string += typ + " ";
 
         for (int mltyp : columnMLTypes)
@@ -155,13 +154,13 @@ public class NodeSchema {
         for (String fieldName: columnNames) {
             DataType dataType = null;
 
-            if (columnTypes[idx] == Schema.Type.INT)
+            if (columnTypes[idx] == org.apache.avro.Schema.Type.INT)
             {
                 dataType = DataTypes.IntegerType;
-            } else if (columnTypes[idx] == Schema.Type.DOUBLE)
+            } else if (columnTypes[idx] == org.apache.avro.Schema.Type.DOUBLE)
             {
                 dataType = DataTypes.DoubleType;
-            } else if (columnTypes[idx] == Schema.Type.STRING)
+            } else if (columnTypes[idx] == org.apache.avro.Schema.Type.STRING)
             {
                 dataType = DataTypes.StringType;
             }
@@ -179,9 +178,9 @@ public class NodeSchema {
     //--------------------------------------------------------------------------------------
 
     // create a new schema by joining a given schema to this schema on a given column
-    public NodeSchema join(NodeSchema sch, String joincol) {
+    public Schema join(Schema sch, String joincol) {
         ArrayList<String> cnames = new ArrayList();
-        ArrayList<Schema.Type> ctypes = new ArrayList<>();
+        ArrayList<org.apache.avro.Schema.Type> ctypes = new ArrayList<>();
 
         int idx = 0;
         for (int i=0; i<columnNames.length; i++) {
@@ -198,7 +197,7 @@ public class NodeSchema {
             ctypes.add(sch.columnTypes[i]);
         }
 
-        return new NodeSchema(cnames.toArray(new String[cnames.size()]), ctypes.toArray(new Schema.Type[ctypes.size()]));
+        return new Schema(cnames.toArray(new String[cnames.size()]), ctypes.toArray(new org.apache.avro.Schema.Type[ctypes.size()]));
     }
 
     //--------------------------------------------------------------------------------------

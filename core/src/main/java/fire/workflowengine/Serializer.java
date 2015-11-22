@@ -31,7 +31,7 @@ import org.codehaus.jackson.map.SerializationConfig;
  */
 public class Serializer {
 
-    public static String tojson(NodeResult nr) {
+    public static String tojson(Result nr) {
 
         try {
             // http://wiki.fasterxml.com/JacksonPolymorphicDeserialization
@@ -96,7 +96,7 @@ public class Serializer {
     public static void main(String[] args) {
       try {
 
-          NodeResult nodeResult = new NodeResult(5);
+          Result nodeResult = new Result(5);
           String sss = tojson(nodeResult);
           System.out.println(sss);
 
@@ -147,7 +147,7 @@ public class Serializer {
         wf.addNodeDataset(csv1);
 
         // test schema
-        NodeSchema schema = wf.getOutputSchema(1);
+        Schema schema = wf.getOutputSchema(1);
         if (schema != null)
             System.out.println(schema.toString());
 

@@ -20,11 +20,11 @@ package fire.workflowengine;
 /**
  * Created by jayantshekhar
  */
-public class NodeResult {
+public class Result {
 
     public int nodeid;
 
-    public NodeResult(int nid) {
+    public Result(int nid) {
         nodeid = nid;
     }
 

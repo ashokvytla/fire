@@ -17,6 +17,8 @@
 
 package fire.examples.workflow.ml;
 
+import fire.nodes.dataset.NodeDatasetFileOrDirectoryText;
+import fire.nodes.ml.NodePrintFirstNRows;
 import fire.workflowengine.WorkflowContext;
 import fire.nodes.ml.NodeHashingTF;
 import fire.nodes.ml.NodeTokenizer;
@@ -54,19 +56,13 @@ public class WorkflowText {
 
         Workflow wf = new Workflow();
 
-        // csv1 node
-        NodeDatasetFileOrDirectoryCSV csv1 = new NodeDatasetFileOrDirectoryCSV(1, "csv1 node", "data/spam1.csv",
-                "docid doc label", "int string double",
-                "numeric numeric numeric");
-        wf.addNodeDataset(csv1);
+        // text node
+        NodeDatasetFileOrDirectoryText txt = new NodeDatasetFileOrDirectoryText(1, "text node", "data/spam1.csv");
+        wf.addNodeDataset(txt);
 
-        // tokenizer node
-        NodeTokenizer tokenizer = new NodeTokenizer(2, "tokenizer node");
-        csv1.addNode(tokenizer);
-
-        // hashing TF node
-        NodeHashingTF hashingtf = new NodeHashingTF(2, "hashing TF node");
-        tokenizer.addNode(hashingtf);
+        // print first 3 rows node
+        NodePrintFirstNRows nodePrintFirstNRows = new NodePrintFirstNRows(2, "print first 3 rows", 3);
+        txt.addNode(nodePrintFirstNRows);
 
         wf.execute(ctx, sqlContext, workflowContext);
     }

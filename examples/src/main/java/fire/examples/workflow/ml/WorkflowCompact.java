@@ -35,7 +35,7 @@ public class WorkflowCompact {
 
         Workflow wf = new Workflow();
 
-        // csv1 node
+        // text node
         NodeDatasetFileOrDirectoryText t = new NodeDatasetFileOrDirectoryText(1, "text node", "data/spam1.csv");
         wf.addNodeDataset(t);
 

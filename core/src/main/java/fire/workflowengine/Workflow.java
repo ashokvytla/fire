@@ -34,9 +34,9 @@ public class Workflow {
     //--------------------------------------------------------------------------------------
 
     // get the schema for a given node id
-    public NodeSchema getOutputSchema(int nodeId) {
+    public Schema getOutputSchema(int nodeId) {
         for (NodeDataset nodeDataset : datasetNodes) {
-            NodeSchema schema = nodeDataset.getOutputSchema(nodeId, null);
+            Schema schema = nodeDataset.getOutputSchema(nodeId, null);
             if (schema != null)
                 return schema;
         }

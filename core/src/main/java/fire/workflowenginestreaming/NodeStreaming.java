@@ -1,6 +1,6 @@
 package fire.workflowenginestreaming;
 
-import fire.workflowengine.Schema;
+import fire.workflowengine.FireSchema;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.sql.Row;
 import org.apache.spark.streaming.api.java.JavaDStream;
@@ -43,7 +43,7 @@ public abstract class NodeStreaming  implements Serializable {
     //--------------------------------------------------------------------------------------
 
     // get the schema of a given node given the schema for this node
-    public Schema getSchema(int nodeId, Schema currentSchema) {
+    public FireSchema getSchema(int nodeId, FireSchema currentSchema) {
 
         // return the incoming schema if the node id matches. nodes can override this behavior by implementing getSchema
         if (nodeId == this.id)
@@ -52,7 +52,7 @@ public abstract class NodeStreaming  implements Serializable {
         Iterator<NodeStreaming> iterator = nextNodes.iterator();
         while (iterator.hasNext()) {
             NodeStreaming nextNode = iterator.next();
-            Schema schema = nextNode.getSchema(nodeId, currentSchema);
+            FireSchema schema = nextNode.getSchema(nodeId, currentSchema);
             if (schema != null)
                 return schema;
         }
@@ -62,7 +62,7 @@ public abstract class NodeStreaming  implements Serializable {
 
     // execute the next nodes. It takesh in a DStream of Row
     public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext,
-                        JavaDStream<Row> dstream, Schema schema) {
+                        JavaDStream<Row> dstream, FireSchema schema) {
         workflowContext.out("Executing node : " + id);
 
         // execute the next/subsequent nodes

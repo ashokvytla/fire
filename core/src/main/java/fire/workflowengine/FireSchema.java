@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Created by jayantshekhar
  */
-public class Schema {
+public class FireSchema {
 
     // column names
     public String[] columnNames;
@@ -45,7 +45,7 @@ public class Schema {
     //--------------------------------------------------------------------------------------
 
     // constructor
-    public Schema() {
+    public FireSchema() {
 
     }
 
@@ -60,7 +60,7 @@ public class Schema {
     //--------------------------------------------------------------------------------------
 
     // constructor
-    public Schema(String[] cnames, org.apache.avro.Schema.Type[] ctypes) {
+    public FireSchema(String[] cnames, org.apache.avro.Schema.Type[] ctypes) {
         columnNames = cnames;
         columnTypes = ctypes;
 
@@ -73,7 +73,7 @@ public class Schema {
     //--------------------------------------------------------------------------------------
 
     // constructor
-    public Schema(String[] cnames, org.apache.avro.Schema.Type[] ctypes, int[] cmltypes) {
+    public FireSchema(String[] cnames, org.apache.avro.Schema.Type[] ctypes, int[] cmltypes) {
         columnNames = cnames;
         columnTypes = ctypes;
         columnMLTypes = cmltypes;
@@ -82,7 +82,7 @@ public class Schema {
     //--------------------------------------------------------------------------------------
 
     // the 3 input parameters are provided as space separated strings
-    public Schema(String colnames, String coltypes, String colmltypes) {
+    public FireSchema(String colnames, String coltypes, String colmltypes) {
 
         // columnNames array
         columnNames = colnames.split(" ");
@@ -178,7 +178,7 @@ public class Schema {
     //--------------------------------------------------------------------------------------
 
     // create a new schema by joining a given schema to this schema on a given column
-    public Schema join(Schema sch, String joincol) {
+    public FireSchema join(FireSchema sch, String joincol) {
         ArrayList<String> cnames = new ArrayList();
         ArrayList<org.apache.avro.Schema.Type> ctypes = new ArrayList<>();
 
@@ -197,7 +197,7 @@ public class Schema {
             ctypes.add(sch.columnTypes[i]);
         }
 
-        return new Schema(cnames.toArray(new String[cnames.size()]), ctypes.toArray(new org.apache.avro.Schema.Type[ctypes.size()]));
+        return new FireSchema(cnames.toArray(new String[cnames.size()]), ctypes.toArray(new org.apache.avro.Schema.Type[ctypes.size()]));
     }
 
     //--------------------------------------------------------------------------------------

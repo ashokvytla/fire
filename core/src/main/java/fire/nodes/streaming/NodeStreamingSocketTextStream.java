@@ -1,6 +1,6 @@
 package fire.nodes.streaming;
 
-import fire.workflowengine.Schema;
+import fire.workflowengine.FireSchema;
 import fire.workflowengine.WorkflowContext;
 import fire.workflowenginestreaming.NodeStreaming;
 import org.apache.spark.api.java.StorageLevels;
@@ -26,7 +26,7 @@ public class NodeStreamingSocketTextStream extends NodeStreaming {
     }
 
     @Override
-    public void execute(JavaStreamingContext ssc, WorkflowContext workflowContext, JavaDStream<Row> dstream, Schema schema) {
+    public void execute(JavaStreamingContext ssc, WorkflowContext workflowContext, JavaDStream<Row> dstream, FireSchema schema) {
 
         // Create a JavaReceiverInputDStream on target ip:port
         JavaReceiverInputDStream<String> lines = ssc.socketTextStream(
@@ -42,7 +42,7 @@ public class NodeStreamingSocketTextStream extends NodeStreaming {
 
         linesRow.print();
 
-        Schema outSchema = new Schema("message", "string", "text");
+        FireSchema outSchema = new FireSchema("message", "string", "text");
 
         super.execute(ssc, workflowContext, linesRow, outSchema);
     }

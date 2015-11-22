@@ -1,6 +1,6 @@
 package fire.util.spark;
 
-import fire.workflowengine.Schema;
+import fire.workflowengine.FireSchema;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
@@ -173,7 +173,7 @@ public class DataFrameUtil {
         }
 
         // get schema
-        final StructType schema = new Schema(columns, columnTypes, columnmlTypes).getSparkSQLStructType();
+        final StructType schema = new FireSchema(columns, columnTypes, columnmlTypes).getSparkSQLStructType();
 
         // Convert records of the RDD (people) to Rows.
         JavaRDD<Row> rowRDD = rdd.map(

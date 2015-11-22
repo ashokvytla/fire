@@ -1,5 +1,6 @@
 package fire.util.spark;
 
+import fire.workflowengine.FireSchema;
 import org.apache.spark.sql.types.DataType;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
@@ -13,8 +14,14 @@ import java.util.List;
  */
 public class SchemaUtil {
 
+    public static StructType getSchema(String colnames, String coltypes, String colmltypes) {
+        StructType schema = new FireSchema(colnames, coltypes, colmltypes).getSparkSQLStructType();
+        return schema;
+    }
+
+    /***
     // get the schema given the column names and column types
-    public static StructType getSparkSQLStructType(String columns, org.apache.avro.Schema.Type[] columnTypes) {
+    public static StructType getSparkSQLStructType111(String columns, org.apache.avro.Schema.Type[] columnTypes) {
 
         String[] columnNames = columns.split(" ");
         List<StructField> fields = new ArrayList<StructField>();
@@ -43,4 +50,7 @@ public class SchemaUtil {
 
         return structType;
     }
+     ***/
+
+
 }

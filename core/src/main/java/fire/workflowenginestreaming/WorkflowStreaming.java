@@ -1,6 +1,6 @@
 package fire.workflowenginestreaming;
 
-import fire.workflowengine.Schema;
+import fire.workflowengine.FireSchema;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
@@ -19,9 +19,9 @@ public class WorkflowStreaming {
     //--------------------------------------------------------------------------------------
 
     // get the schema for a given node id
-    public Schema getSchema(int nodeId) {
+    public FireSchema getSchema(int nodeId) {
         for (NodeStreaming nodeDataset : datasetNodes) {
-            Schema schema = nodeDataset.getSchema(nodeId, null);
+            FireSchema schema = nodeDataset.getSchema(nodeId, null);
             if (schema != null)
                 return schema;
         }

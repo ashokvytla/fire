@@ -1,6 +1,6 @@
 package fire.nodes.streaming;
 
-import fire.workflowengine.Schema;
+import fire.workflowengine.FireSchema;
 import fire.workflowengine.WorkflowContext;
 import fire.workflowenginestreaming.NodeStreaming;
 import org.apache.spark.api.java.function.Function;
@@ -24,7 +24,7 @@ public class NodeStreamingWordcount extends NodeStreaming {
 
     @Override
     public void execute(JavaStreamingContext ssc, WorkflowContext workflowContext,
-                        JavaDStream<Row> dstream, Schema schema) {
+                        JavaDStream<Row> dstream, FireSchema schema) {
 
         final int cidx = schema.getColIdx(col);
 
@@ -43,7 +43,7 @@ public class NodeStreamingWordcount extends NodeStreaming {
 
         lineLengths.print();
 
-        Schema newSchema = new Schema("count", "int", "numeric");
+        FireSchema newSchema = new FireSchema("count", "int", "numeric");
 
         super.execute(ssc, workflowContext, lineLengths, newSchema);
     }

@@ -18,7 +18,7 @@
 package fire.nodes.etl;
 
 import fire.workflowengine.WorkflowContext;
-import fire.workflowengine.Schema;
+import fire.workflowengine.FireSchema;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
@@ -33,7 +33,7 @@ public class NodeJoin extends NodeETL implements Serializable {
     public String joinCol = "id";
 
     public transient DataFrame dataFrame = null;
-    public transient Schema schema = null;
+    public transient FireSchema schema = null;
 
     public NodeJoin(int i, String nm) {
         super(i, nm);
@@ -47,7 +47,7 @@ public class NodeJoin extends NodeETL implements Serializable {
 
 
     @Override
-    public Schema getOutputSchema(int nodeId, Schema inputSchema) {
+    public FireSchema getOutputSchema(int nodeId, FireSchema inputSchema) {
 
         // save the incoming schema and wait for the next invocation. do not also call getSchema on the outgoing edge now
         if (schema == null)
@@ -56,7 +56,7 @@ public class NodeJoin extends NodeETL implements Serializable {
             return null;
         }
 
-        Schema joinSchema = schema.join(inputSchema, joinCol);
+        FireSchema joinSchema = schema.join(inputSchema, joinCol);
 
         if (this.id == nodeId) {
             return joinSchema;

@@ -114,7 +114,7 @@ public abstract class Node {
     //--------------------------------------------------------------------------------------
 
     // get the schema of a given node given the schema for this node
-    public Schema getOutputSchema(int nodeId, Schema inputSchema) {
+    public FireSchema getOutputSchema(int nodeId, FireSchema inputSchema) {
 
         // return the incoming schema if the node id matches. nodes can override this behavior by implementing getSchema
         if (nodeId == this.id)
@@ -123,7 +123,7 @@ public abstract class Node {
         Iterator<Node> iterator = nextNodes.iterator();
         while (iterator.hasNext()) {
             Node nextNode = iterator.next();
-            Schema schema = nextNode.getOutputSchema(nodeId, inputSchema);
+            FireSchema schema = nextNode.getOutputSchema(nodeId, inputSchema);
             if (schema != null)
                 return schema;
         }

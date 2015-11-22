@@ -1,6 +1,7 @@
 package fire.nodes.dataset;
 
 import fire.util.spark.SchemaUtil;
+import fire.workflowengine.FireSchema;
 import fire.workflowengine.WorkflowContext;
 import org.apache.avro.Schema;
 import org.apache.spark.api.java.JavaRDD;
@@ -46,8 +47,7 @@ public class NodeDatasetFileOrDirectoryText extends NodeDatasetFileOrDirectory i
                 });
 
         // create a schema for the column name and Type of STRING
-        org.apache.avro.Schema.Type[] types = {Schema.Type.STRING};
-        StructType schema = SchemaUtil.getSparkSQLStructType(colName, types);
+        StructType schema = SchemaUtil.getSchema(colName, "string", "string");
 
         // Apply the schema to the RDD.
         DataFrame tdf = sqlContext.createDataFrame(rowRDD, schema);

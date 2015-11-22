@@ -47,7 +47,7 @@ public class NodeDatasetFileOrDirectoryText extends NodeDatasetFileOrDirectory i
                 });
 
         // create a schema for the column name and Type of STRING
-        StructType schema = SchemaUtil.getSchema(colName, "string", "string");
+        StructType schema = SchemaUtil.getSchema(colName, "string");
 
         // Apply the schema to the RDD.
         DataFrame tdf = sqlContext.createDataFrame(rowRDD, schema);

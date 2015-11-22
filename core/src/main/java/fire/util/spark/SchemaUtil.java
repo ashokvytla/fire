@@ -14,8 +14,18 @@ import java.util.List;
  */
 public class SchemaUtil {
 
-    public static StructType getSchema(String colnames, String coltypes, String colmltypes) {
+    public static StructType getSchema(String colnames, String coltypes) {
+
+        // create a dummy column ml types
+        String[] arr = coltypes.split(" ");
+        String colmltypes = "";
+        for (int i=0; i<arr.length; i++) {
+            colmltypes += "numeric";
+        }
+
+        // schema
         StructType schema = new FireSchema(colnames, coltypes, colmltypes).getSparkSQLStructType();
+        
         return schema;
     }
 

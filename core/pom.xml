@@ -397,6 +397,12 @@
       <version>1.5</version>
     </dependency>
 
+    <!-- Spark On HBase -->
+    <dependency>
+      <groupId>com.cloudera</groupId>
+      <artifactId>spark-hbase</artifactId>
+      <version>0.0.2-clabs</version>
+    </dependency>
 
   </dependencies>
 

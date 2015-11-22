@@ -30,13 +30,14 @@ import java.util.List;
  */
 public class FireSchema {
 
-    // column names
+    // column names, column names do not have space in them
     public String[] columnNames;
 
-    // column types. we are using avro types : Schema.Type.STRING / Schema.Type.DOUBLE / Schema.Type.INT
+    // column types. we are using avro types
+    // Schema.Type.STRING : string | Schema.Type.DOUBLE : double | Schema.Type.INT : int
     public org.apache.avro.Schema.Type[] columnTypes;
 
-    // column ML types
+    // column ML types : numeric | categorical | string
     public final static int TYPE_NUMERIC = 0;
     public final static int TYPE_CATEGORICAL = 1;
     public final static int TYPE_TEXT = 2;
@@ -93,10 +94,10 @@ public class FireSchema {
         // col ml types array
         final String colmltypesarr[] = colmltypes.split(" ");
 
+        // col types
         int idx = 0;
         columnTypes = new org.apache.avro.Schema.Type[columnNames.length];
 
-        // col types
         for (String coltype : coltypesarr) {
             org.apache.avro.Schema.Type type = null;
             switch(coltype)

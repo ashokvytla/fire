@@ -25,7 +25,7 @@ public class SchemaUtil {
 
         // schema
         StructType schema = new FireSchema(colnames, coltypes, colmltypes).getSparkSQLStructType();
-        
+
         return schema;
     }
 

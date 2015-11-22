@@ -2,10 +2,6 @@
 
 If you are looking to contribute a Node, below are some ideas:
 
-**HBase**
-
-* Node for loading data into HBase
-
 **Solr**
 
 * Node for loading data into Solr
@@ -21,7 +17,6 @@ It would be great to have NLP integrated into the system. We plan to use OpenNLP
 * Part-of-Speech Tagger
 * Chunker
 * Parser
-
 
 **OCR Nodes**
 
@@ -64,6 +59,10 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 #### ETL Nodes
 
 * **NodeJoin.java** : Joins the incoming datasets on the given keys
+
+#### HBase Nodes
+
+* **NodeHBase.java** : Loads data into HBase
 
 #### File Ingestion Nodes
 

@@ -12,6 +12,9 @@ getting added.
 
 Please make sure you have Java, Maven and git installed in your development environment.
 
+## Spark Version
+
+The current pom.xml uses Spark 1.5 which is part of Cloudera CDH 5.5 distribution.
 
 ## Checking out the code with Git
 

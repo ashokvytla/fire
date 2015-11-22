@@ -41,6 +41,14 @@ and debugging within the IDE by setting its value to **'local'** or not specifyi
 
 	spark-submit --class fire.examples.workflow.ml.WorkflowLogisticRegression --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
+**Decision Tree**
+
+	spark-submit --class fire.examples.workflow.ml.WorkflowDecisionTree --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+
+**ALS**
+
+	spark-submit --class fire.examples.workflow.ml.WorkflowALS --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+
 **Reading Parquet File**
 
 	spark-submit --class fire.examples.workflow.ml.WorkflowParquet --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
@@ -53,6 +61,9 @@ and debugging within the IDE by setting its value to **'local'** or not specifyi
 
 	spark-submit --class fire.examples.workflow.ml.WorkflowJoin --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
+**KMeans workflow from a workflow JSON file**
+
+	spark-submit --class fire.examples.workflow.ml.WorkflowFromFile --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
 ## Running the streaming workflows
 

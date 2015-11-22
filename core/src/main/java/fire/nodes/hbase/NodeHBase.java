@@ -44,11 +44,6 @@ public class NodeHBase extends Node implements Serializable {
 
         workflowContext.out("Executing HBaseNode : " + id);
 
-        String[] columns = df.columns();
-
-        // find the indexes of the data frame columns
-        final int[] dcolsidx = DataFrameUtil.getColumnIndexes(df, dfCols);
-
         bulkPutHBaseContext(ctx, df);
 
         super.execute(ctx, sqlContext, workflowContext, df);
@@ -60,15 +55,30 @@ public class NodeHBase extends Node implements Serializable {
         Configuration configuration = HBaseConfiguration.create();
         configuration.addResource(new Path("/etc/hbase/conf.cloudera.hbase/hbase-site.xml"));
         JavaHBaseContext javaHBaseContext = new JavaHBaseContext(javaSparkContext, configuration);
+
+        // find the indexes of the data frame columns
+        final int[] dcolsidx = DataFrameUtil.getColumnIndexes(dataFrame, dfCols);
+
+        // find the hbase column names
+        final String[] hbaseColsArr = hbaseCols.split(" ");
+
         JavaRDD rdd = dataFrame.toJavaRDD();
         javaHBaseContext.bulkPut(rdd, hbaseTableName, new Function<Row, Put>() {
                     private static final long serialVersionUID = 1L;
 
                     public Put call(Row row) throws Exception {
                         Put put = new Put(Bytes.toBytes(row.getString(0)));
-                        put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("fullname"), Bytes.toBytes(row.getString(1)));
-                        put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("personage"), Bytes.toBytes(row.getString(2)));
-                        put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("personcity"), Bytes.toBytes(row.getString(3)));
+
+                        // add columns to Put
+                        for (int i=0; i<dcolsidx.length; i++) {
+                            put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes(hbaseColsArr[i]),
+                                    Bytes.toBytes(row.getString(dcolsidx[i])));
+                        }
+
+                        // put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("fullname"), Bytes.toBytes(row.getString(1)));
+                        // put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("personage"), Bytes.toBytes(row.getString(2)));
+                        // put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("personcity"), Bytes.toBytes(row.getString(3)));
+
                         return put;
                     }
                 },
@@ -97,21 +107,11 @@ class LoadMappedRecordIntoHBase implements Function<Row, String> {
             System.out.println( validx[i]);
         }
 
-        // insert the record into solrRow
+        // insert the record into hbase
         return r.toString();
     }
 }
 
 
-class println implements Function<String,String> {
-
-    public String call(String r) {
-        System.out.println( r);
-
-        // insert the record into solr
-        return "testing";
-
-    }
-}
 
 

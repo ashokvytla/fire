@@ -129,8 +129,6 @@ public class NodeDatasetFileOrDirectoryCSV extends NodeDatasetFileOrDirectory im
                 });
 
         // Apply the schema to the RDD.
-        // It is important to make sure that the structure of every [[Row]] of the provided RDD matches
-        // the provided schema. Otherwise, there will be runtime exception.
         DataFrame tdf = sqlContext.createDataFrame(rowRDD, schema);
 
         super.execute(ctx, sqlContext, workflowContext, tdf);

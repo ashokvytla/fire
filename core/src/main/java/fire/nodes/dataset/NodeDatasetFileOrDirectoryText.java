@@ -22,6 +22,8 @@ import java.util.List;
  */
 public class NodeDatasetFileOrDirectoryText extends NodeDatasetFileOrDirectory implements Serializable {
 
+    public String colName = "text";// name of the column into which the text is loaded
+
     public NodeDatasetFileOrDirectoryText(int i, String nm, String p) {
         super(i, nm, p);
     }
@@ -43,15 +45,14 @@ public class NodeDatasetFileOrDirectoryText extends NodeDatasetFileOrDirectory i
                     }
                 });
 
-        // schema
+        // create a schema for the column name and Type of STRING
         org.apache.avro.Schema.Type[] types = {Schema.Type.STRING};
-        StructType schema = SchemaUtil.getSparkSQLStructType("col", types);
-
-        // Apply the schema to the RDD.
-        DataFrame peopleDataFrame = sqlContext.createDataFrame(rowRDD, schema);
+        StructType schema = SchemaUtil.getSparkSQLStructType(colName, types);
 
         // Apply the schema to the RDD.
         DataFrame tdf = sqlContext.createDataFrame(rowRDD, schema);
+
+        workflowContext.outSchema(tdf);
 
         super.execute(ctx, sqlContext, workflowContext, tdf);
     }

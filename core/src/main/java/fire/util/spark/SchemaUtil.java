@@ -13,16 +13,7 @@ import java.util.List;
  */
 public class SchemaUtil {
 
-    public static void getSchema() {
-        String schemaString = "col";
-
-        List<StructField> fields = new java.util.ArrayList<StructField>();
-        for (String fieldName: schemaString.split(" ")) {
-            fields.add(DataTypes.createStructField(fieldName, DataTypes.StringType, true));
-        }
-        StructType schema = DataTypes.createStructType(fields);
-    }
-
+    // get the schema given the column names and column types
     public static StructType getSparkSQLStructType(String columns, org.apache.avro.Schema.Type[] columnTypes) {
 
         String[] columnNames = columns.split(" ");

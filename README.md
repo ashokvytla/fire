@@ -188,18 +188,20 @@ Details for creating new nodes can be found here : https://github.com/FireProjec
 
 Workflow supports Schema Propagation. The method getSchema(nodeid) returns the Schema for the given node id. Each Node supports the method
 
-	public MySchema getSchema(int nodeId, MySchema prevSchema)
+	public FireSchema getOutputSchema(int nodeId, FireSchema inputSchema)
 
-'nodeId' is the id of the node for which the schema is being asked for. 'prevSchema' is the output schema from the
-previous node. The node then uses the incoming schema to form its output schema. If the nodeId matches the current node
+**'nodeId'** is the id of the node for which the schema is being asked for. **'inputSchema'** is the input schema to this node.
+The node then uses the input schema to form its output schema. If the nodeId matches the current node
 id, it returns the new schema. If not, it passes the new schema also to its next node.
 
-getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
+**getOutputSchema()** method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
 the specific Nodes. For example NodeJoin adds the various incoming schemas to generate the output schema.
 
 NodeSchema represents the schema of a node.
 
 https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/NodeSchema.java
+
+
 
 ## WorkflowContext
 

@@ -100,7 +100,7 @@ Workflow supports Schema Propagation. The method getSchema(nodeid) returns the S
 The node then uses the input schema to form its output schema. If the nodeId matches the current node
 id, it returns the new schema. If not, it passes the new schema also to its next node.
 
-getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
+getOutputSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
 the specific Nodes. For example NodeJoin adds the various incoming schemas to generate the output schema.
 
 NodeSchema represents the schema of a node.

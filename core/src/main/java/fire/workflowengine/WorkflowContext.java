@@ -18,12 +18,14 @@
 package fire.workflowengine;
 
 import org.apache.spark.ml.Model;
+import org.apache.spark.mllib.clustering.KMeansModel;
 import org.apache.spark.mllib.linalg.Matrix;
 import org.apache.spark.mllib.regression.RegressionModel;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.types.StructType;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created by jayantshekhar
@@ -87,6 +89,14 @@ public class WorkflowContext {
         String string = model.toString();
 
         out(string);
+    }
+
+    public void out(KMeansModel model) {
+        org.apache.spark.mllib.linalg.Vector[] centers = model.clusterCenters();
+
+        for (org.apache.spark.mllib.linalg.Vector vector : centers) {
+            out(vector.toString());
+        }
     }
 
     public void out(Matrix matrix) {

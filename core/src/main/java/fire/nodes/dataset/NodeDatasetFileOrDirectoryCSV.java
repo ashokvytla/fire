@@ -41,6 +41,9 @@ import java.util.List;
 
 public class NodeDatasetFileOrDirectoryCSV extends NodeDatasetFileOrDirectory implements Serializable {
 
+    // field separator in the input file
+    public String separator = ",";
+
     // filter the lines that contain this string. used to filter out the header lines
     public String filterLinesContaining = null;
 
@@ -108,7 +111,7 @@ public class NodeDatasetFileOrDirectoryCSV extends NodeDatasetFileOrDirectory im
                     public Iterable<Row> call(String record) throws Exception {
                         List<Row> ll = new LinkedList<Row>();
 
-                        String[] fields = record.split(",");
+                        String[] fields = record.split(separator);
 
                         // skip invalid records
                         if (fields.length != schema.length())

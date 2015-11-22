@@ -38,6 +38,7 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 #### Dataset Nodes
 
 * NodeDatasetFileOrDirectoryCSV.java : Reads in a CSV file
+* NodeDatasetFileOrDirectoryText.java : Reads in Text file as lines
 * NodeDatasetFileOrDirectoryParquet.java : Reads in a Parquet file
 
 #### Save Nodes

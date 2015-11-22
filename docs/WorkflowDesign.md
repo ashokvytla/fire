@@ -35,9 +35,10 @@ It has an execute() method which executes the workflow.
 
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext)
 
-It also has a getSchema() method which returns the schema of a given node id.
+It also has a getOutputSchema() method which returns the output schema of a given node id. This would also be used
+in the User Interface to display the fields where needed.
 
-    public NodeSchema getSchema(int nodeId)
+    public FireSchema getOutputSchema(int nodeId)
 
 
 ## Node
@@ -70,15 +71,26 @@ Specific Node classes provide the base class for various groupings of nodes.
 
 Details on creating new nodes can be found here : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
 
+## Fire Schema
+
+Schema is represented by the class **fire.workflowengine.FireSchema**
+
+It has the following fields:
+
+    * public String[] columnNames; // names of the different columns
+    * public org.apache.avro.Schema.Type[] columnTypes; : avro Type of each columns
+    * public int[] columnMLTypes; // Machine Learning type of the column which can be numeric/categorical/string
+
+    
 
 ## Schema Propagation
 
 Workflow supports Schema Propagation. The method getSchema(nodeid) returns the Schema for the given node id. Each Node supports the method
 
-	public MySchema getSchema(int nodeId, MySchema prevSchema)
+	public FireSchema getOutputSchema(int nodeId, FireSchema inputSchema)
 
-'nodeId' is the id of the node for which the schema is being asked for. 'prevSchema' is the output schema from the
-previous node. The node then uses the incoming schema to form its output schema. If the nodeId matches the current node
+'nodeId' is the id of the node for which the schema is being asked for. 'inputSchema' is the input schema to this node.
+The node then uses the input schema to form its output schema. If the nodeId matches the current node
 id, it returns the new schema. If not, it passes the new schema also to its next node.
 
 getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by

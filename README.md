@@ -94,7 +94,7 @@ Use the command below to load example data onto HDFS. It is then used by the exa
 
 Below are commands to run the various example Workflows on a Spark cluster. 
 
-Executor memory of 2G, 4 executors with 2G each has been specified in the commands. The parameter **'cluster'** specifies that we are running the workflow on a cluster as against locally. This greatly simplifies the development and debugging within the IDE by setting its value to **'local'** or not specifying it.
+4 executors with 2G and 3 vcores each have been specified in the commands. The parameter **'cluster'** specifies that we are running the workflow on a cluster as against locally. This greatly simplifies the development and debugging within the IDE by setting its value to **'local'** or not specifying it.
 
 	spark-submit --class fire.examples.workflow.ml.WorkflowKMeans --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 

@@ -23,41 +23,50 @@ Nodes can be:
 * **ETL nodes** which operate on source datasets and perform common ETL operations.
 * **Save nodes** which save the datasets onto HDFS.
 
-## JSON representation of the workflow
+### Workflow
 
-A workflow can be saved to a json structure into a file or can be created from one. This allows for:
+**fire.workflowengine.Workflow** represents the workflow.
 
-* Driving user interfaces to build the workflow and save it to a file/rdbms.
-* Exchanging workflows.
-* Hand build a workflow or update the node parameters in a JSON file.
-* Execute a workflow JSON file in Spark with the workflow driver.
+It contains an array of dataset nodes which ingest or load data from some store like HDFS/HBase etc.
 
-## Workflow User Interface
+    public ArrayList<NodeDataset> datasetNodes = new ArrayList<>();
 
-There would be a browser based User Interface to build workflows. It would take in a text file representation of the
-various nodes and their parameters. It would allow users to create a workflow using the UI, set the parameters for
-the various nodes and save it. It would also allow users to execute a workflow from the UI and view the results.
+It has an execute() method which executes the workflow.
 
-## Graphs
+    public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext)
 
-When a node is executed, it may also produce graphs as output. This output is streamed back to the browser and displayed.
+It also has a getSchema() method which returns the schema of a given node id.
+
+    public NodeSchema getSchema(int nodeId)
 
 
-## Creating New Nodes
+## Node
 
 Any Node receives Dataframes as inputs and produces Dataframes as outputs. Every node has an 'execute' method with
 the following signature:
 
 	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
 
+More details on Spark Dataframe is available here : http://spark.apache.org/docs/latest/sql-programming-guide.html#dataframes
+
 A Predictive Node can also produce a Model as output. If it is connected to a Scoring Node, it passes along the Model
 to the Scoring Node.
-
 
 The execute method in Node() passes along the dataframe to the next node.
 
 So after execution in general, the Nodes call Node.execute() to pass along the execution flow and the new dataframe
 produced to the next node in the workflow.
+
+Specific Node classes provide the base class for various groupings of nodes.
+
+* Node
+	* NodeModeling
+	* NodeDataset
+	* NodeHBase
+	* NodeETL
+	* NodeGraph
+	* NodeSave
+	* NodeSolr
 
 More details for creating new nodes can be found here : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
 
@@ -78,6 +87,28 @@ the specific Nodes. For example NodeJoin adds the various incoming schemas to ge
 NodeSchema represents the schema of a node.
 
 https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/NodeSchema.java
+
+
+
+## JSON representation of the workflow
+
+A workflow can be saved to a json structure into a file or can be created from one. This allows for:
+
+* Driving user interfaces to build the workflow and save it to a file/rdbms.
+* Exchanging workflows.
+* Hand build a workflow or update the node parameters in a JSON file.
+* Execute a workflow JSON file in Spark with the workflow driver.
+
+## Workflow User Interface
+
+There would be a browser based User Interface to build workflows. It would take in a text file representation of the
+various nodes and their parameters. It would allow users to create a workflow using the UI, set the parameters for
+the various nodes and save it. It would also allow users to execute a workflow from the UI and view the results.
+
+## Graphs
+
+When a node is executed, it may also produce graphs as output. This output is streamed back to the browser and displayed.
+
 
 ## WorkflowContext
 

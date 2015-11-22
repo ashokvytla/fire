@@ -36,7 +36,7 @@ Below is the initial list of nodes which would be supported in Streaming Workflo
 
 **fire.workflowenginestreaming.WorkflowStreaming** represents the spark streaming workflow.
 
-It contain an array of dataset nodes which ingest or load data from another system.
+It contains an array of dataset nodes which ingest or load data from some system like Kafka/Flume etc.
 
     public ArrayList<NodeStreaming> datasetNodes = new ArrayList<>();
 

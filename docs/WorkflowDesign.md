@@ -8,7 +8,6 @@ The main entity is a workflow. A workflow contains nodes connected to each other
 which are set. Data is passed from one node to another as Spark **DataFrame**. The output DataFrame of a Node can
 have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Architecture.png"/>
 
 <img src="https://github.com/FireProjects/fire/blob/master/docs/images/Workflow.png"/>
 
@@ -22,6 +21,14 @@ Nodes can be:
 * **Split nodes** which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
 * **ETL nodes** which operate on source datasets and perform common ETL operations.
 * **Save nodes** which save the datasets onto HDFS.
+
+## Workflow Execution
+
+The diagram below shows the execution flow.
+
+
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Architecture.png"/>
+
 
 ### Workflow
 
@@ -81,7 +88,7 @@ It has the following fields:
     * public org.apache.avro.Schema.Type[] columnTypes; : avro Type of each columns
     * public int[] columnMLTypes; // Machine Learning type of the column which can be numeric/categorical/string
 
-    
+
 
 ## Schema Propagation
 

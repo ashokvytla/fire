@@ -34,7 +34,7 @@ public class WorkflowSolr {
 
     //--------------------------------------------------------------------------------------
 
-    // kmeans workflow
+    // solr workflow
     private static void solrwf(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext) {
 
         Workflow wf = new Workflow();

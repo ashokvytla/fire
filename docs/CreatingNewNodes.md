@@ -11,6 +11,19 @@ New Nodes can be easily added for adding new functionality.
     * LinearRegression : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/ml/NodeLinearRegression.java
     * Join : https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/nodes/etl/NodeJoin.java
 
+## Spark DataFrames
+
+Spark DataFrame is used to represent the distributed data in the Workflows. They are used to pass data from one node
+to another.
+
+A DataFrame is a distributed collection of data organized into named columns. It is conceptually equivalent to a table
+in a relational database or a data frame in R/Python, but with richer optimizations under the hood. DataFrames can be
+constructed from a wide array of sources such as: structured data files, tables in Hive, external databases,
+or existing RDDs.
+
+http://spark.apache.org/docs/latest/sql-programming-guide.html
+
+
 ## Create the New Node
 
 * Create the New Node as a Java class by extending one of the following classes

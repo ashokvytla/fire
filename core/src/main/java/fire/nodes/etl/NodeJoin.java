@@ -48,22 +48,22 @@ public class NodeJoin extends NodeETL implements Serializable {
 
 
     @Override
-    public NodeSchema getSchema(int nodeId, NodeSchema sch) {
+    public NodeSchema getOutputSchema(int nodeId, NodeSchema inputSchema) {
 
         // save the incoming schema and wait for the next invocation. do not also call getSchema on the outgoing edge now
         if (schema == null)
         {
-            schema = sch;
+            schema = inputSchema;
             return null;
         }
 
-        NodeSchema joinSchema = schema.join(sch, joinCol);
+        NodeSchema joinSchema = schema.join(inputSchema, joinCol);
 
         if (this.id == nodeId) {
             return joinSchema;
         }
 
-        return super.getSchema(nodeId, joinSchema);
+        return super.getOutputSchema(nodeId, joinSchema);
     }
 
     @Override

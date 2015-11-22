@@ -115,16 +115,16 @@ public abstract class Node {
     //--------------------------------------------------------------------------------------
 
     // get the schema of a given node given the schema for this node
-    public NodeSchema getSchema(int nodeId, NodeSchema currentSchema) {
+    public NodeSchema getOutputSchema(int nodeId, NodeSchema inputSchema) {
 
         // return the incoming schema if the node id matches. nodes can override this behavior by implementing getSchema
         if (nodeId == this.id)
-            return currentSchema;
+            return inputSchema;
 
         Iterator<Node> iterator = nextNodes.iterator();
         while (iterator.hasNext()) {
             Node nextNode = iterator.next();
-            NodeSchema schema = nextNode.getSchema(nodeId, currentSchema);
+            NodeSchema schema = nextNode.getOutputSchema(nodeId, inputSchema);
             if (schema != null)
                 return schema;
         }

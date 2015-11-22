@@ -17,9 +17,9 @@
 
 package fire.nodes.ml;
 
+import fire.util.spark.DataFrameUtil;
 import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
-import fire.util.spark.DataFrameUtil;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.ml.Model;
 import org.apache.spark.mllib.evaluation.MulticlassMetrics;

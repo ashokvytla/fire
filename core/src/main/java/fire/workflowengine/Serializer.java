@@ -147,7 +147,7 @@ public class Serializer {
         wf.addNodeDataset(csv1);
 
         // test schema
-        NodeSchema schema = wf.getSchema(1);
+        NodeSchema schema = wf.getOutputSchema(1);
         if (schema != null)
             System.out.println(schema.toString());
 

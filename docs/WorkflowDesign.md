@@ -59,7 +59,7 @@ produced to the next node in the workflow.
 
 Specific Node classes provide the base class for various groupings of nodes.
 
-* Node
+* **Node**
 	* NodeModeling
 	* NodeDataset
 	* NodeHBase
@@ -68,7 +68,7 @@ Specific Node classes provide the base class for various groupings of nodes.
 	* NodeSave
 	* NodeSolr
 
-More details for creating new nodes can be found here : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
+Details on creating new nodes can be found here : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
 
 
 ## Schema Propagation

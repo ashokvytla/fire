@@ -55,24 +55,24 @@ public abstract class NodeDataset extends Node {
     //--------------------------------------------------------------------------------------
 
     // get the schema of this node
-    public NodeSchema getSchema() {
+    public NodeSchema getOutputSchema() {
         return new NodeSchema(columns, columnTypes, columnmlTypes);
     }
 
     //--------------------------------------------------------------------------------------
 
     @Override
-    public NodeSchema getSchema(int nodeId, NodeSchema currentSchema) {
+    public NodeSchema getOutputSchema(int nodeId, NodeSchema inputSchema) {
 
         // get the schema for this node dataset
-        NodeSchema s = getSchema();
+        NodeSchema s = getOutputSchema();
 
         // if node id matches
         if (this.id == nodeId)
             return s;
 
         // else send it to the super class to ask the subsequent nodes
-        return super.getSchema(nodeId, s);
+        return super.getOutputSchema(nodeId, s);
     }
 
     //--------------------------------------------------------------------------------------

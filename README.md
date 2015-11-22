@@ -123,7 +123,6 @@ There are still a number of packages which are not used now but would be used in
 The main entity is a workflow. A workflow contains nodes connected to each other. Nodes also have parameters
 which are set. Data is passed from one node to another as Spark **DataFrame**. The output DataFrame of a Node can have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Architecture.png"/>
 
 <img src="https://github.com/FireProjects/fire/blob/master/docs/images/Workflow.png"/>
 
@@ -137,6 +136,14 @@ Nodes can be:
 * **Split nodes** which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
 * **ETL nodes** which operate on source datasets and perform common ETL operations. 
 * **Save nodes** which save the datasets onto HDFS.
+
+## Workflow Execution
+
+The diagram below shows the execution flow.
+
+
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Architecture.png"/>
+
 
 ## JSON representation of the workflow
 
@@ -158,7 +165,7 @@ the various nodes and save it. It would also allow users to execute a workflow f
 When a node is executed, it may also produce graphs as output. This output is streamed back to the browser and displayed.
 
 
-## Creating New Nodes
+## Node
 
 Any Node receives Dataframes as inputs and produces Dataframes as outputs. Every node has an 'execute' method with
 the following signature:
@@ -174,7 +181,7 @@ The execute method in Node() passes along the dataframe to the next node.
 So after execution in general, the Nodes call Node.execute() to pass along the execution flow and the new dataframe
 produced to the next node in the workflow.
 
-More details for creating new nodes can be found here : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
+Details for creating new nodes can be found here : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
 
 
 ## Schema Propagation

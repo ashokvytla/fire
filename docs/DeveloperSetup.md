@@ -44,6 +44,15 @@ http://scala-ide.org/
 
 Easiest way to get started it to run the example workflows under examples/src/main/java/fire/examples/workflow in your IDE.
 
+## Running the example workflows within the IDE
+
+The example workflows are under the examples module. They are in the package fire.examples.workflow.
+The github project already contains the data that are used by the example workflows. The input data path is
+hardcoded in the examples workflows. Hence no additional parameter needs to be specified while executing them.
+
+Just go ahead and run/debug the example workflows within your IDE.
+
+
 ## Running the example workflows on a Spark Cluster
 
 Use the command below to load example data onto HDFS from the edge node of your Hadoop Cluster. It is then used by

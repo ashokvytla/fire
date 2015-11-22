@@ -1,4 +1,4 @@
-package fire.examples.hbase;
+package fire.examples.workflow.hbase;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more

@@ -1,27 +1,39 @@
 package fire.nodes.hbase;
 
+import com.cloudera.spark.hbase.JavaHBaseContext;
+import fire.util.spark.DataFrameUtil;
 import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.*;
 
 
 /**
  * Created by Ashok Rajan on 11/16/15.
  */
 public class NodeHBase extends Node implements Serializable {
+
+    public String hbaseTableName = "person";
+
+    public String hbaseColumnFamily = "persondetails";
+
+    // Dataframe columns
+    public String dfCols = "id fn age city";
+
+    // HBase columns
+    public String hbaseCols = "personid fullname personage personcity";
 
     public NodeHBase(int i, String nm) {
         super(i, nm);
@@ -32,102 +44,74 @@ public class NodeHBase extends Node implements Serializable {
 
         workflowContext.out("Executing HBaseNode : " + id);
 
-        //testMapping(sqlContext);
-       // mapColumns(sqlContext);
+        String[] columns = df.columns();
 
-        writeToHbase(batchPuts(df));
+        // find the indexes of the data frame columns
+        final int[] dcolsidx = DataFrameUtil.getColumnIndexes(df, dfCols);
+
+        bulkPutHBaseContext(ctx, df);
 
         super.execute(ctx, sqlContext, workflowContext, df);
     }
 
-    private void testMapping(SQLContext sqlContext){
-        String mapperConfigFile = "/home/cloudera/fireprojects/fire/data/hbasemapper.json";
-        DataFrame people = sqlContext.jsonFile(mapperConfigFile);
-        people.registerTempTable("people");
+    //TODO: Mapping to HBase columns to columns in DataFrame with datatype
+    private void bulkPutHBaseContext(JavaSparkContext javaSparkContext, DataFrame dataFrame) {
 
-        DataFrame schools = people.select("schools");
-        schools.registerTempTable("schools");
-        System.out.println("========= schools.printSchema()===========");
-        schools.printSchema();
-        System.out.println("========= schools.show();============");
-        schools.show();
-        System.out.println("=====================");
+        Configuration configuration = HBaseConfiguration.create();
+        configuration.addResource(new Path("/etc/hbase/conf.cloudera.hbase/hbase-site.xml"));
+        JavaHBaseContext javaHBaseContext = new JavaHBaseContext(javaSparkContext, configuration);
+        JavaRDD rdd = dataFrame.toJavaRDD();
+        javaHBaseContext.bulkPut(rdd, hbaseTableName, new Function<Row, Put>() {
+                    private static final long serialVersionUID = 1L;
 
-        Row[] rows = schools.collect();
-        Row row = rows[0];
-
-
-        DataFrame school = schools.select("sname","year");
-        school.registerTempTable("school");
-        System.out.println("========= school.printSchema()===========");
-
-        school.printSchema();
-        System.out.println("========= school.printSchema()===========");
-        school.show();
-        System.out.println("===================");
-
-
+                    public Put call(Row row) throws Exception {
+                        Put put = new Put(Bytes.toBytes(row.getString(0)));
+                        put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("fullname"), Bytes.toBytes(row.getString(1)));
+                        put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("personage"), Bytes.toBytes(row.getString(2)));
+                        put.addColumn(Bytes.toBytes(hbaseColumnFamily), Bytes.toBytes("personcity"), Bytes.toBytes(row.getString(3)));
+                        return put;
+                    }
+                },
+                true);
     }
-
-    private void mapColumns(SQLContext sqlContext) {
-        String mapperConfigFile = "/home/cloudera/fireprojects/fire/data/hbasemapper.json";
-
-        DataFrame mapperConfig = sqlContext.jsonFile(mapperConfigFile);
-        mapperConfig.registerTempTable("mapperConfig");
-
-        System.out.println("=========mapperConfig.printSchema() ============");
-        mapperConfig.printSchema();
-        System.out.println("==========================================");
-
-        DataFrame columnfm = sqlContext.sql("SELECT columnfamily.column FROM mapperConfig");
-        Iterator<Row> columnsIterator  = columnfm.collectAsList().iterator();
-        while(columnsIterator.hasNext()){
-            Row row = columnsIterator.next();
-            System.out.println(row.get(0));
-        }
-
-//        List<Row> mappers = mapperConfig.collectAsList();
-//        Iterator<Row> rowIterator = mappers.iterator();
-//        while (rowIterator.hasNext()) {
-//            Row mapping = rowIterator.next();
-//            System.out.println(mapping.toString());
-//        }
-
-    }
-
-    private List<Put> batchPuts(DataFrame df) {
-        List<Put> putList = new ArrayList<Put>();
-        Put p = null;
-        Iterator<Row> rows = df.collectAsList().iterator();
-        while (rows.hasNext()) {
-            Row row = rows.next();
-            System.out.println(row.get(0) + "," + row.get(1) + "," + row.get(2) + "," + row.get(3));
-
-            p = new Put(Bytes.toBytes(row.getString(0)));
-            p.addColumn(Bytes.toBytes("persondetails"), Bytes.toBytes("fullname"), Bytes.toBytes(row.getString(1)));
-            p.addColumn(Bytes.toBytes("persondetails"), Bytes.toBytes("age"), Bytes.toBytes(row.getString(2)));
-            p.addColumn(Bytes.toBytes("persondetails"), Bytes.toBytes("city"), Bytes.toBytes(row.getString(3)));
-            putList.add(p);
-        }
-        return putList;
-    }
-
-
-
-    private void writeToHbase(List<Put> putList){
-        Connection conn = null;
-        try{
-            Configuration configuration = HBaseConfiguration.create();
-            configuration.addResource(new Path("/etc/hbase/conf.cloudera.hbase/hbase-site.xml"));
-            conn =   ConnectionFactory.createConnection(configuration);
-            Table t1 = conn.getTable(TableName.valueOf("person"));
-            t1.put(putList);
-            t1.close();
-            Admin admin = conn.getAdmin();
-            conn.close();
-        }catch (IOException e){
-            System.out.println("Error writing to HBase "+e.getMessage());
-        }
-    }
-
 }
+
+
+class LoadMappedRecordIntoHBase implements Function<Row, String> {
+
+    int[] dcolsidx;
+
+    LoadMappedRecordIntoHBase(int[] colsidx) {
+        dcolsidx = colsidx;
+    }
+
+    public String call(Row r) {
+        System.out.println( r.toString());
+
+        // array of values
+        String[] validx = new String[dcolsidx.length];
+
+        // get the values to be inserted from the row index
+        for (int i = 0; i<dcolsidx.length; i++) {
+            validx[i] = r.getString(dcolsidx[i]);
+            System.out.println( validx[i]);
+        }
+
+        // insert the record into solrRow
+        return r.toString();
+    }
+}
+
+
+class println implements Function<String,String> {
+
+    public String call(String r) {
+        System.out.println( r);
+
+        // insert the record into solr
+        return "testing";
+
+    }
+}
+
+

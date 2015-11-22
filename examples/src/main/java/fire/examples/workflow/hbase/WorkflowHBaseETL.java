@@ -57,7 +57,7 @@ public class WorkflowHBaseETL {
 
         // CSV node
         NodeDatasetFileOrDirectoryCSV csv1 = new NodeDatasetFileOrDirectoryCSV(1, "csv1 node", "/home/cloudera/fireprojects/fire/data/person.csv",
-                "personid fn age city", "string string string string",
+                "id fn age city", "string string string string",
                 "numeric numeric numeric numeric");
         wf.addNodeDataset(csv1);
 

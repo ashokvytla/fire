@@ -36,9 +36,9 @@ Big Data Horizontal and Vertical Applications.
 
 **Horizontal Applications**
 
-  * IoT
   * Customer 360
   * Recommendation Engines
+  * IoT
   * Analyzing logs
   * EDW Offload
 
@@ -47,6 +47,7 @@ Big Data Horizontal and Vertical Applications.
   * ECommerce
   * Telecom
   * Healthcare
+  * Finance
   * Gaming
 
 

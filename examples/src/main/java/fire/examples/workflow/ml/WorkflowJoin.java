@@ -67,11 +67,6 @@ public class WorkflowJoin {
                 "numeric numeric numeric numeric");
         wf.addNodeDataset(csv1);
 
-        // test schema
-        NodeSchema schema = wf.getSchema(1);
-        if (schema != null)
-            System.out.println(schema.toString());
-
         // csv2 node
         NodeDatasetFileOrDirectoryCSV csv2 = new NodeDatasetFileOrDirectoryCSV(2, "csv2 node", "data/cars.csv",
                 "id label f1 f2", "double double double double",

@@ -1,25 +1,40 @@
 ### Docs Index
 
-Doc  | Link
+Doc  | 
 ------------- | -------------
-Developer Setup  | https://github.com/FireProjects/fire/blob/master/docs/DeveloperSetup.md
-User Interface  | https://github.com/FireProjects/fire/blob/master/docs/UserInterface.md
-Creating New Nodes  | https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
-Nodes Backlog and Implemented List  | https://github.com/FireProjects/fire/blob/master/docs/NodesBacklogAndImplemented.md
-Streaming Workflow  | https://github.com/FireProjects/fire/blob/master/docs/StreamingWorkflow.md
+[Developer Setup](https://github.com/FireProjects/fire/blob/master/docs/DeveloperSetup.md)  | 
+[User Interface](https://github.com/FireProjects/fire/blob/master/docs/UserInterface.md)  | 
+[Creating New Nodes](https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md)  | 
+[Nodes Backlog and Implemented List](https://github.com/FireProjects/fire/blob/master/docs/NodesBacklogAndImplemented.md)  | 
+[Workflow Design](https://github.com/FireProjects/fire/blob/master/docs/WorkflowDesign.md)  |
+[Streaming Workflow Design](https://github.com/FireProjects/fire/blob/master/docs/StreamingWorkflowDesign.md)  |
+[Running Example Workflows on Hadoop/Spark Cluster](https://github.com/FireProjects/fire/blob/master/docs/RunningExampleWorkflowsOnHadoopCluster.md)  |
 
 
 # Fire
 
-Fire enables building end to end big data Applications for various Horizontals and also for the various Verticals.
+Fire enables building end to end big data Applications for various Horizontals and Verticals on Apache Spark.
+It does so by providing a workflow engine and a rich set of Nodes for various Big Data Functionality. Fire would also
+provide a User Interface for building the workflows.
 
-It does so by providing a framework for building and running workflows. At this time Spark is the core execution
-engine which would be supported. Any new computation node can be plugged into the workflow. It supports data nodes,
-transform nodes, nodes that build predictive models, load data into various stores like hbase, solr etc. and above all schema propagation through the workflow.
+**The core design principle of Fire is to be lightweight, extensible, operational, allow building
+User Interface/Dashboards and easy to use. And above all stay very close to programming in Spark and
+avoid having many layers of code.**
 
-Fire's core value preposition is to provide a number of Nodes in an open framework that could be used out of the box and thus enable much faster innovation and development of new use cases of Big Data. Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0.
+Spark is the core computation engine which is supported. Any new computation node can be plugged
+into the workflow. It supports data nodes, transform nodes, predictive modeling nodes, loading data into various stores
+like hbase, solr etc. and above all schema propagation through the workflow.
 
-**Horizontal Apps**
+Fire's core value preposition is to provide a number of Rich Nodes in an open framework that could be used out of the box
+and thus enable much faster innovation and development of new use cases of Big Data.
+Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0.
+
+## Big Data Applications
+
+Though its various Nodes and out of the box workflows, Fire hopes to provide core functionality for building
+Big Data Horizontal and Vertical Applications.
+
+**Horizontal Applications**
 
   * IoT
   * Customer 360
@@ -27,14 +42,17 @@ Fire's core value preposition is to provide a number of Nodes in an open framewo
   * Analyzing logs
   * EDW Offload
 
-**Vertical Apps**
+**Verticals**
 
   * ECommerce
   * Telecom
   * Healthcare
   * Gaming
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/LayeredFunctionality.png"/>
+
+**Nodes and Workflows would be implemented in a Layered Framework**
+
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/LayeredFunctionality.png"/>
 
 
 ## Building
@@ -67,7 +85,7 @@ Example workflows include:
 
 More and more example workflows would keep getting added to the library.
 
-## Running the example workflows
+## Running the example workflows on a Spark Cluster
 
 Use the command below to load example data onto HDFS. It is then used by the example Workflows.
 
@@ -75,15 +93,15 @@ Use the command below to load example data onto HDFS. It is then used by the exa
 
 Below are commands to run the various example Workflows on a Spark cluster. 
 
-Executor memory of 5G has been specified in the commands. The parameter **'cluster'** specifies that we are running the workflow on a cluster as against locally. This greatly simplifies the development and debugging within the IDE by setting its value to **'local'** or not specifying it.
+Executor memory of 2G, 4 executors with 2G each has been specified in the commands. The parameter **'cluster'** specifies that we are running the workflow on a cluster as against locally. This greatly simplifies the development and debugging within the IDE by setting its value to **'local'** or not specifying it.
 
-	spark-submit --class fire.examples.workflow.ml.WorkflowKMeans --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+	spark-submit --class fire.examples.workflow.ml.WorkflowKMeans --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
-	spark-submit --class fire.examples.workflow.ml.WorkflowLinearRegression --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+	spark-submit --class fire.examples.workflow.ml.WorkflowLinearRegression --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
-	spark-submit --class fire.examples.workflow.ml.WorkflowLogisticRegression --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+	spark-submit --class fire.examples.workflow.ml.WorkflowLogisticRegression --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
-	spark-submit --class fire.examples.workflow.ml.WorkflowParquet --master yarn-client --executor-memory 5G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
+	spark-submit --class fire.examples.workflow.ml.WorkflowParquet --master yarn-client --executor-memory 2G  --num-executors 4  --executor-cores 3  examples/target/fire-examples-1.2.0-SNAPSHOT-jar-with-dependencies.jar cluster
 
 ## Creating your workflow
 
@@ -103,21 +121,22 @@ There are still a number of packages which are not used now but would be used in
 ## Architecture
 
 The main entity is a workflow. A workflow contains nodes connected to each other. Nodes also have parameters
-which are set. 
+which are set. Data is passed from one node to another as Spark **DataFrame**. The output DataFrame of a Node can have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/Architecture.png"/>
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Architecture.png"/>
 
-<img src="https://github.com/FireProjects/fire/blob/master/docs/Workflow.png"/>
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Workflow.png"/>
 
 Nodes can be:
 
-* **Starting nodes** which are mainly data nodes and produce data for the rest of the nodes to act upon.
+* **Dataset nodes** which creates the DataFrame from some store for the rest of the nodes to act upon.
 * **Transform nodes** which process the incoming dataset/s to produce another dataset.
 * **Modeling nodes** which apply a predictive algorithm on the incoming dataset to produce a model
 * **Scoring nodes** which take in a dataset and and model and score it.
 * **Decision nodes** which take in a dataset, compute some value and pass on the execution to one of its connected outputs.
 * **Split nodes** which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
 * **ETL nodes** which operate on source datasets and perform common ETL operations. 
+* **Save nodes** which save the datasets onto HDFS.
 
 ## JSON representation of the workflow
 
@@ -130,35 +149,43 @@ A workflow can be saved to a json structure into a file or can be created from o
 
 ## Workflow User Interface
 
-There would be a browser based User Interface to build workflows. It would take in a text file representation of the various nodes and their parameters.
-It would allow users to create a workflow using the UI, set the parameters for the various nodes and save it.
-It would also allow users to execute a workflow from the UI and view the results.
+There would be a browser based User Interface to build workflows. It would take in a text file representation of the
+various nodes and their parameters. It would allow users to create a workflow using the UI, set the parameters for
+the various nodes and save it. It would also allow users to execute a workflow from the UI and view the results.
 
 ## Graphs
 
 When a node is executed, it may also produce graphs as output. This output is streamed back to the browser and displayed.
 
 
-## Writing a New Node
+## Creating New Nodes
 
-Any Node receives Dataframes as inputs and produces Dataframes as outputs. Every node has an 'execute' method with the following signature:
+Any Node receives Dataframes as inputs and produces Dataframes as outputs. Every node has an 'execute' method with
+the following signature:
 
 	public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df)
 
-A Predictive Node can also produce a Model as output. If it is connected to a Scoring Node, it passes along the Model to the Scoring Node.
+A Predictive Node can also produce a Model as output. If it is connected to a Scoring Node, it passes along the Model
+to the Scoring Node.
 
 
 The execute method in Node() passes along the dataframe to the next node.
 
-So after execution in general, the Nodes call Node.execute() to pass along the execution flow and the new dataframe produced to the next node in the workflow.
+So after execution in general, the Nodes call Node.execute() to pass along the execution flow and the new dataframe
+produced to the next node in the workflow.
+
+More details for creating new nodes can be found here : https://github.com/FireProjects/fire/blob/master/docs/CreatingNewNodes.md
+
 
 ## Schema Propagation
 
 Workflow supports Schema Propagation. The method getSchema(nodeid) returns the Schema for the given node id. Each Node supports the method
 
-	public MySchema getSchema(int nodeId, MySchema sch)
+	public MySchema getSchema(int nodeId, MySchema prevSchema)
 
-'nodeId' is the id of the node for which the schema is being asked for. 'sch' is the output schema from the previous node. The node then uses the incoming schema to form its schema. If the nodeId matches the current node id, it returns the new schema. If not, it passes the new schema also to its next node.
+'nodeId' is the id of the node for which the schema is being asked for. 'prevSchema' is the output schema from the
+previous node. The node then uses the incoming schema to form its output schema. If the nodeId matches the current node
+id, it returns the new schema. If not, it passes the new schema also to its next node.
 
 getSchema() method in Node by default propagates the incoming schema to the outgoing Nodes. It can be overridden by
 the specific Nodes. For example NodeJoin adds the various incoming schemas to generate the output schema.
@@ -171,7 +198,8 @@ https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflo
 
 WorkflowContext is passed to the Node execute method.
 
-The Nodes output things like Logs, Results (can be graphs), Schema to the WorkflowContext. Based on the Application, there would be various implementations of the WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results back to the Browser when used with a WebServer. The result would appropriately get displayed in the Browser in various tabs.
+The Nodes output things like Logs, Results (can be graphs), Schema to the WorkflowContext. Based on the Application,
+there would be various implementations of the WorkflowContext. An example of it would be BrowserStreamingWorkflowContext. It would stream the results back to the Browser when used with a WebServer. The result would appropriately get displayed in the Browser in various tabs.
 
 https://github.com/FireProjects/fire/blob/master/core/src/main/java/fire/workflowengine/WorkflowContext.java
 
@@ -181,7 +209,8 @@ WorkflowMetrics has not yet been implemented.
 
 ## Nodes Implemented
 
-The following Nodes have been implemented till now. The comprehensive list is being maintained here : https://github.com/FireProjects/fire/blob/master/docs/NodesBacklogAndImplemented.md
+The following Nodes have been implemented till now. The comprehensive list is being maintained
+here : https://github.com/FireProjects/fire/blob/master/docs/NodesBacklogAndImplemented.md
 
 They reside under :
 
@@ -236,7 +265,7 @@ https://jsplumbtoolkit.com/
 
 ## Contributing
 
-Do feel free to send in Push requests. Best way to get started is to send in Push request for new Nodes that implement new functionality.
+Do feel free to send in Pull requests. Best way to get started is to send in Pull request for new Nodes that implement new functionality.
 
 
 

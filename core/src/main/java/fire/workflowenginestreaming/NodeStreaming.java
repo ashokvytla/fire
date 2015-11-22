@@ -64,14 +64,15 @@ public abstract class NodeStreaming  implements Serializable {
     }
 
     // execute the next nodes. It takesh in a DStream of Row
-    public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext, JavaDStream<Row> dstream) {
+    public void execute(JavaStreamingContext ctx, WorkflowContext workflowContext,
+                        JavaDStream<Row> dstream, NodeSchema schema) {
         workflowContext.out("Executing node : " + id);
 
         // execute the next/subsequent nodes
         Iterator<NodeStreaming> iterator = nextNodes.iterator();
         while (iterator.hasNext()) {
             NodeStreaming nextNode = iterator.next();
-            nextNode.execute(ctx, workflowContext, dstream);
+            nextNode.execute(ctx, workflowContext, dstream, schema);
         }
 
     }

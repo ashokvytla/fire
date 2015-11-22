@@ -14,6 +14,15 @@ If you are looking to contribute a Node, below are some ideas:
 
 It would be great to have NLP integrated into the system. We plan to use OpenNLP.
 
+* Sentence Detector
+* Tokenizer
+* Name Finder
+* Document Categorizer
+* Part-of-Speech Tagger
+* Chunker
+* Parser
+
+
 **OCR Nodes**
 
 Optical Character Recognition is useful and we plan to integrate it into the system.

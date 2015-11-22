@@ -22,7 +22,7 @@ import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.workflowengine.Workflow;
 import com.google.gson.Gson;
 import fire.workflowengine.NodeSchema;
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
 

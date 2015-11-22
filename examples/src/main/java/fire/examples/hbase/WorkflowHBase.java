@@ -17,14 +17,9 @@ package fire.examples.hbase;
  * limitations under the License.
  */
 
-import fire.fileformats.csv.ReadCSV;
-import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
-import fire.nodes.ml.NodeKMeans;
-import fire.sparkutil.CreateSparkContext;
-import fire.workflowengine.Workflow;
-import fire.workflowengine.WorkflowContext;
+import fire.util.fileformats.csv.ReadCSV;
+import fire.util.spark.CreateSparkContext;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
@@ -34,7 +29,6 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
-import org.datanucleus.store.rdbms.query.AbstractRDBMSQueryResult;
 import org.apache.hadoop.fs.Path;
 
 import java.io.IOException;

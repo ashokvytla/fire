@@ -19,7 +19,7 @@ package fire.examples.workflow.ml;
 
 import fire.workflowengine.WorkflowContext;
 import fire.workflowengine.Serializer;
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import fire.workflowengine.Workflow;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;

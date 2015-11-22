@@ -17,7 +17,7 @@
 
 package fire.nodes.ml;
 
-import fire.dataframeutil.DataFrameUtil;
+import fire.util.spark.DataFrameUtil;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.ml.classification.LogisticRegression;

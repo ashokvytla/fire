@@ -22,8 +22,7 @@ import fire.workflowengine.NodeSchema;
 import fire.nodes.ml.NodeDatasetSplit;
 import fire.nodes.ml.NodeLinearRegression;
 import fire.nodes.ml.NodeModelScore;
-import fire.nodes.ml.NodeStandardScaler;
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 
 import fire.workflowengine.Node;

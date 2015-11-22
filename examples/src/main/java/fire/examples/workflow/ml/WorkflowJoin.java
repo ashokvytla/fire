@@ -22,7 +22,7 @@ import fire.workflowengine.NodeSchema;
 import fire.nodes.etl.NodeJoin;
 import fire.nodes.ml.NodePrintFirstNRows;
 import fire.nodes.ml.NodeSummaryStatistics;
-import fire.sparkutil.CreateSparkContext;
+import fire.util.spark.CreateSparkContext;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 
 import fire.workflowengine.Node;

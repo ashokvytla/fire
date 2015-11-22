@@ -1,10 +1,8 @@
 package fire.examples.workflow.ml;
 
-import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryParquet;
 import fire.nodes.ml.*;
-import fire.sparkutil.CreateSparkContext;
-import fire.workflowengine.Node;
+import fire.util.spark.CreateSparkContext;
 import fire.workflowengine.Workflow;
 import fire.workflowengine.WorkflowContext;
 import org.apache.spark.api.java.JavaSparkContext;

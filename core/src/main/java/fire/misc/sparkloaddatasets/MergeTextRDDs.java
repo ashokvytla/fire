@@ -17,8 +17,8 @@
 
 package fire.misc.sparkloaddatasets;
 
-import fire.hdfsio.Delete;
-import fire.sparkutil.CreateSparkContext;
+import fire.util.hdfsio.Delete;
+import fire.util.spark.CreateSparkContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 

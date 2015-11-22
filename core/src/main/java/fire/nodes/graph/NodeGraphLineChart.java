@@ -17,9 +17,8 @@
 
 package fire.nodes.graph;
 
-import fire.nodes.graph.NodeGraph;
 import fire.workflowengine.WorkflowContext;
-import fire.dataframeutil.DataFrameUtil;
+import fire.util.spark.DataFrameUtil;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Column;
 import org.apache.spark.sql.DataFrame;

@@ -1,5 +1,6 @@
 package fire.nodes.streaming;
 
+import fire.workflowengine.NodeSchema;
 import fire.workflowengine.WorkflowContext;
 import fire.workflowenginestreaming.NodeStreaming;
 import org.apache.spark.api.java.StorageLevels;
@@ -16,20 +17,26 @@ import java.util.regex.Pattern;
  * Created by jayantshekhar on 11/16/15.
  */
 public class NodeStreamingWordcount extends NodeStreaming {
+    public String col = "";
 
     public NodeStreamingWordcount() {}
 
-    public NodeStreamingWordcount(int i, String nm) {
+    public NodeStreamingWordcount(int i, String nm, String c) {
         super(i, nm);
+        col = c;
     }
 
-    public void execute(JavaStreamingContext ssc, WorkflowContext workflowContext, JavaDStream<Row> dstream) {
+    @Override
+    public void execute(JavaStreamingContext ssc, WorkflowContext workflowContext,
+                        JavaDStream<Row> dstream, NodeSchema schema) {
+
+        final int cidx = schema.getColIdx(col);
 
         JavaDStream<Row> lineLengths = dstream.map(
                 new Function<Row, Row>() {
                     @Override
                     public Row call(Row r) {
-                        String string = r.getString(0);
+                        String string = r.getString(cidx);
                         String[] arr = string.split(" ");
                         int i = arr.length;
 
@@ -40,7 +47,9 @@ public class NodeStreamingWordcount extends NodeStreaming {
 
         lineLengths.print();
 
-        super.execute(ssc, workflowContext, lineLengths);
+        NodeSchema newSchema = new NodeSchema("count", "int", "numeric");
+
+        super.execute(ssc, workflowContext, lineLengths, newSchema);
     }
 
 }

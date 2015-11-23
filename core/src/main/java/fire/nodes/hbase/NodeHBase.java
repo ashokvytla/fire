@@ -1,10 +1,10 @@
 package fire.nodes.hbase;
 
-import com.cloudera.spark.hbase.JavaHBaseContext;
 import fire.util.spark.DataFrameUtil;
 import fire.workflowengine.Node;
 import fire.workflowengine.WorkflowContext;
 
+import com.cloudera.spark.hbase.*;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;

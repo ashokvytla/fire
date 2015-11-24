@@ -57,8 +57,8 @@ Big Data Horizontal and Vertical Applications.
 
 
 ## Building
-
-	mvn package
+	Checkout out code with : git clone https://github.com/FireProjects/fire.git
+	Build it with : mvn package
 
 ## IntelliJ or Eclipse
 

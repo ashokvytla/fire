@@ -72,6 +72,9 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 * **NodePrintFirstNRows.java** : Prints the first N rows of a dataset
 
+#### Streaming Nodes
+
+* **NodeStreamingSocketTextStream.java** : Reads text data from a socket
 
 
 

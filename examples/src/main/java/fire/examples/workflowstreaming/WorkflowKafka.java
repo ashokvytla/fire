@@ -36,7 +36,9 @@ public class WorkflowKafka {
         WorkflowStreaming wf = new WorkflowStreaming();
 
         // kafka node
-        NodeStreamingKafka kafka = new NodeStreamingKafka(1, "kafka node", "localhost", "group", "text", 1);
+        // set zkhost to the zookeeper node.
+        // change 'test' to the topic of interest
+        NodeStreamingKafka kafka = new NodeStreamingKafka(1, "kafka node", "zkhost", "consumer-group", "test", 1);
         wf.addNodeDataset(kafka);
 
         // streaming word count

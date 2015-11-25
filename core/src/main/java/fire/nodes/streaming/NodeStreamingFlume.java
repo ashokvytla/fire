@@ -10,6 +10,8 @@ import org.apache.spark.sql.RowFactory;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaReceiverInputDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
+import org.apache.spark.streaming.flume.FlumeUtils;
+import org.apache.spark.streaming.flume.SparkFlumeEvent;
 import org.apache.spark.streaming.kafka.KafkaUtils;
 import org.apache.spark.streaming.api.java.JavaPairReceiverInputDStream;
 import scala.Tuple2;
@@ -20,40 +22,29 @@ import java.util.Map;
 /**
  * Created by jayantshekhar on 11/16/15.
  */
-public class NodeStreamingKafka extends NodeStreaming {
+public class NodeStreamingFlume extends NodeStreaming {
 
-    public String zkQuorum = "";
-    public String group = "";
-    public String topics = "";
-    public int numThreads = 1;
+    public String host = "";
+    public int port = 1;
 
-    public NodeStreamingKafka() {}
+    public NodeStreamingFlume() {}
 
-    public NodeStreamingKafka(int i, String nm, String zkQ, String grp, String top, int numTh) {
+    public NodeStreamingFlume(int i, String nm, String h, int p) {
         super(i, nm);
 
-        zkQuorum = zkQ;
-        group = grp;
-        topics = top;
-        numThreads = numTh;
+        host = h;
+        port = p;
     }
 
     @Override
     public void execute(JavaStreamingContext jssc, WorkflowContext workflowContext, JavaDStream<Row> dstream, FireSchema schema) {
 
-        Map<String, Integer> topicMap = new HashMap<String, Integer>();
-        String[] topicsarr = topics.split(",");
-        for (String topic: topicsarr) {
-            topicMap.put(topic, numThreads);
-        }
+        JavaReceiverInputDStream<SparkFlumeEvent> flumeStream = FlumeUtils.createStream(jssc, host, port);
 
-        JavaPairReceiverInputDStream<String, String> messages =
-                KafkaUtils.createStream(jssc, zkQuorum, group, topicMap);
-
-        JavaDStream<String> lines = messages.map(new Function<Tuple2<String, String>, String>() {
+        JavaDStream<String> lines = flumeStream.map(new Function<SparkFlumeEvent, String>() {
             @Override
-            public String call(Tuple2<String, String> tuple2) {
-                return tuple2._2();
+            public String call(SparkFlumeEvent event) {
+                return event.event().getBody().toString();
             }
         });
 

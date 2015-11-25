@@ -5,6 +5,7 @@ If you are looking to contribute a Node, below are some ideas:
 **Solr**
 
 * Node for loading data into Solr
+* Node for querying data from Solr
 
 **NLP Nodes**
 
@@ -22,11 +23,9 @@ It would be great to have NLP integrated into the system. We plan to use OpenNLP
 
 Optical Character Recognition is useful and we plan to integrate it into the system.
 
-**Omniture Nodes**
+**Nodes for various data formats**
 
-* Node to clean omniture data
-* Node to generate analytics from omniture data
-
+* HL7
 
 
 ## Nodes Implemented
@@ -43,7 +42,7 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 #### Save Nodes
 
-* NodeSave.java : Saves the dataframe
+* NodeSave.java : Saves the dataframe onto HDFS
 
 #### Predictive Modeling Nodes
 
@@ -73,6 +72,9 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 
 * **NodePrintFirstNRows.java** : Prints the first N rows of a dataset
 
+#### Streaming Nodes
+
+* **NodeStreamingSocketTextStream.java** : Reads text data from a socket
 
 
 

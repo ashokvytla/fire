@@ -21,13 +21,26 @@ provide a rich **User Interface** for building the workflows.
 User Interface/Dashboards and easy to use. And above all stay very close to programming in Spark and
 avoid having many layers of code.**
 
-Spark is the core computation engine which is supported. Any new computation node can be plugged
-into the workflow. It supports data nodes, transform nodes, predictive modeling nodes, loading data into various stores
-like hbase, solr etc. and above all schema propagation through the workflow.
-
 Fire's core value preposition is to provide a number of Rich Nodes in an open framework that could be used out of the box
 and thus enable much faster innovation and development of new use cases of Big Data.
 Fire is Apache 2 Licensed http://www.apache.org/licenses/LICENSE-2.0.
+
+## Architecture
+
+The main entity is a workflow. A workflow contains nodes connected to each other. It supports schema propagation which is the key component of data pipelines. Nodes also have parameters which are set. Data is passed from one node to another as Spark **DataFrame**. The output DataFrame of a Node can have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
+
+<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Workflow.png"/>
+
+Nodes can be:
+
+* **Dataset nodes** which creates the DataFrame from some store for the rest of the nodes to act upon.
+* **Transform nodes** which process the incoming dataset/s to produce another dataset.
+* **Modeling nodes** which apply a predictive algorithm on the incoming dataset to produce a model
+* **Scoring nodes** which take in a dataset and and model and score it.
+* **Decision nodes** which take in a dataset, compute some value and pass on the execution to one of its connected outputs.
+* **Split nodes** which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
+* **ETL nodes** which operate on source datasets and perform common ETL operations. 
+* **Save nodes** which save the datasets onto persistent stores like HDFS, HBase, Solr etc.
 
 ## Big Data Applications
 
@@ -57,8 +70,8 @@ Big Data Horizontal and Vertical Applications.
 
 
 ## Building
-
-	mvn package
+	Checkout out code with : git clone https://github.com/FireProjects/fire.git
+	Build it with : mvn package
 
 ## IntelliJ or Eclipse
 
@@ -117,26 +130,6 @@ The workflow engine is under core in the package **fire.workflowengine**.
 The node implementations are under core in the package **fire.nodes**.
 
 There are still a number of packages which are not used now but would be used in the future. Hence they can be safely ignored for now. So, its best to just focus on the above two at the moment.
-
-
-## Architecture
-
-The main entity is a workflow. A workflow contains nodes connected to each other. Nodes also have parameters
-which are set. Data is passed from one node to another as Spark **DataFrame**. The output DataFrame of a Node can have a different Schema from its input DataFrame. A Node can add or remove columns from a DataFrame.
-
-
-<img src="https://github.com/FireProjects/fire/blob/master/docs/images/Workflow.png"/>
-
-Nodes can be:
-
-* **Dataset nodes** which creates the DataFrame from some store for the rest of the nodes to act upon.
-* **Transform nodes** which process the incoming dataset/s to produce another dataset.
-* **Modeling nodes** which apply a predictive algorithm on the incoming dataset to produce a model
-* **Scoring nodes** which take in a dataset and and model and score it.
-* **Decision nodes** which take in a dataset, compute some value and pass on the execution to one of its connected outputs.
-* **Split nodes** which take in a dataset and split it into subsets and pass on the execution to its outputs with the split datasets.
-* **ETL nodes** which operate on source datasets and perform common ETL operations. 
-* **Save nodes** which save the datasets onto HDFS.
 
 ## Workflow Execution
 

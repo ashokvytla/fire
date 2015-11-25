@@ -30,6 +30,7 @@
         <hbase.version>1.0.0-cdh5.5.0</hbase.version>
         <spark.version>1.5.0-cdh5.5.0</spark.version>
         <hadoop.version>2.6.0-mr1-cdh5.5.0</hadoop.version>
+	<solr.version>5.2.1</solr.version>
         <scala.version>2.10.4</scala.version>
         <scala.binary.version>2.10</scala.binary.version>
   </properties>
@@ -414,6 +415,48 @@
       <artifactId>spark-hbase</artifactId>
       <version>0.0.2-clabs</version>
     </dependency>
+
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>${solr.version}</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-core</artifactId>
+            <version>${solr.version}</version>
+            <type>jar</type>
+            <!--
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.orbit</groupId>
+                    <artifactId>javax.servlet</artifactId>
+                </exclusion>
+            </exclusions>
+            -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-test-framework</artifactId>
+            <version>${solr.version}</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+
+	<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
+	<dependency>
+  	    <groupId>org.apache.httpcomponents</groupId>
+  	    <artifactId>httpclient</artifactId>
+  	    <version>4.5.1</version>
+	</dependency>
 
   </dependencies>
 

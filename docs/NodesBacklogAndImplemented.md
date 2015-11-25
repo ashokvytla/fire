@@ -25,7 +25,17 @@ Optical Character Recognition is useful and we plan to integrate it into the sys
 
 **Nodes for various data formats**
 
-* HL7
+Logs
+
+* SysLog Parser
+* Apache Logs Parser
+
+Healthcare
+* HL7 Parser
+
+Networking
+* Netflow
+* J-Flow
 
 
 ## Nodes Implemented

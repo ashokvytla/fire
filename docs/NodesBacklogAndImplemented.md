@@ -59,6 +59,7 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 #### ETL Nodes
 
 * **NodeJoin.java** : Joins the incoming datasets on the given keys
+* **NodeFilter.java** : Filters the incoming dataset on the conditition provided
 
 #### HBase Nodes
 
@@ -75,6 +76,8 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 #### Streaming Nodes
 
 * **NodeStreamingSocketTextStream.java** : Reads text data from a socket
+* **NodeStreamingKafka.java** : Reads text data from Apache Kafka
+* **NodeStreamingFlume.java** : Reads text data from Apache Flume
 
 
 

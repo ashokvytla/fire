@@ -31,6 +31,11 @@ public class NodeStreamingKafka extends NodeStreaming {
 
     public NodeStreamingKafka(int i, String nm, String zkQ, String grp, String top, int numTh) {
         super(i, nm);
+
+        zkQuorum = zkQ;
+        group = grp;
+        topics = top;
+        numThreads = numTh;
     }
 
     @Override

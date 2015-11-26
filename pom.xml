@@ -458,6 +458,12 @@
   	    <version>4.5.1</version>
 	</dependency>
 
+	<dependency>
+		<groupId>org.ghost4j</groupId>
+		<artifactId>ghost4j</artifactId>
+		<version>1.0.0</version>
+	</dependency>
+
   </dependencies>
 
   <build>

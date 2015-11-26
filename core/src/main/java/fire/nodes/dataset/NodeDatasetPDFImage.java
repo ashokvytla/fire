@@ -17,23 +17,18 @@
 
 package fire.nodes.dataset;
 
-import fire.util.fileformats.pdf.PdfInputFormat;
 import fire.util.spark.SchemaUtil;
 import fire.workflowengine.WorkflowContext;
 import org.apache.hadoop.io.Text;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.input.PortableDataStream;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SQLContext;
-import org.apache.spark.sql.types.DataTypes;
-import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 import org.ghost4j.document.PDFDocument;
 import org.ghost4j.renderer.SimpleRenderer;
@@ -41,7 +36,6 @@ import scala.Tuple2;
 
 import java.awt.*;
 import java.io.Serializable;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -51,11 +45,11 @@ import java.util.List;
 
 public class NodeDatasetPDFImage extends NodeDatasetFileOrDirectory implements Serializable {
 
-    // key column
-    public String kcol = "key";
+    // filename column
+    public String filenamecol = "file";
 
-    // value column
-    public String vcol = "val";
+    // image column
+    public String imagecol = "image";
 
     public NodeDatasetPDFImage(int i, String nm, String p) {
         super(i, nm, p);
@@ -77,13 +71,19 @@ public class NodeDatasetPDFImage extends NodeDatasetFileOrDirectory implements S
 
         workflowContext.out("Executing NodeDatasetPDFImage : " + id);
 
-        JavaPairRDD<String, PortableDataStream> files = ctx.binaryFiles (path);
+        JavaPairRDD<String, PortableDataStream> files = ctx.binaryFiles(path);
 
         JavaRDD<Row> imagesrdd =  files.map(new ConvertFunction());
 
-        long cnt = imagesrdd.count();
+        // create a schema for the column name and Type of STRING
+        StructType schema = SchemaUtil.getSchema(filenamecol + " " + imagecol, "string string");
 
-        super.execute(ctx, sqlContext, workflowContext, null);
+        // Apply the schema to the RDD.
+        DataFrame imagedf = sqlContext.createDataFrame(imagesrdd, schema);
+
+        workflowContext.outSchema(imagedf);
+
+        super.execute(ctx, sqlContext, workflowContext, imagedf);
     }
 
     //------------------------------------------------------------------------------------------------------

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package fire.examples.workflow.ml;
+package fire.examples.workflow.etl;
 
 import fire.nodes.dataset.NodeDatasetFileOrDirectoryText;
 import fire.nodes.ml.NodePrintFirstNRows;

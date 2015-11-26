@@ -49,6 +49,9 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 * NodeDatasetFileOrDirectoryCSV.java : Reads in a CSV file
 * NodeDatasetFileOrDirectoryText.java : Reads in Text file as lines
 * NodeDatasetFileOrDirectoryParquet.java : Reads in a Parquet file
+* NodeDatasetPDFImage.java : Reads in a PDF file as images
+
+Ghostscript is used to extract the images from the PDFs. So Ghostscript needs to be installed on the system.
 
 #### Save Nodes
 

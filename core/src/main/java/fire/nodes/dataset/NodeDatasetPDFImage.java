@@ -23,6 +23,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.input.PortableDataStream;
 import org.apache.spark.sql.DataFrame;
@@ -36,6 +37,7 @@ import scala.Tuple2;
 
 import java.awt.*;
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -73,10 +75,10 @@ public class NodeDatasetPDFImage extends NodeDatasetFileOrDirectory implements S
 
         JavaPairRDD<String, PortableDataStream> files = ctx.binaryFiles(path);
 
-        JavaRDD<Row> imagesrdd =  files.map(new ConvertFunction());
+        JavaRDD<Row> imagesrdd =  files.flatMap(new ConvertFunction());
 
         // create a schema for the column name and Type of STRING
-        StructType schema = SchemaUtil.getSchema(filenamecol + " " + imagecol, "string string");
+        StructType schema = SchemaUtil.getSchema(filenamecol + " " + imagecol, "string bytes");
 
         // Apply the schema to the RDD.
         DataFrame imagedf = sqlContext.createDataFrame(imagesrdd, schema);
@@ -90,9 +92,9 @@ public class NodeDatasetPDFImage extends NodeDatasetFileOrDirectory implements S
 
 }
 
-class ConvertFunction implements Function<Tuple2<String, PortableDataStream>, Row> {
+class ConvertFunction implements FlatMapFunction<Tuple2<String, PortableDataStream>, Row> {
 
-    public Row call(Tuple2<String, PortableDataStream> f) throws Exception {
+    public Iterable<Row> call(Tuple2<String, PortableDataStream> f) throws Exception {
 
         PDFDocument document = new PDFDocument( );
         document.load(f._2().open());
@@ -102,7 +104,12 @@ class ConvertFunction implements Function<Tuple2<String, PortableDataStream>, Ro
         renderer.setResolution(300);
         List<Image> images = renderer.render(document);
 
-        return RowFactory.create(f._1(), images);
+        LinkedList<Row> ll = new LinkedList<Row>();
+        for (int i=0; i<images.size(); i++) {
+            ll.add(RowFactory.create(f._1(), images.get(i)));
+        }
+
+        return ll;
     }
 }
 

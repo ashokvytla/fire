@@ -17,6 +17,7 @@
 
 package fire.workflowengine;
 
+import org.apache.avro.Schema;
 import org.apache.spark.sql.types.DataType;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
@@ -102,9 +103,10 @@ public class FireSchema {
             org.apache.avro.Schema.Type type = null;
             switch(coltype)
             {
-                case "int" : type = org.apache.avro.Schema.Type.INT; break;
-                case "double" : type = org.apache.avro.Schema.Type.DOUBLE; break;
-                case "string" : type = org.apache.avro.Schema.Type.STRING; break;
+                case "int"    : type = Schema.Type.INT; break;
+                case "double" : type = Schema.Type.DOUBLE; break;
+                case "string" : type = Schema.Type.STRING; break;
+                case "bytes"  : type = Schema.Type.BYTES; break;
             }
 
             columnTypes[idx] = type;
@@ -155,15 +157,18 @@ public class FireSchema {
         for (String fieldName: columnNames) {
             DataType dataType = null;
 
-            if (columnTypes[idx] == org.apache.avro.Schema.Type.INT)
+            if (columnTypes[idx] == Schema.Type.INT)
             {
                 dataType = DataTypes.IntegerType;
-            } else if (columnTypes[idx] == org.apache.avro.Schema.Type.DOUBLE)
+            } else if (columnTypes[idx] == Schema.Type.DOUBLE)
             {
                 dataType = DataTypes.DoubleType;
-            } else if (columnTypes[idx] == org.apache.avro.Schema.Type.STRING)
+            } else if (columnTypes[idx] == Schema.Type.STRING)
             {
                 dataType = DataTypes.StringType;
+            } else if (columnTypes[idx] == Schema.Type.BYTES)
+            {
+                dataType = DataTypes.BinaryType;
             }
 
             fields.add(DataTypes.createStructField(fieldName, dataType, true)); // name, datatype, nullable

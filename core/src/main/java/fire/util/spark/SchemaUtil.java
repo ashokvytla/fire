@@ -20,8 +20,9 @@ public class SchemaUtil {
         String[] arr = coltypes.split(" ");
         String colmltypes = "";
         for (int i=0; i<arr.length; i++) {
-            colmltypes += "numeric";
+            colmltypes += "numeric ";
         }
+        colmltypes.trim();
 
         // schema
         StructType schema = new FireSchema(colnames, coltypes, colmltypes).getSparkSQLStructType();

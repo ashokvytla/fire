@@ -17,15 +17,12 @@
 
 package fire.examples.workflow.etl;
 
-import fire.nodes.dataset.NodeDatasetFileOrDirectoryText;
-import fire.nodes.dataset.NodeDatasetPDF;
-import fire.nodes.dataset.NodeDatasetPDFImage;
+import fire.nodes.dataset.*;
 import fire.nodes.ml.NodePrintFirstNRows;
 import fire.workflowengine.WorkflowContext;
 import fire.nodes.ml.NodeHashingTF;
 import fire.nodes.ml.NodeTokenizer;
 import fire.util.spark.CreateSparkContext;
-import fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV;
 import fire.workflowengine.Workflow;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
@@ -33,7 +30,7 @@ import org.apache.spark.sql.SQLContext;
 /**
  * Created by jayantshekhar
  */
-public class WorkflowPdfImages {
+public class WorkflowPdfImagesOCR {
 
     //--------------------------------------------------------------------------------------
 
@@ -59,7 +56,7 @@ public class WorkflowPdfImages {
         Workflow wf = new Workflow();
 
         // pdf node
-        NodeDatasetPDFImage pdf = new NodeDatasetPDFImage(1, "pdf node", "data/scansmpl.pdf");
+        NodeDatasetPDFImageOCR pdf = new NodeDatasetPDFImageOCR(1, "pdf node", "data/scansmpl.pdf");
         wf.addNodeDataset(pdf);
 
         // print first 1 rows node

@@ -29,21 +29,31 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.types.StructType;
+import org.bytedeco.javacpp.lept;
+import org.bytedeco.javacpp.tesseract;
 import org.ghost4j.document.PDFDocument;
 import org.ghost4j.renderer.SimpleRenderer;
 import scala.Tuple2;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
+
+import static org.bytedeco.javacpp.lept.pixDestroy;
+import static org.bytedeco.javacpp.lept.pixReadMem;
 
 /**
  * Created by jayantshekhar
  * Represents a Dataset Node which points to data in a File or Directory with data in csv format.
  */
 
-public class NodeDatasetPDFImage extends NodeDatasetFileOrDirectory implements Serializable {
+public class NodeDatasetPDFImageOCR extends NodeDatasetFileOrDirectory implements Serializable {
 
     // filename column
     public String filenamecol = "file";
@@ -51,15 +61,15 @@ public class NodeDatasetPDFImage extends NodeDatasetFileOrDirectory implements S
     // image column
     public String imagecol = "image";
 
-    public NodeDatasetPDFImage(int i, String nm, String p) {
+    public NodeDatasetPDFImageOCR(int i, String nm, String p) {
         super(i, nm, p);
     }
 
-    public NodeDatasetPDFImage(int i, String nm, String p, String cols, String colTypes, String colmlTypes) {
+    public NodeDatasetPDFImageOCR(int i, String nm, String p, String cols, String colTypes, String colmlTypes) {
         super(i, nm, p, cols, colTypes);
     }
 
-    public NodeDatasetPDFImage()
+    public NodeDatasetPDFImageOCR()
     {
 
     }
@@ -69,14 +79,16 @@ public class NodeDatasetPDFImage extends NodeDatasetFileOrDirectory implements S
     @Override
     public void execute(JavaSparkContext ctx, SQLContext sqlContext, WorkflowContext workflowContext, DataFrame df) {
 
-        workflowContext.out("Executing NodeDatasetPDFImage : " + id);
+        workflowContext.out("Executing NodeDatasetPDFImageOCR : " + id);
 
         JavaPairRDD<String, PortableDataStream> files = ctx.binaryFiles(path);
 
-        JavaRDD<Row> imagesrdd =  files.flatMap(new ConvertFunction());
+        JavaRDD<Row> imagesrdd =  files.flatMap(new ExtractOCRFunction());
+
+        imagesrdd.count();
 
         // create a schema for the column name and Type of STRING
-        StructType schema = SchemaUtil.getSchema(filenamecol + " " + imagecol, "string bytes");
+        StructType schema = SchemaUtil.getSchema(filenamecol + " " + imagecol, "string string");
 
         // Apply the schema to the RDD.
         DataFrame imagedf = sqlContext.createDataFrame(imagesrdd, schema);
@@ -90,7 +102,7 @@ public class NodeDatasetPDFImage extends NodeDatasetFileOrDirectory implements S
 
 }
 
-class ConvertFunction implements FlatMapFunction<Tuple2<String, PortableDataStream>, Row> {
+class ExtractOCRFunction implements FlatMapFunction<Tuple2<String, PortableDataStream>, Row> {
 
     public Iterable<Row> call(Tuple2<String, PortableDataStream> f) throws Exception {
 
@@ -102,12 +114,38 @@ class ConvertFunction implements FlatMapFunction<Tuple2<String, PortableDataStre
         renderer.setResolution(300);
         List<Image> images = renderer.render(document);
 
-        LinkedList<Row> ll = new LinkedList<Row>();
+        /**  Iterate through the image list and extract OCR
+         * using Tesseract API.
+         */
+
+        StringBuilder r = new StringBuilder();
         for (int i=0; i<images.size(); i++) {
-            ll.add(RowFactory.create(f._1(), images.get(i)));
+            ByteArrayOutputStream imageByteStream = new ByteArrayOutputStream();
+            ImageIO.write((RenderedImage)images.get(i), "png", imageByteStream);
+
+            lept.PIX pix = pixReadMem(
+                    ByteBuffer.wrap(imageByteStream.toByteArray()).array( ),
+                    ByteBuffer.wrap( imageByteStream.toByteArray( ) ).capacity( )
+            );
+
+            tesseract.TessBaseAPI api = new tesseract.TessBaseAPI();
+            /** We assume the documents are in English here, hence \”eng\” */
+            api.Init( null, "eng" );
+            api.SetImage(pix);
+            r.append(api.GetUTF8Text().getString());
+            imageByteStream.close();
+            pixDestroy(pix);
+            api.End();
+
         }
 
-        return ll;
+        Row row = RowFactory.create(f._1(), r.toString());
+
+        LinkedList temp = new LinkedList();
+        temp.add(row);
+
+        return temp;
     }
+
 }
 

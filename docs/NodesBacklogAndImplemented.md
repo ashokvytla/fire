@@ -52,6 +52,10 @@ https://github.com/FireProjects/fire/tree/master/core/src/main/java/fire/nodes
 * NodeDatasetPDFImage.java : Reads in a PDF file as images
 
 Ghostscript is used to extract the images from the PDFs. So Ghostscript needs to be installed on the system.
+Ghost4J is included in the pom.xml
+
+To install ghostscript on mac : brew install ghostscript
+
 
 #### Save Nodes
 

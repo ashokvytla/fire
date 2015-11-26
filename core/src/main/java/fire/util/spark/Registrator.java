@@ -21,6 +21,8 @@ import com.esotericsoftware.kryo.Kryo;
 import org.apache.spark.mllib.regression.LabeledPoint;
 import org.apache.spark.serializer.KryoRegistrator;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Created by jayantshekhar
  */
@@ -29,7 +31,7 @@ public class Registrator implements KryoRegistrator {
     public void registerClasses(Kryo kryo) {
 
         kryo.register(LabeledPoint.class);
-
+        kryo.register(BufferedImage.class);
     }
 
 }

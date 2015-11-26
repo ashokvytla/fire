@@ -21,8 +21,8 @@ public class CreateSparkContext {
         if (args.length > 0 && args[0].equals("cluster"))
             isLocal = false;
 
-        //System.setProperty("spark.serializer","org.apache.spark.serializer.KryoSerializer");
-        //System.setProperty("spark.kryo.registrator","Registrator");
+        System.setProperty("spark.serializer","org.apache.spark.serializer.KryoSerializer");
+        System.setProperty("spark.kryo.registrator","fire.util.spark.Registrator");
 
         System.setProperty("spark.akka.timeout","900");
         System.setProperty("spark.worker.timeout","900");

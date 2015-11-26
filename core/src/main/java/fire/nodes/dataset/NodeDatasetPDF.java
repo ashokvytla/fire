@@ -49,10 +49,10 @@ import java.util.List;
 public class NodeDatasetPDF extends NodeDatasetFileOrDirectory implements Serializable {
 
     // key column
-    public String kcol = "";
+    public String kcol = "key";
 
     // value column
-    public String vcol = "";
+    public String vcol = "val";
 
     public NodeDatasetPDF(int i, String nm, String p) {
         super(i, nm, p);
@@ -74,13 +74,14 @@ public class NodeDatasetPDF extends NodeDatasetFileOrDirectory implements Serial
 
         workflowContext.out("Executing NodeDatasetPDF : " + id);
 
-        JavaPairRDD<Text, Text> pairRDD = ctx.newAPIHadoopRDD(ctx.hadoopConfiguration(), PdfInputFormat.class, Text.class, Text.class);
+        JavaPairRDD<Text, Text> pairRDD = ctx.newAPIHadoopFile(path, PdfInputFormat.class,
+                    Text.class, Text.class, ctx.hadoopConfiguration());
 
         // Convert records of the RDD to Rows.
         JavaRDD<Row> rowRDD = pairRDD.map(
                 new Function<Tuple2<Text, Text>, Row>() {
                     public Row call(Tuple2<Text, Text> t2) throws Exception {
-                        return RowFactory.create(t2._1(), t2._2());
+                        return RowFactory.create(t2._1().toString(), t2._2().toString());
                     }
                 });
 
@@ -92,7 +93,7 @@ public class NodeDatasetPDF extends NodeDatasetFileOrDirectory implements Serial
 
         workflowContext.outSchema(tdf);
 
-        super.execute(ctx, sqlContext, workflowContext, null);
+        super.execute(ctx, sqlContext, workflowContext, tdf);
     }
 
     //------------------------------------------------------------------------------------------------------

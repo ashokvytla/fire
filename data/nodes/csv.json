@@ -1,5 +1,7 @@
 {
   "id": "CSV",
+  "class": "fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV",
+
   "groups" : {
     "position": [ "group1"  ],
 

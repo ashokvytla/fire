@@ -1,5 +1,7 @@
 {
   "id": "KMeans",
+  "class": "fire.nodes.ml.NodeKMeans",
+  
   "groups" : {
     "position": [ "group1"  ],
 

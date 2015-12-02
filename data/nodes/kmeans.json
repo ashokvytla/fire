@@ -1,0 +1,35 @@
+{
+  "id": "KMeans",
+  "class": "fire.nodes.ml.NodeKMeans",
+  
+  "groups" : {
+    "position": [ "group1"  ],
+
+    "group1": {
+      "display" : "KMeans Configuration",
+      "position" : [ "kmeans.num_clusters", "kmeans.num_iterations" ],
+
+      "fields" : {
+        "kmeans.num_clusters" : {
+          "widget": "textbox",
+          "label": "Number of Clusters",
+          "description" : "Number of Clusters for KMeans",
+          "properties": {
+            "width": "large"
+          }
+        },
+
+        "kmeans.max_iter" : {
+          "widget": "textbox",
+          "label": "Max Iterations",
+          "description" : "Maximum number of Iterations for KMeans",
+          "properties": {
+            "width": "large"
+          }
+        }
+
+      }
+    }
+
+  }
+}

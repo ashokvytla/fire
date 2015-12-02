@@ -1,0 +1,25 @@
+{
+  "id": "CSV",
+  "class": "fire.nodes.dataset.NodeDatasetFileOrDirectoryCSV",
+
+  "groups" : {
+    "position": [ "group1"  ],
+
+    "group1": {
+      "display" : "CSV Configuration",
+      "position" : [ "csv.directory" ],
+
+      "fields" : {
+        "csv.directory" : {
+          "widget": "textbox",
+          "label": "Path",
+          "description" : "Specify the path",
+          "properties": {
+            "width": "large"
+          }
+        }
+      }
+    }
+
+  }
+}

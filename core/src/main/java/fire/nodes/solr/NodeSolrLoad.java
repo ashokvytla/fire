@@ -31,7 +31,7 @@ public class NodeSolrLoad extends Node {
     // solr columns
     public String solrcols = "s1 s2 s3";
 
-    String zkHost;
+    String zkHost = "";
 
 
     int queueSize = 1000;

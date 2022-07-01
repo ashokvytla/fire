@@ -29,7 +29,7 @@
         <avro.version>1.7.6-cdh5.5.0</avro.version>
         <hbase.version>1.0.0-cdh5.5.0</hbase.version>
         <spark.version>1.5.0-cdh5.5.0</spark.version>
-        <hadoop.version>2.6.0-mr1-cdh5.5.0</hadoop.version>
+        <hadoop.version>2.7.0</hadoop.version>
 	<solr.version>5.2.1</solr.version>
 	<corenlp.version>3.4.1</corenlp.version>
         <scala.version>2.10.4</scala.version>
